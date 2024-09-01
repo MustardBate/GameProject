@@ -81,14 +81,19 @@ public class RoomObject : MonoBehaviour
     }
 
 
-    public void SetUpDoors(RoomObject room)
+    public void SetUpDoors()
     {
-        if (room.isTopRoomExists == true)    room.topWall.SetActive(false);  
+        // topWall.SetActive(true);
+        // bottomWall.SetActive(true);
+        // leftWall.SetActive(true);
+        // rightWall.SetActive(true);
 
-        if (room.isBottomRoomExists == true) room.bottomWall.SetActive(false);
+        if (isTopRoomExists == true)    topWall.SetActive(false);  
 
-        if (room.isLeftRoomExists == true)   room.leftWall.SetActive(false);
+        if (isBottomRoomExists == true) bottomWall.SetActive(false);
 
-        if (room.isRightRoomExists == true)  room.rightWall.SetActive(false);
+        if (isLeftRoomExists == true)   leftWall.SetActive(false);
+
+        if (isRightRoomExists == true)  rightWall.SetActive(false);
     }
 }

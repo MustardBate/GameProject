@@ -16,13 +16,13 @@ public class RoomManager : MonoBehaviour
 
     private List<Vector2Int> roomPositions;
 
-    private List<RoomObject> roomObjects;
+    private List<GameObject> roomObjects;
 
 
     private void Start()
     {
         roomPositions = new List<Vector2Int>();
-        roomObjects = new List<RoomObject>();
+        roomObjects = new List<GameObject>();
         
         roomCount = 0;
 
@@ -87,35 +87,32 @@ public class RoomManager : MonoBehaviour
                 var spawnRoomDrawn = Instantiate(spawnRoom, new Vector2(roomPos.x, roomPos.y), Quaternion.identity, this.transform);
                 spawnRoomDrawn.name = $"Spawn {roomPos.x}, {roomPos.y}";
 
-                RoomObject spawn = gameObject.AddComponent<RoomObject>();
-                // spawn.SetRoomPosition(roomPos);
-                roomObjects.Add(spawn);
+                // spawnRoomDrawn.GetComponent<RoomObject>().SetUpDoors();
+                roomObjects.Add(spawnRoomDrawn);
                 continue;
             }
 
             if (roomPos == roomPositions[roomPositions.Count - 1])
             {
                 var bossRoomDrawn = Instantiate(bossRoom, new Vector2(roomPos.x, roomPos.y), Quaternion.identity, this.transform);
-                bossRoomDrawn.name = $"Boss {roomPos.x}, {roomPos.y}";
+                bossRoomDrawn.name = $"Boss {roomPos.x}, {roomPos.y}";  
 
-                RoomObject boss = gameObject.AddComponent<RoomObject>();
-                // boss.SetRoomPosition(roomPos);
-                roomObjects.Add(boss);
+                // bossRoomDrawn.GetComponent<RoomObject>().SetUpDoors();
+                roomObjects.Add(bossRoomDrawn);
                 continue;
             }
 
             var roomDrawn = Instantiate(normalRoom, new Vector2(roomPos.x, roomPos.y), Quaternion.identity, this.transform);
             roomDrawn.name = $"{roomPos.x}, {roomPos.y}";
 
-            RoomObject room = gameObject.AddComponent<RoomObject>();
-            // room.SetRoomPosition(roomPos);
-            roomObjects.Add(room);
+            // roomDrawn.GetComponent<RoomObject>().SetUpDoors();
+            roomObjects.Add(roomDrawn);
         }
 
         // Debugging
-        foreach (RoomObject roomObject in roomObjects)
+        foreach (GameObject roomObject in roomObjects)
         {
-            Debug.Log(roomObject.GetRoomPosition());
+            Debug.Log(roomObject.GetComponent<RoomObject>().GetRoomPosition());
         }
         Debug.Log(roomObjects.Count);
     }
@@ -123,42 +120,47 @@ public class RoomManager : MonoBehaviour
 
     private void ConnectRooms()
     {
-        foreach (RoomObject roomObject in roomObjects)
+        foreach (GameObject roomObject in roomObjects)
         {
-            var topRoomPosition = roomObject.GetRoomPosition() + new Vector2Int(0, roomHeight);
-            var bottomRoomPosition = roomObject.GetRoomPosition() + new Vector2Int(0, -roomHeight);
-            var leftRoomPosition = roomObject.GetRoomPosition() + new Vector2Int(-roomWidth, 0);
-            var rightRoomPosition = roomObject.GetRoomPosition() + new Vector2Int(roomWidth, 0);
+            var topRoomPosition = roomObject.GetComponent<RoomObject>().GetRoomPosition() + new Vector2Int(0, roomHeight);
+            var bottomRoomPosition = roomObject.GetComponent<RoomObject>().GetRoomPosition() + new Vector2Int(0, -roomHeight);
+            var leftRoomPosition = roomObject.GetComponent<RoomObject>().GetRoomPosition() + new Vector2Int(-roomWidth, 0);
+            var rightRoomPosition = roomObject.GetComponent<RoomObject>().GetRoomPosition() + new Vector2Int(roomWidth, 0);
 
-            RoomObject bottomRoom = roomObjects.Find(room => room.GetRoomPosition() == bottomRoomPosition);
-            RoomObject topRoom = roomObjects.Find(room => room.GetRoomPosition() == topRoomPosition);
-            RoomObject leftRoom = roomObjects.Find(room => room.GetRoomPosition() == leftRoomPosition);
-            RoomObject rightRoom = roomObjects.Find(room => room.GetRoomPosition() == rightRoomPosition);
+            var topRoomIndex = roomPositions.IndexOf(topRoomPosition);
+            var bottomRoomIndex = roomPositions.IndexOf(bottomRoomPosition);
+            var leftRoomIndex = roomPositions.IndexOf(leftRoomPosition);
+            var rightRoomIndex = roomPositions.IndexOf(rightRoomPosition);
 
-            if (roomPositions.IndexOf(topRoomPosition) != -1)
+            if (topRoomIndex != -1)
             {
-                roomObject.isTopRoomExists = true;
-                topRoom.isBottomRoomExists = true;
+                roomObject.GetComponent<RoomObject>().isTopRoomExists = true;
+                // roomObjects[topRoomIndex].GetComponent<RoomObject>().isBottomRoomExists = true;
+                // roomObject.GetComponent<RoomObject>().isBottomRoomExists = true;
             }
 
-            if (roomPositions.IndexOf(bottomRoomPosition) != -1)
+            if (bottomRoomIndex != -1)
             {
-                roomObject.isBottomRoomExists = true;
-                bottomRoom.isTopRoomExists = true;
+                roomObject.GetComponent<RoomObject>().isBottomRoomExists = true;
+                // roomObjects[bottomRoomIndex].GetComponent<RoomObject>().isTopRoomExists = true;
+                // bottomRoom.GetComponent<RoomObject>().isTopRoomExists = true;
             }
 
-            if (roomPositions.IndexOf(leftRoomPosition) != -1)
+            if (leftRoomIndex != -1)
             {
-                roomObject.isLeftRoomExists = true;
-                leftRoom.isRightRoomExists = true;
+                roomObject.GetComponent<RoomObject>().isLeftRoomExists = true;
+                // roomObjects[leftRoomIndex].GetComponent<RoomObject>().isRightRoomExists = true;
+                // leftRoom.GetComponent<RoomObject>().isRightRoomExists = true;
             }
 
-            if (roomPositions.IndexOf(rightRoomPosition) != -1)
+            if (rightRoomIndex != -1)
             {
-                roomObject.isRightRoomExists = true;
-                rightRoom.isLeftRoomExists = true;
+                roomObject.GetComponent<RoomObject>().isRightRoomExists = true;
+                // roomObjects[rightRoomIndex].GetComponent<RoomObject>().isLeftRoomExists = true;
+                // rightRoom.GetComponent<RoomObject>().isLeftRoomExists = true;
             }
-            roomObject.SetUpDoors(roomObject);
+
+            roomObject.GetComponent<RoomObject>().SetUpDoors();
         }
     }
    
