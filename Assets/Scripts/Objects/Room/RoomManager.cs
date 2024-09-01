@@ -33,7 +33,7 @@ public class RoomManager : MonoBehaviour
     {
         GenerateRoomsPositions();
         DrawRooms();
-        // ConnectRooms();
+        ConnectRooms();
     }
 
 
@@ -88,7 +88,7 @@ public class RoomManager : MonoBehaviour
                 spawnRoomDrawn.name = $"Spawn {roomPos.x}, {roomPos.y}";
 
                 RoomObject spawn = gameObject.AddComponent<RoomObject>();
-                spawn.SetRoomPosition(roomPos);
+                // spawn.SetRoomPosition(roomPos);
                 roomObjects.Add(spawn);
                 continue;
             }
@@ -99,7 +99,7 @@ public class RoomManager : MonoBehaviour
                 bossRoomDrawn.name = $"Boss {roomPos.x}, {roomPos.y}";
 
                 RoomObject boss = gameObject.AddComponent<RoomObject>();
-                boss.SetRoomPosition(roomPos);
+                // boss.SetRoomPosition(roomPos);
                 roomObjects.Add(boss);
                 continue;
             }
@@ -108,7 +108,7 @@ public class RoomManager : MonoBehaviour
             roomDrawn.name = $"{roomPos.x}, {roomPos.y}";
 
             RoomObject room = gameObject.AddComponent<RoomObject>();
-            room.SetRoomPosition(roomPos);
+            // room.SetRoomPosition(roomPos);
             roomObjects.Add(room);
         }
 
@@ -125,29 +125,38 @@ public class RoomManager : MonoBehaviour
     {
         foreach (RoomObject roomObject in roomObjects)
         {
-            var topRoomPosition = roomPositions.IndexOf(roomObject.GetRoomPosition() + new Vector2Int(0, roomHeight));
-            var bottomRoomPosition = roomPositions.IndexOf(roomObject.GetRoomPosition() + new Vector2Int(0, -roomHeight));
-            var leftRoomPosition = roomPositions.IndexOf(roomObject.GetRoomPosition() + new Vector2Int(-roomWidth, 0));
-            var rightRoomPosition = roomPositions.IndexOf(roomObject.GetRoomPosition() + new Vector2Int(roomWidth, 0));
+            var topRoomPosition = roomObject.GetRoomPosition() + new Vector2Int(0, roomHeight);
+            var bottomRoomPosition = roomObject.GetRoomPosition() + new Vector2Int(0, -roomHeight);
+            var leftRoomPosition = roomObject.GetRoomPosition() + new Vector2Int(-roomWidth, 0);
+            var rightRoomPosition = roomObject.GetRoomPosition() + new Vector2Int(roomWidth, 0);
 
-            if (topRoomPosition != -1)
+            RoomObject bottomRoom = roomObjects.Find(room => room.GetRoomPosition() == bottomRoomPosition);
+            RoomObject topRoom = roomObjects.Find(room => room.GetRoomPosition() == topRoomPosition);
+            RoomObject leftRoom = roomObjects.Find(room => room.GetRoomPosition() == leftRoomPosition);
+            RoomObject rightRoom = roomObjects.Find(room => room.GetRoomPosition() == rightRoomPosition);
+
+            if (roomPositions.IndexOf(topRoomPosition) != -1)
             {
                 roomObject.isTopRoomExists = true;
+                topRoom.isBottomRoomExists = true;
             }
 
-            if (bottomRoomPosition != -1)
+            if (roomPositions.IndexOf(bottomRoomPosition) != -1)
             {
                 roomObject.isBottomRoomExists = true;
+                bottomRoom.isTopRoomExists = true;
             }
 
-            if (leftRoomPosition != -1)
+            if (roomPositions.IndexOf(leftRoomPosition) != -1)
             {
                 roomObject.isLeftRoomExists = true;
+                leftRoom.isRightRoomExists = true;
             }
 
-            if (rightRoomPosition != -1)
+            if (roomPositions.IndexOf(rightRoomPosition) != -1)
             {
                 roomObject.isRightRoomExists = true;
+                rightRoom.isLeftRoomExists = true;
             }
             roomObject.SetUpDoors(roomObject);
         }
