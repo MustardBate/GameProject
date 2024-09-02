@@ -635,8 +635,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ccdc0bf83e41c9648b5b7167bec7ec30, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  roomWidth: 20
-  roomHeight: 12
   maxRoomsCount: 10
   normalRoom: {fileID: 345012608050801222, guid: 898559e7c76ffa94290b0efaf816af96, type: 3}
   spawnRoom: {fileID: 8835488307559061808, guid: 3228a1df3aa7ff648883c05a93479353, type: 3}

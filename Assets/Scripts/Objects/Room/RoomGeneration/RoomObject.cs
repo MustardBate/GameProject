@@ -35,7 +35,7 @@ public class RoomObject : MonoBehaviour
 
     private void Start()
     {
-        roomPosition = new Vector2Int((int)transform.position.x, (int)transform.position.y);
+        // roomPosition = new Vector2Int((int)transform.position.x, (int)transform.position.y);
 
         foreach (Transform child in transform)
         {
@@ -52,11 +52,11 @@ public class RoomObject : MonoBehaviour
     }
 
 
-    // public Vector2Int SetRoomPosition(Vector2Int newRoomPosition)
-    // {
-    //     roomPosition = newRoomPosition;
-    //     return roomPosition;
-    // }
+    public Vector2Int SetRoomPosition(Vector2Int newRoomPosition)
+    {
+        roomPosition = newRoomPosition;
+        return roomPosition;
+    }
 
 
     private void RandomlySpawnEnemy()
