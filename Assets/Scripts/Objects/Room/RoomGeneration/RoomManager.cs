@@ -13,6 +13,8 @@ public class RoomManager : MonoBehaviour
     [SerializeField] private GameObject normalRoom;
     [SerializeField] private GameObject spawnRoom;
     [SerializeField] private GameObject bossRoom;   
+    [SerializeField] private GameObject shop;
+    [SerializeField] private GameObject treasureRoom;
 
     private List<Vector2Int> roomPositions;
 
@@ -66,6 +68,13 @@ public class RoomManager : MonoBehaviour
     {
         foreach (Vector2Int roomPos in roomPositions)
         {
+            // int randomIndex1 = Random.Range(3, maxRoomsCount - 3);
+            // int randomIndex2 = Random.Range(3, maxRoomsCount - 3);
+
+            // if (randomIndex1 == randomIndex2) randomIndex2 = Random.Range(3, maxRoomsCount - 3);
+
+
+            // Generate spawn room as the first room of the list
             if (roomPos == new Vector2Int(0, 0))
             {
                 var spawnRoomDrawn = Instantiate(spawnRoom, new Vector2(roomPos.x, roomPos.y), Quaternion.identity, this.transform);
@@ -77,6 +86,8 @@ public class RoomManager : MonoBehaviour
                 continue;
             }
 
+
+            // Generate boss room as the last room of the list 
             if (roomPos == roomPositions[roomPositions.Count - 1])
             {
                 var bossRoomDrawn = Instantiate(bossRoom, new Vector2(roomPos.x, roomPos.y), Quaternion.identity, this.transform);
@@ -88,6 +99,32 @@ public class RoomManager : MonoBehaviour
                 continue;
             }
 
+
+            // if (roomPos == roomPositions[randomIndex1])
+            // {
+            //     var shopDrawn = Instantiate(shop, new Vector2(roomPos.x, roomPos.y), Quaternion.identity, this.transform);
+            //     shopDrawn.name = $"Shop {roomPos.x}, {roomPos.y}";
+
+            //     // shopDrawn.GetComponent<RoomObject>().SetUpDoors();
+            //     shopDrawn.GetComponent<RoomObject>().SetRoomPosition(roomPos);
+            //     roomObjects.Add(shopDrawn);
+            //     continue;
+            // }
+
+
+            // if (roomPos == roomPositions[randomIndex2])
+            // {
+            //     var treasureRoomDrawn = Instantiate(treasureRoom, new Vector2(roomPos.x, roomPos.y), Quaternion.identity, this.transform);
+            //     treasureRoomDrawn.name = $"Treasure {roomPos.x}, {roomPos.y}";
+
+            //     // treasureRoomDrawn.GetComponent<RoomObject>().SetUpDoors();
+            //     treasureRoomDrawn.GetComponent<RoomObject>().SetRoomPosition(roomPos);
+            //     roomObjects.Add(treasureRoomDrawn);
+            //     continue;
+            // }
+
+
+            // Generate random normal room based on the rooms left in the list
             var roomDrawn = Instantiate(normalRoom, new Vector2(roomPos.x, roomPos.y), Quaternion.identity, this.transform);
             roomDrawn.name = $"{roomPos.x}, {roomPos.y}";
 

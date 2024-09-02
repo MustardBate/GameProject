@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class RoomObject : MonoBehaviour
 {
-    [SerializeField] private Vector2Int roomPosition;
+    private Vector2Int roomPosition;
     [SerializeField] GameObject topWall;
     [SerializeField] GameObject bottomWall;
     [SerializeField] GameObject leftWall;
