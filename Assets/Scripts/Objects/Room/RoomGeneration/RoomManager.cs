@@ -68,12 +68,6 @@ public class RoomManager : MonoBehaviour
     {
         foreach (Vector2Int roomPos in roomPositions)
         {
-            // int randomIndex1 = Random.Range(3, maxRoomsCount - 3);
-            // int randomIndex2 = Random.Range(3, maxRoomsCount - 3);
-
-            // if (randomIndex1 == randomIndex2) randomIndex2 = Random.Range(3, maxRoomsCount - 3);
-
-
             // Generate spawn room as the first room of the list
             if (roomPos == new Vector2Int(0, 0))
             {
@@ -98,30 +92,6 @@ public class RoomManager : MonoBehaviour
                 roomObjects.Add(bossRoomDrawn);
                 continue;
             }
-
-
-            // if (roomPos == roomPositions[randomIndex1])
-            // {
-            //     var shopDrawn = Instantiate(shop, new Vector2(roomPos.x, roomPos.y), Quaternion.identity, this.transform);
-            //     shopDrawn.name = $"Shop {roomPos.x}, {roomPos.y}";
-
-            //     // shopDrawn.GetComponent<RoomObject>().SetUpDoors();
-            //     shopDrawn.GetComponent<RoomObject>().SetRoomPosition(roomPos);
-            //     roomObjects.Add(shopDrawn);
-            //     continue;
-            // }
-
-
-            // if (roomPos == roomPositions[randomIndex2])
-            // {
-            //     var treasureRoomDrawn = Instantiate(treasureRoom, new Vector2(roomPos.x, roomPos.y), Quaternion.identity, this.transform);
-            //     treasureRoomDrawn.name = $"Treasure {roomPos.x}, {roomPos.y}";
-
-            //     // treasureRoomDrawn.GetComponent<RoomObject>().SetUpDoors();
-            //     treasureRoomDrawn.GetComponent<RoomObject>().SetRoomPosition(roomPos);
-            //     roomObjects.Add(treasureRoomDrawn);
-            //     continue;
-            // }
 
 
             // Generate random normal room based on the rooms left in the list
@@ -159,6 +129,7 @@ public class RoomManager : MonoBehaviour
             var bottomRoomIndex = roomPositions.IndexOf(bottomRoomPosition);
             var leftRoomIndex = roomPositions.IndexOf(leftRoomPosition);
             var rightRoomIndex = roomPositions.IndexOf(rightRoomPosition);
+
 
             // If the index is found (does exist) => returns the index in the list // else => returns -1
             // If the index != -1 => Set the boolean value to detect the corrosponding room to true
