@@ -11,6 +11,7 @@ TagManager:
   - EnemySpawner
   - SpawnRoom
   - Trigger
+  - SpawnTrigger
   layers:
   - Default
   - TransparentFX

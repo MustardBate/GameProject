@@ -1932,7 +1932,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5892c227e6c3f7c4e9b5f8222b375def, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  roomPosition: {x: 0, y: 0}
   topWall: {fileID: 6083377829466585090}
   bottomWall: {fileID: 4518380631650377317}
   leftWall: {fileID: 5332070613191058757}

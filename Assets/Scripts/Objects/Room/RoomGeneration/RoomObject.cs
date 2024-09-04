@@ -11,44 +11,61 @@ public class RoomObject : MonoBehaviour
     [SerializeField] GameObject leftWall;
     [SerializeField] GameObject rightWall;
 
-    public bool isTopRoomExists = false;
-    public bool isBottomRoomExists = false;
-    public bool isLeftRoomExists = false;
-    public bool isRightRoomExists = false;
+    [HideInInspector] public bool isTopRoomExists = false;
+    [HideInInspector] public bool isBottomRoomExists = false;
+    [HideInInspector] public bool isLeftRoomExists = false;
+    [HideInInspector] public bool isRightRoomExists = false;
 
-    [SerializeField] private int enemyCount;
-    [SerializeField] private List<GameObject> spawners;
-    [SerializeField] private List<GameObject> enemiesToSpawn;
-    [SerializeField] private GameObject enemyHolder;
-    public List<GameObject> enemiesSpawned = new ();
+    private List<GameObject> spawnTriggers;
+    [SerializeField] private int enemyInRoomCount;
+    private int currentEnemyAliveCount;
+    // [SerializeField] private List<GameObject> spawners;
+    // [SerializeField] private List<GameObject> enemiesToSpawn;
+    // [SerializeField] private GameObject enemyHolder;
+    // public List<GameObject> enemiesSpawned = new ();
+    private RoomType thisRoomType;
 
-    public bool hasEnteredRoom = false;
 
-    // private void Update() 
-    // {
+    public enum RoomType 
+    {
+        SpawnRoom,
+        Normal,
+        Boss
+    };
 
-    // // }
-    // private void Awake()
-    // {
-    //     this.roomPosition = new Vector2Int();
-    // }
 
     private void Start()
     {
+        currentEnemyAliveCount = enemyInRoomCount;
+        // Debug.Log($"{thisRoomType} is at {roomPosition}, has {spawnTriggers.Count} triggers");
         // roomPosition = new Vector2Int((int)transform.position.x, (int)transform.position.y);
 
-        foreach (Transform child in transform)
-        {
-            if (child.CompareTag("EnemySpawner")) spawners.Add(child.gameObject);
-        }
+        // foreach (Transform child in transform)
+        // {
+        //     if (child.CompareTag("EnemySpawner")) spawners.Add(child.gameObject);
+        // }
 
-        RandomlySpawnEnemy();
+        // RandomlySpawnEnemy();
     }
 
+    private void Update()
+    {
+        if (currentEnemyAliveCount < 0)
+        {
+            OpenDoors();
+        }
+    }
 
     public Vector2Int GetRoomPosition()
     {
         return roomPosition;
+    }
+
+
+    public RoomType SetRoomType(RoomType assignedRoomType)
+    {
+        thisRoomType = assignedRoomType;
+        return thisRoomType;
     }
 
 
@@ -59,26 +76,26 @@ public class RoomObject : MonoBehaviour
     }
 
 
-    private void RandomlySpawnEnemy()
-    {
-        for (int i = 0; i < enemyCount; i++)
-        {
-            var spawnerIndex = Random.Range(0, spawners.Count);
-            var nextSpawnerIndex = Random.Range(0, spawners.Count - 1);
+    // private void RandomlySpawnEnemy()
+    // {
+    //     for (int i = 0; i < enemyInRoomCount; i++)
+    //     {
+    //         var spawnerIndex = Random.Range(0, spawners.Count);
+    //         var nextSpawnerIndex = Random.Range(0, spawners.Count - 1);
 
-            if (nextSpawnerIndex == spawnerIndex) spawnerIndex = Random.Range(0, spawners.Count);
+    //         if (nextSpawnerIndex == spawnerIndex) spawnerIndex = Random.Range(0, spawners.Count);
 
-            var enemyIndex = Random.Range(0, enemiesToSpawn.Count);
+    //         var enemyIndex = Random.Range(0, enemiesToSpawn.Count);
 
-            var enemy = Instantiate(enemiesToSpawn[enemyIndex], spawners[spawnerIndex].transform.position, Quaternion.identity, enemyHolder.transform);
-            enemiesSpawned.Add(enemy);
-        }
+    //         var enemy = Instantiate(enemiesToSpawn[enemyIndex], spawners[spawnerIndex].transform.position, Quaternion.identity, enemyHolder.transform);
+    //         enemiesSpawned.Add(enemy);
+    //     }
 
-        foreach (GameObject enemy in enemiesSpawned)
-        {
-            enemy.SetActive(false);
-        }
-    }
+    //     foreach (GameObject enemy in enemiesSpawned)
+    //     {
+    //         enemy.SetActive(false);
+    //     }
+    // }
 
 
     public void SetUpDoors()
@@ -95,5 +112,10 @@ public class RoomObject : MonoBehaviour
         if (isLeftRoomExists == true)   leftWall.SetActive(false);
 
         if (isRightRoomExists == true)  rightWall.SetActive(false);
+    }
+
+    private void OpenDoors()
+    {
+        
     }
 }

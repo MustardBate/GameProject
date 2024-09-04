@@ -6,7 +6,6 @@ using UnityEngine;
 public class TransitionTrigger : MonoBehaviour
 {
     public UnityEngine.Vector3 newCamPos, newPlayerPos;
-    private bool hasEntered;
 
     CamController camControl;
 

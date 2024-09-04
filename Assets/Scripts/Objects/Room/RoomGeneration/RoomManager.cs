@@ -76,6 +76,7 @@ public class RoomManager : MonoBehaviour
 
                 // spawnRoomDrawn.GetComponent<RoomObject>().SetUpDoors();
                 spawnRoomDrawn.GetComponent<RoomObject>().SetRoomPosition(roomPos);
+                spawnRoomDrawn.GetComponent<RoomObject>().SetRoomType(RoomObject.RoomType.SpawnRoom);
                 roomObjects.Add(spawnRoomDrawn);
                 continue;
             }
@@ -89,6 +90,7 @@ public class RoomManager : MonoBehaviour
 
                 // bossRoomDrawn.GetComponent<RoomObject>().SetUpDoors();
                 bossRoomDrawn.GetComponent<RoomObject>().SetRoomPosition(roomPos);
+                bossRoomDrawn.GetComponent<RoomObject>().SetRoomType(RoomObject.RoomType.Boss);
                 roomObjects.Add(bossRoomDrawn);
                 continue;
             }
@@ -100,6 +102,7 @@ public class RoomManager : MonoBehaviour
 
             // roomDrawn.GetComponent<RoomObject>().SetUpDoors();
             roomDrawn.GetComponent<RoomObject>().SetRoomPosition(roomPos);
+            roomDrawn.GetComponent<RoomObject>().SetRoomType(RoomObject.RoomType.Normal);
             roomObjects.Add(roomDrawn);
         }
 
