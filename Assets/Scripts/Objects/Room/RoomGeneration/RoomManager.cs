@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -65,6 +66,7 @@ public class RoomManager : MonoBehaviour
             }
         }
 
+        // DEBUGGING
         // foreach (KeyValuePair<int, Vector2Int> room in roomPositions)
         // {
         //     Debug.Log(room.Key + ": " + room.Value);
@@ -119,7 +121,7 @@ public class RoomManager : MonoBehaviour
 
         ConnectRooms();
 
-        // Debugging
+        // DEBUGGING
         // foreach (GameObject roomObject in roomObjects)
         // {
         //     Debug.Log(roomObject.GetComponent<RoomObject>().GetRoomPosition());
@@ -170,18 +172,16 @@ public class RoomManager : MonoBehaviour
             // Use the SetUpDoors function from the RoomObject script to open valid doors
             roomObject.GetComponent<RoomObject>().SetUpDoors();
 
-            // Debugging
+            // DEBUGGING
             // Debug.Log($"Room {roomObject.GetComponent<RoomObject>().GetRoomPosition()}" 
             // + $"Top: {topRoomIndex}, Bottom: {bottomRoomIndex}, Left: {leftRoomIndex}, Right: {rightRoomIndex}");
         }
     }
    
 
-
-
     private Vector2Int GetRandomDirection()
     {
-        int randomIndex = Random.Range(0, 4);
+        int randomIndex = UnityEngine.Random.Range(0, 4);
 
         return randomIndex switch
         {

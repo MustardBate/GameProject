@@ -9,7 +9,6 @@ public abstract class EnemyManager : MonoBehaviour
 {
     //Health
     public int assignedRoomId;
-    protected RoomObject assignedRoom;
 
     protected int health;
     [SerializeField] private int fullHealth;
@@ -43,8 +42,7 @@ public abstract class EnemyManager : MonoBehaviour
         col = gameObject.GetComponent<Collider2D>();  
 
         playerIsDead = player.GetComponent<Player>().IsDead();
-        assignedRoom = GameObject.FindGameObjectWithTag("RoomObject").GetComponent<RoomObject>();
-
+        
         health = fullHealth;
         isDead = false;
     }
@@ -100,7 +98,6 @@ public abstract class EnemyManager : MonoBehaviour
 
         if (health <= 0)
         {
-            assignedRoom.DecreaseEnemyAliveCount(assignedRoomId);
             StartCoroutine(DeathAnimation());
         }
     }

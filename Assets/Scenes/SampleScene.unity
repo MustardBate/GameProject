@@ -357,6 +357,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 48d0a13911c32e24e91776704c341674, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  assignedRoomId: 0
   fullHealth: 30
   rangeTilPursuit: 6.5
   walkingSpeed: 2

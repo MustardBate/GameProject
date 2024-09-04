@@ -17,9 +17,10 @@ public class RoomObject : MonoBehaviour
     [HideInInspector] public bool isBottomRoomExists = false;
     [HideInInspector] public bool isLeftRoomExists = false;
     [HideInInspector] public bool isRightRoomExists = false;
+    private int adjacentRoomsCount = 0;
 
     [SerializeField] private int enemyToSpawnCount;
-    [HideInInspector] public int currentEnemyAliveCount; 
+    private int currentEnemyAliveCount; 
 
     [SerializeField] private List<GameObject> spawners = new ();
     [SerializeField] private List<GameObject> enemyTypes;
@@ -39,7 +40,7 @@ public class RoomObject : MonoBehaviour
 
     private void Start()
     {
-        currentEnemyAliveCount = enemyToSpawnCount;
+        // currentEnemyAliveCount = GameObject.FindObjectsOfType(typeof(EnemyManager)).Length;
 
        if (thisRoomType == RoomType.SpawnRoom) enemyToSpawnCount = 0;
 
@@ -52,14 +53,17 @@ public class RoomObject : MonoBehaviour
        else 
        {
             enemyToSpawnCount = 3;
-            RandomlySpawnEnemy();
+            // RandomlySpawnEnemy();
        }
+
+        // Debug.Log($"Room {roomId} has {currentEnemyAliveCount} enemies alive");
     }
 
 
-    private void Update()
+    // To open the door for the player when all enemies are dead (Closing the door is handled by the SpawnTrigger script)
+    private void OpenDoors()
     {
-        if (currentEnemyAliveCount < 0)
+        if (currentEnemyAliveCount == 0 && thisRoomType == RoomType.Normal)
         {
             Debug.Log($"Room {roomId} open doors!");
         }
@@ -94,6 +98,12 @@ public class RoomObject : MonoBehaviour
     {
         roomId = newId;
         return roomId;
+    }
+
+
+    public RoomType GetRoomType()
+    {
+        return thisRoomType;
     }
 
 
@@ -137,23 +147,30 @@ public class RoomObject : MonoBehaviour
     // To connect this room to other valid rooms
     public void SetUpDoors()
     {
-        if (isTopRoomExists == true)    topWall.SetActive(false);  
-
-        if (isBottomRoomExists == true) bottomWall.SetActive(false);
-
-        if (isLeftRoomExists == true)   leftWall.SetActive(false);
-
-        if (isRightRoomExists == true)  rightWall.SetActive(false);
-    }
-
-
-    // To open the door for the player when all enemies are dead (Closing the door is handled by the SpawnTrigger script)
-    private void OpenDoors()
-    {
-        if (currentEnemyAliveCount == 0)
+        if (isTopRoomExists == true)
         {
-            // Open the doors
-            return;
+            topWall.SetActive(false);  
+            adjacentRoomsCount++;
+        }    
+            
+        if (isBottomRoomExists == true)
+        {
+            bottomWall.SetActive(false);
+            adjacentRoomsCount++;
+        }
+
+        if (isLeftRoomExists == true)   
+        {
+            leftWall.SetActive(false);
+            adjacentRoomsCount++;
+        }
+
+        if (isRightRoomExists == true)  
+        {
+            rightWall.SetActive(false);
+            adjacentRoomsCount++;
         }
     }
+
+
 }
