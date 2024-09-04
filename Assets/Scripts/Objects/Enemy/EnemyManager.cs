@@ -16,20 +16,17 @@ public abstract class EnemyManager : MonoBehaviour
     protected float distance;
     [SerializeField] protected float walkingSpeed;
 
-    //Check if player is dead
-    protected bool playerIsDead;
-
     //Damage dealt when colliding with player
     [SerializeField] private int contactDamage;
 
     private Collider2D col;
     private Rigidbody2D rb;
-
     private Animator animator;
-
     protected UnityEngine.Vector2 direction;
-
+    
     protected GameObject player;
+    //Check if player is dead
+    protected bool playerIsDead;
 
     private bool isDead;
 

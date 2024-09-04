@@ -14,7 +14,9 @@ public class Player : MonoBehaviour
 
     private UnityEngine.Vector2 movement;
 
-    [SerializeField] private float flashTimer = .1f;
+    private readonly float flashTimer = .13f;
+    private readonly int flashCount = 3;
+    private SpriteRenderer sprite;
 
 
     private int health;
@@ -33,6 +35,7 @@ public class Player : MonoBehaviour
         rb = gameObject.GetComponent<Rigidbody2D>();
         col = gameObject.GetComponent<Collider2D>();    
         animator = gameObject.GetComponent<Animator>();
+        sprite = gameObject.GetComponent<SpriteRenderer>();
 
         health = maxHealth;
     }
@@ -81,13 +84,18 @@ public class Player : MonoBehaviour
     {
         if (IsDead() == false)
         {
+            int temp = 0;
             col.enabled = false;
 
-            gameObject.GetComponent<SpriteRenderer>().color = Color.red;
+            while (temp < flashCount)
+            {
+                sprite.color = new Color (1, 0, 0, .5f);
+                yield return new WaitForSeconds(flashTimer);
+                sprite.color = new Color (1, 1, 1, 1);
+                yield return new WaitForSeconds(flashTimer);
 
-            yield return new WaitForSeconds(flashTimer);
-
-            gameObject.GetComponent<SpriteRenderer>().color = Color.white;
+                temp++;
+            }
 
             col.enabled = true;
         }

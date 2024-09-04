@@ -133,15 +133,27 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 197121748875235059, guid: 0c95b0a4e9f73ec41aa33946b46c23ca, type: 3}
       propertyPath: maxHealth
-      value: 3
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 197121748875235059, guid: 0c95b0a4e9f73ec41aa33946b46c23ca, type: 3}
       propertyPath: moveSpeed
       value: 6
       objectReference: {fileID: 0}
+    - target: {fileID: 197121748875235059, guid: 0c95b0a4e9f73ec41aa33946b46c23ca, type: 3}
+      propertyPath: flashCount
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 197121748875235059, guid: 0c95b0a4e9f73ec41aa33946b46c23ca, type: 3}
+      propertyPath: flashTimer
+      value: 0.13
+      objectReference: {fileID: 0}
     - target: {fileID: 828157395572391263, guid: 0c95b0a4e9f73ec41aa33946b46c23ca, type: 3}
       propertyPath: m_Name
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 929564032500640441, guid: 0c95b0a4e9f73ec41aa33946b46c23ca, type: 3}
+      propertyPath: m_Color.r
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3044499751212764729, guid: 0c95b0a4e9f73ec41aa33946b46c23ca, type: 3}
       propertyPath: m_Color.b
@@ -219,7 +231,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1074207720597123261, guid: bf6ff464237bf174faeeb6272c06e861, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2046185534994045056, guid: bf6ff464237bf174faeeb6272c06e861, type: 3}
       propertyPath: m_LocalPosition.x
@@ -264,6 +276,14 @@ PrefabInstance:
     - target: {fileID: 5601042953903779063, guid: bf6ff464237bf174faeeb6272c06e861, type: 3}
       propertyPath: m_IsTrigger
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8998580395122627615, guid: bf6ff464237bf174faeeb6272c06e861, type: 3}
+      propertyPath: knockbackForce
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 8998580395122627615, guid: bf6ff464237bf174faeeb6272c06e861, type: 3}
+      propertyPath: playerStunDuration
+      value: 0.5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -324,7 +344,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &421729136
 MonoBehaviour:
   m_ObjectHideFlags: 0
