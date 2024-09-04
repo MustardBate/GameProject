@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
@@ -5,6 +6,7 @@ using UnityEngine;
 
 public class RoomObject : MonoBehaviour
 {
+    [SerializeField] private int roomId;
     private Vector2Int roomPosition;
     [SerializeField] GameObject topWall;
     [SerializeField] GameObject bottomWall;
@@ -16,13 +18,14 @@ public class RoomObject : MonoBehaviour
     [HideInInspector] public bool isLeftRoomExists = false;
     [HideInInspector] public bool isRightRoomExists = false;
 
-    private List<GameObject> spawnTriggers;
-    [SerializeField] private int enemyInRoomCount;
-    private int currentEnemyAliveCount;
-    // [SerializeField] private List<GameObject> spawners;
-    // [SerializeField] private List<GameObject> enemiesToSpawn;
-    // [SerializeField] private GameObject enemyHolder;
-    // public List<GameObject> enemiesSpawned = new ();
+    [SerializeField] private int enemyToSpawnCount;
+    [HideInInspector] public int currentEnemyAliveCount; 
+
+    [SerializeField] private List<GameObject> spawners = new ();
+    [SerializeField] private List<GameObject> enemyTypes;
+    [SerializeField] private GameObject enemyHolder;
+    private List<GameObject> enemiesSpawned = new ();
+
     private RoomType thisRoomType;
 
 
@@ -36,32 +39,41 @@ public class RoomObject : MonoBehaviour
 
     private void Start()
     {
-        currentEnemyAliveCount = enemyInRoomCount;
-        // Debug.Log($"{thisRoomType} is at {roomPosition}, has {spawnTriggers.Count} triggers");
-        // roomPosition = new Vector2Int((int)transform.position.x, (int)transform.position.y);
+        currentEnemyAliveCount = enemyToSpawnCount;
 
-        // foreach (Transform child in transform)
-        // {
-        //     if (child.CompareTag("EnemySpawner")) spawners.Add(child.gameObject);
-        // }
+       if (thisRoomType == RoomType.SpawnRoom) enemyToSpawnCount = 0;
 
-        // RandomlySpawnEnemy();
+       else if (thisRoomType == RoomType.Boss) 
+        {
+            enemyToSpawnCount = 1;
+            SpawnBoss();
+        }
+
+       else 
+       {
+            enemyToSpawnCount = 3;
+            RandomlySpawnEnemy();
+       }
     }
+
 
     private void Update()
     {
         if (currentEnemyAliveCount < 0)
         {
-            OpenDoors();
+            Debug.Log($"Room {roomId} open doors!");
         }
     }
 
+
+    // Get room position
     public Vector2Int GetRoomPosition()
     {
         return roomPosition;
     }
 
 
+    // Set room type (for logic)
     public RoomType SetRoomType(RoomType assignedRoomType)
     {
         thisRoomType = assignedRoomType;
@@ -69,6 +81,7 @@ public class RoomObject : MonoBehaviour
     }
 
 
+    // Set room position when generating the map
     public Vector2Int SetRoomPosition(Vector2Int newRoomPosition)
     {
         roomPosition = newRoomPosition;
@@ -76,35 +89,54 @@ public class RoomObject : MonoBehaviour
     }
 
 
-    // private void RandomlySpawnEnemy()
-    // {
-    //     for (int i = 0; i < enemyInRoomCount; i++)
-    //     {
-    //         var spawnerIndex = Random.Range(0, spawners.Count);
-    //         var nextSpawnerIndex = Random.Range(0, spawners.Count - 1);
-
-    //         if (nextSpawnerIndex == spawnerIndex) spawnerIndex = Random.Range(0, spawners.Count);
-
-    //         var enemyIndex = Random.Range(0, enemiesToSpawn.Count);
-
-    //         var enemy = Instantiate(enemiesToSpawn[enemyIndex], spawners[spawnerIndex].transform.position, Quaternion.identity, enemyHolder.transform);
-    //         enemiesSpawned.Add(enemy);
-    //     }
-
-    //     foreach (GameObject enemy in enemiesSpawned)
-    //     {
-    //         enemy.SetActive(false);
-    //     }
-    // }
+    // Set room id in order to assign this room's id to enemies created in this room
+    public int SetRoomId(int newId)
+    {
+        roomId = newId;
+        return roomId;
+    }
 
 
+    private void RandomlySpawnEnemy()
+    {
+        for (int i = 0; i < enemyToSpawnCount; i++)
+        {
+            var spawnerIndex = UnityEngine.Random.Range(0, spawners.Count);
+            var nextSpawnerIndex = UnityEngine.Random.Range(1, spawners.Count - 1);
+
+            if (nextSpawnerIndex == spawnerIndex) spawnerIndex = UnityEngine.Random.Range(0, spawners.Count);
+
+
+            var enemy = Instantiate(enemyTypes[0], spawners[spawnerIndex].transform.position, Quaternion.identity, enemyHolder.transform);
+            enemy.GetComponent<EnemyManager>().SetAssignedRoomId(roomId);    
+            enemiesSpawned.Add(enemy);
+        }
+
+        // foreach (GameObject enemy in enemiesSpawned)
+        // {
+        //     enemy.SetActive(false);
+        // }
+    }
+
+
+    private void SpawnBoss()
+    {
+        return;
+    }
+
+
+    public void DecreaseEnemyAliveCount(int enemyAssignedRoomId)
+    {
+        if (enemyAssignedRoomId == roomId)
+        {
+            currentEnemyAliveCount--;
+        }
+    }
+
+
+    // To connect this room to other valid rooms
     public void SetUpDoors()
     {
-        // topWall.SetActive(true);
-        // bottomWall.SetActive(true);
-        // leftWall.SetActive(true);
-        // rightWall.SetActive(true);
-
         if (isTopRoomExists == true)    topWall.SetActive(false);  
 
         if (isBottomRoomExists == true) bottomWall.SetActive(false);
@@ -114,8 +146,14 @@ public class RoomObject : MonoBehaviour
         if (isRightRoomExists == true)  rightWall.SetActive(false);
     }
 
+
+    // To open the door for the player when all enemies are dead (Closing the door is handled by the SpawnTrigger script)
     private void OpenDoors()
     {
-        
+        if (currentEnemyAliveCount == 0)
+        {
+            // Open the doors
+            return;
+        }
     }
 }

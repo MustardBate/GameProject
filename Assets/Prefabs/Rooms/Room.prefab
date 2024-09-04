@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 7033989922637859638}
   m_Layer: 0
   m_Name: 3
-  m_TagString: Untagged
+  m_TagString: EnemySpawner
   m_Icon: {fileID: 7174288486110832750, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -43,7 +43,7 @@ GameObject:
   - component: {fileID: 2811825041323021488}
   m_Layer: 0
   m_Name: Room
-  m_TagString: Untagged
+  m_TagString: NormalRoom
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -85,6 +85,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5892c227e6c3f7c4e9b5f8222b375def, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  roomId: 0
   topWall: {fileID: 4134838139962848125}
   bottomWall: {fileID: 446203269360610695}
   leftWall: {fileID: 9086931625494253400}
@@ -93,8 +94,17 @@ MonoBehaviour:
   isBottomRoomExists: 0
   isLeftRoomExists: 0
   isRightRoomExists: 0
-  enemyInRoomCount: 0
-  hasEnteredRoom: 0
+  enemyToSpawnCount: 0
+  currentEnemyAliveCount: 0
+  spawners:
+  - {fileID: 9206394873099919144}
+  - {fileID: 8077987008818500112}
+  - {fileID: 170828822298872039}
+  - {fileID: 6954794977922653819}
+  - {fileID: 9222849056297025774}
+  enemyTypes:
+  - {fileID: 1074207720597123261, guid: bf6ff464237bf174faeeb6272c06e861, type: 3}
+  enemyHolder: {fileID: 7616710555394878846}
 --- !u!1 &446203269360610695
 GameObject:
   m_ObjectHideFlags: 0
@@ -2282,7 +2292,7 @@ GameObject:
   - component: {fileID: 2798977520831911520}
   m_Layer: 0
   m_Name: 4
-  m_TagString: Untagged
+  m_TagString: EnemySpawner
   m_Icon: {fileID: 7174288486110832750, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2344,7 +2354,7 @@ GameObject:
   - component: {fileID: 8694453064262409198}
   m_Layer: 0
   m_Name: 2
-  m_TagString: Untagged
+  m_TagString: EnemySpawner
   m_Icon: {fileID: 7174288486110832750, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3165,7 +3175,7 @@ GameObject:
   - component: {fileID: 2167895372996058750}
   m_Layer: 0
   m_Name: 1
-  m_TagString: Untagged
+  m_TagString: EnemySpawner
   m_Icon: {fileID: 7174288486110832750, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3196,7 +3206,7 @@ GameObject:
   - component: {fileID: 5749043166316348670}
   m_Layer: 0
   m_Name: 5
-  m_TagString: Untagged
+  m_TagString: EnemySpawner
   m_Icon: {fileID: 7174288486110832750, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

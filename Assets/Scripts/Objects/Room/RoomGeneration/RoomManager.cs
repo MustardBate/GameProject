@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -16,14 +17,14 @@ public class RoomManager : MonoBehaviour
     [SerializeField] private GameObject shop;
     [SerializeField] private GameObject treasureRoom;
 
-    private List<Vector2Int> roomPositions;
+    private Dictionary<int, Vector2Int> roomPositions;
 
     private List<GameObject> roomObjects;
 
 
     private void Start()
     {
-        roomPositions = new List<Vector2Int>();
+        roomPositions = new Dictionary<int, Vector2Int>();
         roomObjects = new List<GameObject>();
         
         roomCount = 0;
@@ -43,13 +44,14 @@ public class RoomManager : MonoBehaviour
         Vector2Int currentPos = new (0, 0);
         Vector2Int previousPos = new (0, 0);
 
-        roomPositions.Add(currentPos);
+        roomPositions.Add(0, currentPos);
 
+        int id = 1;
         while (roomCount < maxRoomsCount - 1)
         {
             currentPos += GetRandomDirection();
 
-            if (roomPositions.Contains(currentPos))
+            if (roomPositions.ContainsValue(currentPos))
             {
                 currentPos = previousPos;
             }
@@ -58,51 +60,60 @@ public class RoomManager : MonoBehaviour
             {
                 roomCount++;
                 previousPos = currentPos;
-                roomPositions.Add(currentPos);
+                roomPositions.Add(id, currentPos);
+                id++;
             }
         }
+
+        // foreach (KeyValuePair<int, Vector2Int> room in roomPositions)
+        // {
+        //     Debug.Log(room.Key + ": " + room.Value);
+        // }
     }
 
 
     private void DrawRooms()
     {
-        foreach (Vector2Int roomPos in roomPositions)
+        foreach (KeyValuePair<int, Vector2Int> roomPos in roomPositions)
         {
             // Generate spawn room as the first room of the list
-            if (roomPos == new Vector2Int(0, 0))
+            if (roomPos.Value == new Vector2Int(0, 0))
             {
-                var spawnRoomDrawn = Instantiate(spawnRoom, new Vector2(roomPos.x, roomPos.y), Quaternion.identity, this.transform);
-                spawnRoomDrawn.name = $"Spawn {roomPos.x}, {roomPos.y}";
+                var spawnRoomDrawn = Instantiate(spawnRoom, new Vector2(roomPos.Value.x, roomPos.Value.y), Quaternion.identity, this.transform);
+                spawnRoomDrawn.name = $"Spawn {roomPos.Value.x}, {roomPos.Value.y}";
 
                 // spawnRoomDrawn.GetComponent<RoomObject>().SetUpDoors();
-                spawnRoomDrawn.GetComponent<RoomObject>().SetRoomPosition(roomPos);
+                spawnRoomDrawn.GetComponent<RoomObject>().SetRoomPosition(roomPos.Value);
                 spawnRoomDrawn.GetComponent<RoomObject>().SetRoomType(RoomObject.RoomType.SpawnRoom);
+                spawnRoomDrawn.GetComponent<RoomObject>().SetRoomId(roomPos.Key);
                 roomObjects.Add(spawnRoomDrawn);
                 continue;
             }
 
 
             // Generate boss room as the last room of the list 
-            if (roomPos == roomPositions[roomPositions.Count - 1])
+            if (roomPos.Value == roomPositions[roomPositions.Count - 1])
             {
-                var bossRoomDrawn = Instantiate(bossRoom, new Vector2(roomPos.x, roomPos.y), Quaternion.identity, this.transform);
-                bossRoomDrawn.name = $"Boss {roomPos.x}, {roomPos.y}";  
+                var bossRoomDrawn = Instantiate(bossRoom, new Vector2(roomPos.Value.x, roomPos.Value.y), Quaternion.identity, this.transform);
+                bossRoomDrawn.name = $"Boss {roomPos.Value.x}, {roomPos.Value.y}";
 
                 // bossRoomDrawn.GetComponent<RoomObject>().SetUpDoors();
-                bossRoomDrawn.GetComponent<RoomObject>().SetRoomPosition(roomPos);
+                bossRoomDrawn.GetComponent<RoomObject>().SetRoomPosition(roomPos.Value);
                 bossRoomDrawn.GetComponent<RoomObject>().SetRoomType(RoomObject.RoomType.Boss);
+                bossRoomDrawn.GetComponent<RoomObject>().SetRoomId(roomPos.Key);
                 roomObjects.Add(bossRoomDrawn);
                 continue;
             }
 
 
             // Generate random normal room based on the rooms left in the list
-            var roomDrawn = Instantiate(normalRoom, new Vector2(roomPos.x, roomPos.y), Quaternion.identity, this.transform);
-            roomDrawn.name = $"{roomPos.x}, {roomPos.y}";
+            var roomDrawn = Instantiate(normalRoom, new Vector2(roomPos.Value.x, roomPos.Value.y), Quaternion.identity, this.transform);
+            roomDrawn.name = $"{roomPos.Value.x}, {roomPos.Value.y}";
 
             // roomDrawn.GetComponent<RoomObject>().SetUpDoors();
-            roomDrawn.GetComponent<RoomObject>().SetRoomPosition(roomPos);
+            roomDrawn.GetComponent<RoomObject>().SetRoomPosition(roomPos.Value);
             roomDrawn.GetComponent<RoomObject>().SetRoomType(RoomObject.RoomType.Normal);
+            roomDrawn.GetComponent<RoomObject>().SetRoomId(roomPos.Key);
             roomObjects.Add(roomDrawn);
         }
 
@@ -128,10 +139,10 @@ public class RoomManager : MonoBehaviour
             var rightRoomPosition = roomObject.GetComponent<RoomObject>().GetRoomPosition() + new Vector2Int(roomWidth, 0);
 
             // The index of the 4 above neighbors (to check with the room positions list we have created above)
-            var topRoomIndex = roomPositions.IndexOf(topRoomPosition);
-            var bottomRoomIndex = roomPositions.IndexOf(bottomRoomPosition);
-            var leftRoomIndex = roomPositions.IndexOf(leftRoomPosition);
-            var rightRoomIndex = roomPositions.IndexOf(rightRoomPosition);
+            var topRoomIndex = roomPositions.Values.ToList().IndexOf(topRoomPosition);
+            var bottomRoomIndex = roomPositions.Values.ToList().IndexOf(bottomRoomPosition);
+            var leftRoomIndex = roomPositions.Values.ToList().IndexOf(leftRoomPosition);
+            var rightRoomIndex = roomPositions.Values.ToList().IndexOf(rightRoomPosition);
 
 
             // If the index is found (does exist) => returns the index in the list // else => returns -1
@@ -165,6 +176,8 @@ public class RoomManager : MonoBehaviour
         }
     }
    
+
+
 
     private Vector2Int GetRandomDirection()
     {

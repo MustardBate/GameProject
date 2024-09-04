@@ -12,6 +12,7 @@ TagManager:
   - SpawnRoom
   - Trigger
   - SpawnTrigger
+  - NormalRoom
   layers:
   - Default
   - TransparentFX
