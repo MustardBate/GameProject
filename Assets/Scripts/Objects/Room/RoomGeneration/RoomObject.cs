@@ -6,31 +6,44 @@ using UnityEngine;
 
 public class RoomObject : MonoBehaviour
 {
-    [SerializeField] private int roomId;
-    private Vector2Int roomPosition;
+    public Vector2Int roomPosition;
+    [Header("Walls")]
     [SerializeField] GameObject topWall;
     [SerializeField] GameObject bottomWall;
     [SerializeField] GameObject leftWall;
     [SerializeField] GameObject rightWall;
+    [Space(15)]
 
+    [Header("Doors")]
+    [SerializeField] GameObject topDoor;
+    [SerializeField] GameObject bottomDoor;
+    [SerializeField] GameObject leftDoor;
+    [SerializeField] GameObject rightDoor;
+    [Space(15)]
+
+    // Variables for detecting neighbouring rooms
     [HideInInspector] public bool isTopRoomExists = false;
     [HideInInspector] public bool isBottomRoomExists = false;
     [HideInInspector] public bool isLeftRoomExists = false;
     [HideInInspector] public bool isRightRoomExists = false;
     private int adjacentRoomsCount = 0;
 
-    [SerializeField] private int enemyToSpawnCount;
-    private int currentEnemyAliveCount; 
+    // Variables for enemy spawning
+    private int enemyToSpawnCount;
+    private int currentEnemyAliveCount;
 
-    [SerializeField] private List<GameObject> spawners = new ();
+    [Header("Spawners")]
+    [SerializeField] private List<GameObject> spawners = new();
     [SerializeField] private List<GameObject> enemyTypes;
     [SerializeField] private GameObject enemyHolder;
-    private List<GameObject> enemiesSpawned = new ();
 
-    private RoomType thisRoomType;
+    [HideInInspector] public List<GameObject> enemiesSpawned = new();
+
+    // Set room type for logic
+    public RoomType thisRoomType;
 
 
-    public enum RoomType 
+    public enum RoomType
     {
         SpawnRoom,
         Normal,
@@ -40,71 +53,25 @@ public class RoomObject : MonoBehaviour
 
     private void Start()
     {
-        // currentEnemyAliveCount = GameObject.FindObjectsOfType(typeof(EnemyManager)).Length;
+        if (thisRoomType == RoomType.SpawnRoom) enemyToSpawnCount = 0;
 
-       if (thisRoomType == RoomType.SpawnRoom) enemyToSpawnCount = 0;
-
-       else if (thisRoomType == RoomType.Boss) 
+        else if (thisRoomType == RoomType.Boss)
         {
             enemyToSpawnCount = 1;
-            SpawnBoss();
+            // SpawnBoss();
         }
 
-       else 
-       {
+        else
+        {
             enemyToSpawnCount = 3;
-            // RandomlySpawnEnemy();
-       }
+            RandomlySpawnEnemy();
+        }
 
-        // Debug.Log($"Room {roomId} has {currentEnemyAliveCount} enemies alive");
+        currentEnemyAliveCount = enemyToSpawnCount;
     }
 
 
     // To open the door for the player when all enemies are dead (Closing the door is handled by the SpawnTrigger script)
-    private void OpenDoors()
-    {
-        if (currentEnemyAliveCount == 0 && thisRoomType == RoomType.Normal)
-        {
-            Debug.Log($"Room {roomId} open doors!");
-        }
-    }
-
-
-    // Get room position
-    public Vector2Int GetRoomPosition()
-    {
-        return roomPosition;
-    }
-
-
-    // Set room type (for logic)
-    public RoomType SetRoomType(RoomType assignedRoomType)
-    {
-        thisRoomType = assignedRoomType;
-        return thisRoomType;
-    }
-
-
-    // Set room position when generating the map
-    public Vector2Int SetRoomPosition(Vector2Int newRoomPosition)
-    {
-        roomPosition = newRoomPosition;
-        return roomPosition;
-    }
-
-
-    // Set room id in order to assign this room's id to enemies created in this room
-    public int SetRoomId(int newId)
-    {
-        roomId = newId;
-        return roomId;
-    }
-
-
-    public RoomType GetRoomType()
-    {
-        return thisRoomType;
-    }
 
 
     private void RandomlySpawnEnemy()
@@ -116,16 +83,35 @@ public class RoomObject : MonoBehaviour
 
             if (nextSpawnerIndex == spawnerIndex) spawnerIndex = UnityEngine.Random.Range(0, spawners.Count);
 
-
             var enemy = Instantiate(enemyTypes[0], spawners[spawnerIndex].transform.position, Quaternion.identity, enemyHolder.transform);
-            enemy.GetComponent<EnemyManager>().SetAssignedRoomId(roomId);    
+            enemy.GetComponent<EnemyLogic>().Callback = () =>
+            {
+                currentEnemyAliveCount--;
+                if (currentEnemyAliveCount == 0) RoomCleared();
+                return 0;
+            };
             enemiesSpawned.Add(enemy);
         }
 
-        // foreach (GameObject enemy in enemiesSpawned)
-        // {
-        //     enemy.SetActive(false);
-        // }
+        foreach (GameObject enemy in enemiesSpawned)
+        {
+            enemy.SetActive(false);
+        }
+    }
+
+
+    public void ActivateEnemy()
+    {
+        foreach (GameObject enemy in enemiesSpawned) enemy.SetActive(true);
+    }
+
+
+    private void RoomCleared()
+    {
+        topDoor.SetActive(false);
+        bottomDoor.SetActive(false);
+        leftDoor.SetActive(false);
+        rightDoor.SetActive(false);
     }
 
 
@@ -135,13 +121,13 @@ public class RoomObject : MonoBehaviour
     }
 
 
-    public void DecreaseEnemyAliveCount(int enemyAssignedRoomId)
-    {
-        if (enemyAssignedRoomId == roomId)
-        {
-            currentEnemyAliveCount--;
-        }
-    }
+    // public void DecreaseEnemyAliveCount(int enemyAssignedRoomId)
+    // {
+    //     if (enemyAssignedRoomId == roomId)
+    //     {
+    //         currentEnemyAliveCount--;
+    //     }
+    // }
 
 
     // To connect this room to other valid rooms
@@ -149,28 +135,26 @@ public class RoomObject : MonoBehaviour
     {
         if (isTopRoomExists == true)
         {
-            topWall.SetActive(false);  
+            topWall.SetActive(false);
             adjacentRoomsCount++;
-        }    
-            
+        }
+
         if (isBottomRoomExists == true)
         {
             bottomWall.SetActive(false);
             adjacentRoomsCount++;
         }
 
-        if (isLeftRoomExists == true)   
+        if (isLeftRoomExists == true)
         {
             leftWall.SetActive(false);
             adjacentRoomsCount++;
         }
 
-        if (isRightRoomExists == true)  
+        if (isRightRoomExists == true)
         {
             rightWall.SetActive(false);
             adjacentRoomsCount++;
         }
     }
-
-
 }

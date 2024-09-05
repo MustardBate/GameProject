@@ -9,7 +9,17 @@ public class SpawnTrigger : MonoBehaviour
 {
     private List<GameObject> enemiesToSpawn;
     private Rigidbody2D playerRb;
+
+    [Header("Other spawnTriggers in this room")]
     [SerializeField] private List<GameObject> otherSpawnTriggers;
+    [Space(15)]
+
+    [Header("Doors")]
+    [SerializeField] GameObject topDoor;
+    [SerializeField] GameObject bottomDoor;
+    [SerializeField] GameObject leftDoor;
+    [SerializeField] GameObject rightDoor;
+    private List<GameObject> doors;
     
     // private Collider2D playerCol;
 
@@ -19,6 +29,7 @@ public class SpawnTrigger : MonoBehaviour
     {
         // enemiesToSpawn = GetComponentInParent<RoomObject>().enemiesSpawned;
         playerRb = GameObject.FindGameObjectWithTag("Player").GetComponent<Rigidbody2D>();  
+        doors = new List<GameObject>() { topDoor, bottomDoor, leftDoor, rightDoor };
     }
 
 
@@ -26,8 +37,15 @@ public class SpawnTrigger : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player"))
         {
-            Debug.Log("Spawning...");
+            StartCoroutine(StartFight());
+        }
+    }
 
+
+    void OnTriggerExit2D(Collider2D other)
+    {
+        if (other.gameObject.CompareTag("Player"))
+        {
             foreach (GameObject trigger in otherSpawnTriggers)
             {
                 trigger.SetActive(false);
@@ -35,5 +53,36 @@ public class SpawnTrigger : MonoBehaviour
 
             gameObject.SetActive(false);
         }
+
+    }
+
+
+    private IEnumerator StartFight()
+    {
+        CheckValidDoors();
+        Debug.Log("Spawning...");
+
+        Debug.Log("Freeze!");
+        playerRb.constraints = RigidbodyConstraints2D.FreezePosition;
+
+        yield return new WaitForSeconds(.6f);
+
+        Debug.Log("Unfreeze!");
+        playerRb.constraints = RigidbodyConstraints2D.FreezeRotation;
+
+        yield return new WaitForSeconds(.4f);
+
+        Debug.Log("Spawned");
+
+        GetComponentInParent<RoomObject>().ActivateEnemy();
+    }
+
+
+    private void CheckValidDoors()
+    {
+        if (GetComponentInParent<RoomObject>().isTopRoomExists == true) topDoor.SetActive(true);
+        if (GetComponentInParent<RoomObject>().isBottomRoomExists == true) bottomDoor.SetActive(true);
+        if (GetComponentInParent<RoomObject>().isLeftRoomExists == true) leftDoor.SetActive(true);
+        if (GetComponentInParent<RoomObject>().isRightRoomExists == true) rightDoor.SetActive(true);
     }
 }

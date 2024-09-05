@@ -5,11 +5,9 @@ using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
 
-public abstract class EnemyManager : MonoBehaviour
+public abstract class EnemyLogic : MonoBehaviour
 {
     //Health
-    public int assignedRoomId;
-
     protected int health;
     [SerializeField] private int fullHealth;
 
@@ -45,13 +43,6 @@ public abstract class EnemyManager : MonoBehaviour
         
         health = fullHealth;
         isDead = false;
-    }
-
-
-    public int SetAssignedRoomId(int newId)
-    {
-        assignedRoomId = newId;
-        return assignedRoomId;
     }
 
 
@@ -98,6 +89,7 @@ public abstract class EnemyManager : MonoBehaviour
 
         if (health <= 0)
         {
+            Callback();
             StartCoroutine(DeathAnimation());
         }
     }
@@ -118,6 +110,9 @@ public abstract class EnemyManager : MonoBehaviour
             }
         }
     }
+
+
+    public System.Func<int> Callback { get; set; }
 
 
     IEnumerator DeathAnimation()
@@ -142,3 +137,5 @@ public abstract class EnemyManager : MonoBehaviour
         Gizmos.DrawWireSphere(transform.position, rangeTilPursuit);
     }
 }
+
+

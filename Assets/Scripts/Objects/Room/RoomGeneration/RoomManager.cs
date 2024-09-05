@@ -18,25 +18,21 @@ public class RoomManager : MonoBehaviour
     [SerializeField] private GameObject shop;
     [SerializeField] private GameObject treasureRoom;
 
-    private Dictionary<int, Vector2Int> roomPositions;
+    private List<Vector2Int> roomPositions;
 
     private List<GameObject> roomObjects;
 
 
-    private void Start()
+    private void Awake()
     {
-        roomPositions = new Dictionary<int, Vector2Int>();
+        roomPositions = new ();
         roomObjects = new List<GameObject>();
         
         roomCount = 0;
 
-        CreateMap();
-    }
-
-    public void CreateMap()
-    {
         GenerateRoomsPositions();
         DrawRooms();
+        ConnectRooms();
     }
 
 
@@ -45,14 +41,13 @@ public class RoomManager : MonoBehaviour
         Vector2Int currentPos = new (0, 0);
         Vector2Int previousPos = new (0, 0);
 
-        roomPositions.Add(0, currentPos);
+        roomPositions.Add(currentPos);
 
-        int id = 1;
         while (roomCount < maxRoomsCount - 1)
         {
             currentPos += GetRandomDirection();
 
-            if (roomPositions.ContainsValue(currentPos))
+            if (roomPositions.Contains(currentPos))
             {
                 currentPos = previousPos;
             }
@@ -61,8 +56,7 @@ public class RoomManager : MonoBehaviour
             {
                 roomCount++;
                 previousPos = currentPos;
-                roomPositions.Add(id, currentPos);
-                id++;
+                roomPositions.Add(currentPos);
             }
         }
 
@@ -76,50 +70,45 @@ public class RoomManager : MonoBehaviour
 
     private void DrawRooms()
     {
-        foreach (KeyValuePair<int, Vector2Int> roomPos in roomPositions)
+        foreach (Vector2Int roomPos in roomPositions)
         {
             // Generate spawn room as the first room of the list
-            if (roomPos.Value == new Vector2Int(0, 0))
+            if (roomPos == new Vector2Int(0, 0))
             {
-                var spawnRoomDrawn = Instantiate(spawnRoom, new Vector2(roomPos.Value.x, roomPos.Value.y), Quaternion.identity, this.transform);
-                spawnRoomDrawn.name = $"Spawn {roomPos.Value.x}, {roomPos.Value.y}";
+                var spawnRoomDrawn = Instantiate(spawnRoom, new Vector2(roomPos.x, roomPos.y), Quaternion.identity, this.transform);
+                spawnRoomDrawn.name = $"Spawn {roomPos.x}, {roomPos.y}";
 
                 // spawnRoomDrawn.GetComponent<RoomObject>().SetUpDoors();
-                spawnRoomDrawn.GetComponent<RoomObject>().SetRoomPosition(roomPos.Value);
-                spawnRoomDrawn.GetComponent<RoomObject>().SetRoomType(RoomObject.RoomType.SpawnRoom);
-                spawnRoomDrawn.GetComponent<RoomObject>().SetRoomId(roomPos.Key);
+                spawnRoomDrawn.GetComponent<RoomObject>().roomPosition = roomPos;
+                spawnRoomDrawn.GetComponent<RoomObject>().thisRoomType = RoomObject.RoomType.SpawnRoom;
                 roomObjects.Add(spawnRoomDrawn);
                 continue;
             }
 
 
             // Generate boss room as the last room of the list 
-            if (roomPos.Value == roomPositions[roomPositions.Count - 1])
+            if (roomPos == roomPositions[roomPositions.Count - 1])
             {
-                var bossRoomDrawn = Instantiate(bossRoom, new Vector2(roomPos.Value.x, roomPos.Value.y), Quaternion.identity, this.transform);
-                bossRoomDrawn.name = $"Boss {roomPos.Value.x}, {roomPos.Value.y}";
+                var bossRoomDrawn = Instantiate(bossRoom, new Vector2(roomPos.x, roomPos.y), Quaternion.identity, this.transform);
+                bossRoomDrawn.name = $"Boss {roomPos.x}, {roomPos.y}";
 
                 // bossRoomDrawn.GetComponent<RoomObject>().SetUpDoors();
-                bossRoomDrawn.GetComponent<RoomObject>().SetRoomPosition(roomPos.Value);
-                bossRoomDrawn.GetComponent<RoomObject>().SetRoomType(RoomObject.RoomType.Boss);
-                bossRoomDrawn.GetComponent<RoomObject>().SetRoomId(roomPos.Key);
+                bossRoomDrawn.GetComponent<RoomObject>().roomPosition = roomPos;
+                bossRoomDrawn.GetComponent<RoomObject>().thisRoomType = RoomObject.RoomType.Boss;
                 roomObjects.Add(bossRoomDrawn);
                 continue;
             }
 
 
             // Generate random normal room based on the rooms left in the list
-            var roomDrawn = Instantiate(normalRoom, new Vector2(roomPos.Value.x, roomPos.Value.y), Quaternion.identity, this.transform);
-            roomDrawn.name = $"{roomPos.Value.x}, {roomPos.Value.y}";
+            var roomDrawn = Instantiate(normalRoom, new Vector2(roomPos.x, roomPos.y), Quaternion.identity, this.transform);
+            roomDrawn.name = $"{roomPos.x}, {roomPos.y}";
 
             // roomDrawn.GetComponent<RoomObject>().SetUpDoors();
-            roomDrawn.GetComponent<RoomObject>().SetRoomPosition(roomPos.Value);
-            roomDrawn.GetComponent<RoomObject>().SetRoomType(RoomObject.RoomType.Normal);
-            roomDrawn.GetComponent<RoomObject>().SetRoomId(roomPos.Key);
+            roomDrawn.GetComponent<RoomObject>().roomPosition = roomPos;
+            roomDrawn.GetComponent<RoomObject>().thisRoomType = RoomObject.RoomType.Normal;
             roomObjects.Add(roomDrawn);
         }
-
-        ConnectRooms();
 
         // DEBUGGING
         // foreach (GameObject roomObject in roomObjects)
@@ -135,16 +124,16 @@ public class RoomManager : MonoBehaviour
         foreach (GameObject roomObject in roomObjects)
         {
             // Each hypothetical neighbouring room to the current room 
-            var topRoomPosition = roomObject.GetComponent<RoomObject>().GetRoomPosition() + new Vector2Int(0, roomHeight);
-            var bottomRoomPosition = roomObject.GetComponent<RoomObject>().GetRoomPosition() + new Vector2Int(0, -roomHeight);
-            var leftRoomPosition = roomObject.GetComponent<RoomObject>().GetRoomPosition() + new Vector2Int(-roomWidth, 0);
-            var rightRoomPosition = roomObject.GetComponent<RoomObject>().GetRoomPosition() + new Vector2Int(roomWidth, 0);
+            var topRoomPosition = roomObject.GetComponent<RoomObject>().roomPosition + new Vector2Int(0, roomHeight);
+            var bottomRoomPosition = roomObject.GetComponent<RoomObject>().roomPosition + new Vector2Int(0, -roomHeight);
+            var leftRoomPosition = roomObject.GetComponent<RoomObject>().roomPosition + new Vector2Int(-roomWidth, 0);
+            var rightRoomPosition = roomObject.GetComponent<RoomObject>().roomPosition + new Vector2Int(roomWidth, 0);
 
             // The index of the 4 above neighbors (to check with the room positions list we have created above)
-            var topRoomIndex = roomPositions.Values.ToList().IndexOf(topRoomPosition);
-            var bottomRoomIndex = roomPositions.Values.ToList().IndexOf(bottomRoomPosition);
-            var leftRoomIndex = roomPositions.Values.ToList().IndexOf(leftRoomPosition);
-            var rightRoomIndex = roomPositions.Values.ToList().IndexOf(rightRoomPosition);
+            var topRoomIndex = roomPositions.IndexOf(topRoomPosition);
+            var bottomRoomIndex = roomPositions.IndexOf(bottomRoomPosition);
+            var leftRoomIndex = roomPositions.IndexOf(leftRoomPosition);
+            var rightRoomIndex = roomPositions.IndexOf(rightRoomPosition);
 
 
             // If the index is found (does exist) => returns the index in the list // else => returns -1
@@ -177,7 +166,7 @@ public class RoomManager : MonoBehaviour
             // + $"Top: {topRoomIndex}, Bottom: {bottomRoomIndex}, Left: {leftRoomIndex}, Right: {rightRoomIndex}");
         }
     }
-   
+
 
     private Vector2Int GetRandomDirection()
     {

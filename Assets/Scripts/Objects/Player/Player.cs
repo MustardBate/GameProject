@@ -22,7 +22,7 @@ public class Player : MonoBehaviour
     private int health;
     [SerializeField] private int maxHealth;
 
-    // public HealthBar healthBar;
+    [SerializeField] private HealthManager healthBar;
     private Animator animator;
 
     // [SerializeField] private AudioSource audioSource;
@@ -38,6 +38,7 @@ public class Player : MonoBehaviour
         sprite = gameObject.GetComponent<SpriteRenderer>();
 
         health = maxHealth;
+        healthBar.SetMaxHealth(maxHealth);
     }
 
 
@@ -70,7 +71,7 @@ public class Player : MonoBehaviour
         health -= damage;
         StartCoroutine(DamagedFlash());
 
-        // healthBar.setHealth(health);
+        healthBar.SetHealth(health);
 
         if (IsDead() == true)
         {

@@ -284,7 +284,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   newCamPos: {x: -20, y: 0, z: 0}
-  newPlayerPos: {x: -3.4, y: 0, z: 0}
+  newPlayerPos: {x: -3.8, y: 0, z: 0}
 --- !u!1 &771196006444376256
 GameObject:
   m_ObjectHideFlags: 0
@@ -506,7 +506,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   newCamPos: {x: 0, y: 12, z: 0}
-  newPlayerPos: {x: 0, y: 3.4, z: 0}
+  newPlayerPos: {x: 0, y: 3.8, z: 0}
 --- !u!1 &2814994690455400394
 GameObject:
   m_ObjectHideFlags: 0
@@ -791,7 +791,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   newCamPos: {x: 20, y: 0, z: 0}
-  newPlayerPos: {x: 3.4, y: 0, z: 0}
+  newPlayerPos: {x: 3.8, y: 0, z: 0}
 --- !u!1 &4518380631650377317
 GameObject:
   m_ObjectHideFlags: 0
@@ -1932,20 +1932,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5892c227e6c3f7c4e9b5f8222b375def, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  roomPosition: {x: 0, y: 0}
   topWall: {fileID: 6083377829466585090}
   bottomWall: {fileID: 4518380631650377317}
   leftWall: {fileID: 5332070613191058757}
   rightWall: {fileID: 771196006444376256}
+  topDoor: {fileID: 0}
+  bottomDoor: {fileID: 0}
+  leftDoor: {fileID: 0}
+  rightDoor: {fileID: 0}
   isTopRoomExists: 0
   isBottomRoomExists: 0
   isLeftRoomExists: 0
   isRightRoomExists: 0
-  enemyCount: 0
   spawners: []
-  enemiesToSpawn: []
+  enemyTypes: []
   enemyHolder: {fileID: 0}
   enemiesSpawned: []
-  hasEnteredRoom: 0
+  thisRoomType: 0
 --- !u!1 &8912155562346938146
 GameObject:
   m_ObjectHideFlags: 0
@@ -2195,7 +2199,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   newCamPos: {x: 0, y: -12, z: 0}
-  newPlayerPos: {x: 0, y: -3.4, z: 0}
+  newPlayerPos: {x: 0, y: -3.8, z: 0}
 --- !u!1 &9112664689052408443
 GameObject:
   m_ObjectHideFlags: 0

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEditor.Callbacks;
 using UnityEngine;
 
-public class MeleeEnemy : EnemyManager
+public class MeleeEnemy : EnemyLogic
 {
     new private void Start()
     {

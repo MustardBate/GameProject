@@ -53,7 +53,7 @@ public class PlayerGun : MonoBehaviour
     private void Shoot()
     {
         currentAmmo--;
-        Debug.Log("Current ammo: " + currentAmmo);
+        // Debug.Log("Current ammo: " + currentAmmo);
         Instantiate(projectile, shotPoint.position, shotPoint.rotation);
     }
     
@@ -81,11 +81,11 @@ public class PlayerGun : MonoBehaviour
     {
         isReloading = true;
 
-        Debug.Log("Reloading");
+        // Debug.Log("Reloading");
 
         yield return new WaitForSeconds(reloadTime);
 
-        Debug.Log("Reloaded");
+        // Debug.Log("Reloaded");
 
         currentAmmo = maxAmmo;
 
