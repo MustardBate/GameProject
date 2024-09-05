@@ -827,7 +827,7 @@ MonoBehaviour:
   smoothSpeed: 10.5
   minPos: {x: 0, y: 0, z: -10}
   maxPos: {x: 0, y: 0, z: -10}
-  customCursor: {fileID: 0}
+  customCursor: {fileID: 2800000, guid: f034348c7d55c62458ccdfa6bfdea6ea, type: 3}
 --- !u!4 &642750890 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8598682822507868150, guid: 3228a1df3aa7ff648883c05a93479353, type: 3}
