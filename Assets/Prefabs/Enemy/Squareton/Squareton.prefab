@@ -196,7 +196,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fullHealth: 20
   rangeTilPursuit: 5.5
-  walkingSpeed: 3.5
+  walkingSpeed: 1
   contactDamage: 1
 --- !u!1 &1614127913721666559
 GameObject:
