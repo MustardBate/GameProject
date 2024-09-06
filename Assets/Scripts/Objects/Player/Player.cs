@@ -39,6 +39,7 @@ public class Player : MonoBehaviour
 
         health = maxHealth;
         healthBar.SetMaxHealth(maxHealth);
+        healthBar.SetHealthNumber(maxHealth, health);
     }
 
 
@@ -72,9 +73,12 @@ public class Player : MonoBehaviour
         StartCoroutine(DamagedFlash());
 
         healthBar.SetHealth(health);
+        healthBar.SetHealthNumber(maxHealth, health);
 
         if (IsDead() == true)
         {
+            health = 0;
+            healthBar.SetHealthNumber(maxHealth, health);
             OnDeath();
         }
     }

@@ -66,8 +66,13 @@ public class Projectile : MonoBehaviour
     
         if (other.gameObject.CompareTag("Enemy"))
         {
-            other.gameObject.GetComponent<EnemyLogic>().TakeDamage(playerDamage);
-            Destroy(gameObject);
+            if (other.gameObject.GetComponent<EnemyLogic>().isDead == false)
+            {
+                other.gameObject.GetComponent<EnemyLogic>().TakeDamage(playerDamage);
+                Destroy(gameObject);
+            }
+
+            else Physics2D.IgnoreCollision(other.gameObject.GetComponent<Collider2D>(), gameObject.GetComponent<Collider2D>(), true);
         }
 
         if (other.gameObject.CompareTag("Obstacle"))

@@ -23,13 +23,14 @@ public abstract class EnemyLogic : MonoBehaviour
     private Rigidbody2D rb;
     private Animator animator;
     protected UnityEngine.Vector2 direction;
+    private SpriteRenderer sprite;
     
     protected GameObject player;
     //Check if player is dead
     protected bool playerIsDead;
 
     // Check if this enemy is dead 
-    private bool isDead;
+    [HideInInspector] public bool isDead;
 
 
     protected void Start()
@@ -38,6 +39,7 @@ public abstract class EnemyLogic : MonoBehaviour
         player = GameObject.FindGameObjectWithTag("Player");
         animator = gameObject.GetComponent<Animator>();
         col = gameObject.GetComponent<Collider2D>();  
+        sprite = gameObject.GetComponent<SpriteRenderer>();
 
         playerIsDead = player.GetComponent<Player>().IsDead();
         
@@ -85,6 +87,7 @@ public abstract class EnemyLogic : MonoBehaviour
     public void TakeDamage(int damage)
     {
         health -= damage;
+        StartCoroutine(DamagedFlash());
         // healthBar.setHealth(health);
 
         if (health <= 0)
@@ -115,12 +118,34 @@ public abstract class EnemyLogic : MonoBehaviour
     public System.Func<int> Callback { get; set; }
 
 
+    IEnumerator DamagedFlash()
+    {
+        if (isDead == false)
+        {
+            int temp = 0;
+            col.enabled = false;
+
+            while (temp < 2)
+            {
+                sprite.color = new Color (1, 0, 0, .5f);
+                yield return new WaitForSeconds(.05f);
+                sprite.color = new Color (1, 1, 1, 1);
+                yield return new WaitForSeconds(.05f);
+
+                temp++;
+            }
+
+            col.enabled = true;
+        }
+    }
+
+
     IEnumerator DeathAnimation()
     {
-        isDead = true;
-        rb.isKinematic = true;
-        distance = 0;
         col.enabled = false;
+        rb.isKinematic = true;
+        isDead = true;
+        distance = 0;
         animator.SetTrigger("isDead");
 
         yield return new WaitForSeconds(1.1f);

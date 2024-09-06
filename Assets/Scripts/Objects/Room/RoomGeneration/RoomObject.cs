@@ -29,7 +29,7 @@ public class RoomObject : MonoBehaviour
     private int adjacentRoomsCount = 0;
 
     // Variables for enemy spawning
-    private int enemyToSpawnCount;
+    private int MaxEnemyToSpawnCount;
     private int currentEnemyAliveCount;
 
     [Header("Spawners")]
@@ -53,21 +53,19 @@ public class RoomObject : MonoBehaviour
 
     private void Start()
     {
-        if (thisRoomType == RoomType.SpawnRoom) enemyToSpawnCount = 0;
+        if (thisRoomType == RoomType.SpawnRoom) MaxEnemyToSpawnCount = 0;
 
         else if (thisRoomType == RoomType.Boss)
         {
-            enemyToSpawnCount = 1;
+            MaxEnemyToSpawnCount = 1;
             // SpawnBoss();
         }
 
         else
         {
-            enemyToSpawnCount = 3;
+            MaxEnemyToSpawnCount = 3;
             RandomlySpawnEnemy();
         }
-
-        currentEnemyAliveCount = enemyToSpawnCount;
     }
 
 
@@ -76,7 +74,10 @@ public class RoomObject : MonoBehaviour
 
     private void RandomlySpawnEnemy()
     {
-        for (int i = 0; i < enemyToSpawnCount; i++)
+        var randomNumberOfEnemies = UnityEngine.Random.Range(2, MaxEnemyToSpawnCount + 1);
+        currentEnemyAliveCount = randomNumberOfEnemies;
+
+        for (int i = 0; i < randomNumberOfEnemies; i++)
         {
             var spawnerIndex = UnityEngine.Random.Range(0, spawners.Count);
             var nextSpawnerIndex = UnityEngine.Random.Range(1, spawners.Count - 1);

@@ -65,12 +65,10 @@ public class SpawnTrigger : MonoBehaviour
         Debug.Log("Freeze!");
         playerRb.constraints = RigidbodyConstraints2D.FreezePosition;
 
-        yield return new WaitForSeconds(.6f);
+        yield return new WaitForSeconds(1);
 
         Debug.Log("Unfreeze!");
         playerRb.constraints = RigidbodyConstraints2D.FreezeRotation;
-
-        yield return new WaitForSeconds(.4f);
 
         Debug.Log("Spawned");
 
