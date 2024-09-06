@@ -85,7 +85,7 @@ public class RoomObject : MonoBehaviour
             if (nextSpawnerIndex == spawnerIndex) spawnerIndex = UnityEngine.Random.Range(0, spawners.Count);
 
             var enemy = Instantiate(enemyTypes[0], spawners[spawnerIndex].transform.position, Quaternion.identity, enemyHolder.transform);
-            enemy.GetComponent<EnemyLogic>().Callback = () =>
+            enemy.GetComponent<EnemyHealth>().DecreaseEnemyCount = () =>
             {
                 currentEnemyAliveCount--;
                 if (currentEnemyAliveCount == 0) RoomCleared();

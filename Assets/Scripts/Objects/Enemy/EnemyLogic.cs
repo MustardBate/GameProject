@@ -19,7 +19,7 @@ public abstract class EnemyLogic : MonoBehaviour
     //Damage dealt when colliding with player
     [SerializeField] private int contactDamage;
 
-    private Collider2D col;
+    [SerializeField] private Collider2D col;
     private Rigidbody2D rb;
     private Animator animator;
     protected UnityEngine.Vector2 direction;
@@ -92,7 +92,7 @@ public abstract class EnemyLogic : MonoBehaviour
 
         if (health <= 0)
         {
-            Callback();
+            DecreaseEnemyCount();
             StartCoroutine(DeathAnimation());
         }
     }
@@ -115,7 +115,7 @@ public abstract class EnemyLogic : MonoBehaviour
     }
 
 
-    public System.Func<int> Callback { get; set; }
+    public System.Func<int> DecreaseEnemyCount { get; set; }
 
 
     IEnumerator DamagedFlash()

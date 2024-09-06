@@ -22,7 +22,7 @@ public class Player : MonoBehaviour
     private int health;
     [SerializeField] private int maxHealth;
 
-    [SerializeField] private HealthManager healthBar;
+    [SerializeField] private PlayerHealthUI healthBar;
     private Animator animator;
 
     // [SerializeField] private AudioSource audioSource;
