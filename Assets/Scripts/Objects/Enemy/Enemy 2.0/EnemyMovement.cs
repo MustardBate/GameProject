@@ -5,7 +5,7 @@ using UnityEngine;
 public class EnemyMovement : MonoBehaviour
 {
     public float rangeTilPursuit;
-    private float distance;
+    public float distance;
     private Vector2 direction;
     [SerializeField] private float walkingSpeed;
 
@@ -39,10 +39,15 @@ public class EnemyMovement : MonoBehaviour
         if (distance <= rangeTilPursuit)
         {
             transform.position = Vector2.MoveTowards(transform.position, player.transform.position, walkingSpeed * Time.deltaTime);
+            GetComponentInChildren<EnemyWeapon>().enabled = true;
             animator.SetBool("isPlayerClose", true);
         }
 
-        else animator.SetBool("isPlayerClose", false);
+        else 
+        {
+            animator.SetBool("isPlayerClose", false);
+            GetComponentInChildren<EnemyWeapon>().enabled = false;
+        }
     }
 
 

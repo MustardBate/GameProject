@@ -82,9 +82,11 @@ public class RoomObject : MonoBehaviour
             var spawnerIndex = UnityEngine.Random.Range(0, spawners.Count);
             var nextSpawnerIndex = UnityEngine.Random.Range(1, spawners.Count - 1);
 
+            var enemyIndex = UnityEngine.Random.Range(0, enemyTypes.Count);
+
             if (nextSpawnerIndex == spawnerIndex) spawnerIndex = UnityEngine.Random.Range(0, spawners.Count);
 
-            var enemy = Instantiate(enemyTypes[0], spawners[spawnerIndex].transform.position, Quaternion.identity, enemyHolder.transform);
+            var enemy = Instantiate(enemyTypes[enemyIndex], spawners[spawnerIndex].transform.position, Quaternion.identity, enemyHolder.transform);
             enemy.GetComponent<EnemyHealth>().DecreaseEnemyCount = () =>
             {
                 currentEnemyAliveCount--;

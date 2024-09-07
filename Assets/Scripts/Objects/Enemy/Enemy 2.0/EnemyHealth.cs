@@ -12,6 +12,7 @@ public class EnemyHealth : MonoBehaviour
     private Animator animator;
     private Rigidbody2D rb;
     [SerializeField] private AnimationClip deathAnimation;
+    [SerializeField] private GameObject spriteRenderer;
     private EnemyHealthUI healthBar;
 
     [HideInInspector] public bool isDead;
@@ -20,7 +21,7 @@ public class EnemyHealth : MonoBehaviour
     void Start()
     {
         col = gameObject.GetComponent<Collider2D>();
-        sprite = GetComponentInChildren<SpriteRenderer>();
+        sprite = spriteRenderer.GetComponent<SpriteRenderer>();
         healthBar = GetComponentInChildren<EnemyHealthUI>();
         animator = GetComponentInChildren<Animator>();
         rb = gameObject.GetComponent<Rigidbody2D>();
@@ -44,7 +45,10 @@ public class EnemyHealth : MonoBehaviour
         {
             isDead = true;
             healthBar.enabled = false;
+            rb.isKinematic = true;
+            col.enabled = false;
             // DecreaseEnemyCount();
+            StopCoroutine(DamagedFlash());
             StartCoroutine(Death());
         }
     }
@@ -52,11 +56,10 @@ public class EnemyHealth : MonoBehaviour
 
     IEnumerator Death()
     {
-        rb.isKinematic = true;
-        col.enabled = false;
+        var weapon = GetComponentInChildren<EnemyWeapon>();
         gameObject.GetComponent<EnemyMovement>().enabled = false;
         gameObject.GetComponent<EnemyCollision>().enabled = false;
-
+        if (weapon != null) weapon.enabled = false;
 
         animator.SetTrigger("isDead");
         yield return new WaitForSeconds(deathAnimation.length);
@@ -69,7 +72,6 @@ public class EnemyHealth : MonoBehaviour
         if (isDead == false)
         {
             int temp = 0;
-            col.enabled = false;
 
             while (temp < 2)
             {
@@ -81,7 +83,6 @@ public class EnemyHealth : MonoBehaviour
                 temp++;
             }
 
-            col.enabled = true;
         }
     }
 }

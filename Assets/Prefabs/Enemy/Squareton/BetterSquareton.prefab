@@ -241,6 +241,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 20
   deathAnimation: {fileID: 7400000, guid: 22f9666bc7431924bbf9050c9bac0cd7, type: 2}
+  spriteRenderer: {fileID: 7246565481894537552}
   isDead: 0
 --- !u!114 &2910576773389477344
 MonoBehaviour:
@@ -254,7 +255,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8582ec049651af4468f4eeb398bd1f80, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  col: {fileID: 0}
   contactDamage: 2
 --- !u!1 &3720491445992885977
 GameObject:
