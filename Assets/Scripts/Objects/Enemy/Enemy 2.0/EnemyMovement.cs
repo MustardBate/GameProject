@@ -39,14 +39,14 @@ public class EnemyMovement : MonoBehaviour
         if (distance <= rangeTilPursuit)
         {
             transform.position = Vector2.MoveTowards(transform.position, player.transform.position, walkingSpeed * Time.deltaTime);
-            GetComponentInChildren<EnemyWeapon>().enabled = true;
+            if (GetComponentInChildren<EnemyWeapon>()) GetComponentInChildren<EnemyWeapon>().enabled = true;
             animator.SetBool("isPlayerClose", true);
         }
 
         else 
         {
             animator.SetBool("isPlayerClose", false);
-            GetComponentInChildren<EnemyWeapon>().enabled = false;
+            if (GetComponentInChildren<EnemyWeapon>()) GetComponentInChildren<EnemyWeapon>().enabled = false;
         }
     }
 

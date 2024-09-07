@@ -5,23 +5,31 @@ using UnityEngine;
 
 public class PlayerGun : MonoBehaviour
 {
-    // [SerializeField] private Transform weapon;
     [SerializeField] private Transform shotPoint;
     [SerializeField] private GameObject projectile;
+
+    [SerializeField] private Animator animator;
+    [SerializeField] private AnimationClip reload;
+    [SerializeField] private AnimationClip shoot;
+    private float animSpeed;
 
     public readonly int damage = 5;
     [SerializeField] private int maxAmmo = 6;
     private int currentAmmo;
 
-    [SerializeField] private float timeBetweenShot = .5f;
+    private float timeBetweenShot;
     private float nextTimeShot;
-    [SerializeField] private float reloadTime = 1.05f;
     private bool isReloading = false;
 
 
     // Start is called before the first frame update
     void Start()
     {
+        timeBetweenShot = shoot.length;
+        animSpeed = animator.speed;
+
+        nextTimeShot = timeBetweenShot;
+
         currentAmmo = maxAmmo;
     }
 
@@ -50,30 +58,37 @@ public class PlayerGun : MonoBehaviour
     }
 
 
-    private void Shoot()
-    {
-        currentAmmo--;
-        // Debug.Log("Current ammo: " + currentAmmo);
-        Instantiate(projectile, shotPoint.position, shotPoint.rotation);
-    }
-    
-
     //Function for firing bullets and reloading
     private void AmmoCheck()
     {
+        nextTimeShot -= Time.deltaTime;
+
         if (isReloading) return;
+
+        if (Input.GetMouseButton(0) && nextTimeShot <= 0)
+        {
+            nextTimeShot = timeBetweenShot;
+            currentAmmo--;
+            StartCoroutine(Shoot());
+        }
 
         if (currentAmmo <= 0 || (Input.GetKeyDown(KeyCode.R) && currentAmmo < maxAmmo))
         {
             StartCoroutine(Reload());
             return;
         }
+    }
 
-        if (Input.GetMouseButton(0) && Time.time > nextTimeShot)
-        {
-            nextTimeShot = Time.time + timeBetweenShot;
-            Shoot();
-        }
+
+    IEnumerator Shoot()
+    {
+        animator.SetBool("isShooting", true);
+
+        Instantiate(projectile, shotPoint.position, shotPoint.rotation);
+
+        yield return new WaitForSeconds(.1f);
+
+        animator.SetBool("isShooting", false);
     }
 
 
@@ -81,14 +96,15 @@ public class PlayerGun : MonoBehaviour
     {
         isReloading = true;
 
-        // Debug.Log("Reloading");
+        animator.SetTrigger("Reloading");
 
-        yield return new WaitForSeconds(reloadTime);
+        yield return new WaitForSeconds(reload.length - .25f);
 
-        // Debug.Log("Reloaded");
+        animator.SetBool("isReloading", false);
+
+        yield return new WaitForSeconds(.25f);
 
         currentAmmo = maxAmmo;
-
         isReloading = false;
     }
 }

@@ -47,7 +47,7 @@ public class EnemyHealth : MonoBehaviour
             healthBar.enabled = false;
             rb.isKinematic = true;
             col.enabled = false;
-            // DecreaseEnemyCount();
+            DecreaseEnemyCount();
             StopCoroutine(DamagedFlash());
             StartCoroutine(Death());
         }

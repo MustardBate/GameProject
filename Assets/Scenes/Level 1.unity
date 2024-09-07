@@ -219,6 +219,10 @@ PrefabInstance:
       propertyPath: m_Constraints
       value: 4
       objectReference: {fileID: 0}
+    - target: {fileID: 6758426205927933111, guid: 0c95b0a4e9f73ec41aa33946b46c23ca, type: 3}
+      propertyPath: m_Interpolate
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8877853173237922801, guid: 0c95b0a4e9f73ec41aa33946b46c23ca, type: 3}
       propertyPath: shotPoint
       value: 
@@ -377,11 +381,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1923364158918971270, guid: 6ad053b79306b6b43ad9d9dfbe14c033, type: 3}
       propertyPath: m_AnchorMax.x
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1923364158918971270, guid: 6ad053b79306b6b43ad9d9dfbe14c033, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3617994907848392228, guid: 6ad053b79306b6b43ad9d9dfbe14c033, type: 3}
       propertyPath: m_LocalPosition.x
@@ -433,7 +437,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7176510600805218088, guid: 6ad053b79306b6b43ad9d9dfbe14c033, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8754519445233572280, guid: 6ad053b79306b6b43ad9d9dfbe14c033, type: 3}
       propertyPath: contactDamage
@@ -1374,7 +1378,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1894499295
 MonoBehaviour:
   m_ObjectHideFlags: 0
