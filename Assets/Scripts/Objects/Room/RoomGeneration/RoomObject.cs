@@ -40,12 +40,14 @@ public class RoomObject : MonoBehaviour
     [HideInInspector] public List<GameObject> enemiesSpawned = new();
 
     // Set room type for logic
-    public RoomType thisRoomType;
+    [HideInInspector] public RoomType thisRoomType;
 
 
     public enum RoomType
     {
         SpawnRoom,
+        Treasure,
+        Shop,
         Normal,
         Boss
     };
@@ -53,7 +55,10 @@ public class RoomObject : MonoBehaviour
 
     private void Start()
     {
-        if (thisRoomType == RoomType.SpawnRoom) MaxEnemyToSpawnCount = 0;
+        if (thisRoomType == RoomType.SpawnRoom || thisRoomType == RoomType.Treasure || thisRoomType == RoomType.Shop)
+        {
+            MaxEnemyToSpawnCount = 0;
+        }
 
         else if (thisRoomType == RoomType.Boss)
         {

@@ -264,7 +264,7 @@ GameObject:
   - component: {fileID: 8044638069196600738}
   m_Layer: 0
   m_Name: Wall (3)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -808,7 +808,7 @@ GameObject:
   - component: {fileID: 8710143983951168718}
   m_Layer: 0
   m_Name: Wall (4)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1744,7 +1744,7 @@ GameObject:
   - component: {fileID: 6234993785484319416}
   m_Layer: 0
   m_Name: Wall (2)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1902,7 +1902,7 @@ GameObject:
   - component: {fileID: 3784670293316055207}
   m_Layer: 0
   m_Name: Wall (1)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2412,20 +2412,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5892c227e6c3f7c4e9b5f8222b375def, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  roomPosition: {x: 0, y: 0}
   topWall: {fileID: 5258975838204800668}
   bottomWall: {fileID: 8623122571777060966}
   leftWall: {fileID: 1117178459906298553}
   rightWall: {fileID: 6881633196479635490}
+  topDoor: {fileID: 0}
+  bottomDoor: {fileID: 0}
+  leftDoor: {fileID: 0}
+  rightDoor: {fileID: 0}
   isTopRoomExists: 0
   isBottomRoomExists: 0
   isLeftRoomExists: 0
   isRightRoomExists: 0
-  enemyCount: 0
   spawners: []
-  enemiesToSpawn: []
+  enemyTypes: []
   enemyHolder: {fileID: 0}
   enemiesSpawned: []
-  hasEnteredRoom: 0
+  thisRoomType: 0
 --- !u!1 &8623122571777060966
 GameObject:
   m_ObjectHideFlags: 0

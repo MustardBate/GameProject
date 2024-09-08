@@ -70,6 +70,11 @@ public class RoomManager : MonoBehaviour
 
     private void DrawRooms()
     {
+        int treasureIndex = UnityEngine.Random.Range(3, roomPositions.Count - 2);
+        int shopIndex = UnityEngine.Random.Range(4, roomPositions.Count - 1);
+        
+        if (treasureIndex == shopIndex) shopIndex = UnityEngine.Random.Range(4, roomPositions.Count - 1);
+
         foreach (Vector2Int roomPos in roomPositions)
         {
             // Generate spawn room as the first room of the list
@@ -78,7 +83,6 @@ public class RoomManager : MonoBehaviour
                 var spawnRoomDrawn = Instantiate(spawnRoom, new Vector2(roomPos.x, roomPos.y), Quaternion.identity, this.transform);
                 spawnRoomDrawn.name = $"Spawn {roomPos.x}, {roomPos.y}";
 
-                // spawnRoomDrawn.GetComponent<RoomObject>().SetUpDoors();
                 spawnRoomDrawn.GetComponent<RoomObject>().roomPosition = roomPos;
                 spawnRoomDrawn.GetComponent<RoomObject>().thisRoomType = RoomObject.RoomType.SpawnRoom;
                 roomObjects.Add(spawnRoomDrawn);
@@ -92,10 +96,33 @@ public class RoomManager : MonoBehaviour
                 var bossRoomDrawn = Instantiate(bossRoom, new Vector2(roomPos.x, roomPos.y), Quaternion.identity, this.transform);
                 bossRoomDrawn.name = $"Boss {roomPos.x}, {roomPos.y}";
 
-                // bossRoomDrawn.GetComponent<RoomObject>().SetUpDoors();
                 bossRoomDrawn.GetComponent<RoomObject>().roomPosition = roomPos;
                 bossRoomDrawn.GetComponent<RoomObject>().thisRoomType = RoomObject.RoomType.Boss;
                 roomObjects.Add(bossRoomDrawn);
+                continue;
+            }
+
+
+            if (roomPos == roomPositions[treasureIndex])
+            {
+                var treasureRoomDrawn = Instantiate(treasureRoom, new Vector2(roomPos.x, roomPos.y), Quaternion.identity, this.transform);
+                treasureRoomDrawn.name = $"Treasure {roomPos.x}, {roomPos.y}";
+
+                treasureRoomDrawn.GetComponent<RoomObject>().roomPosition = roomPos;
+                treasureRoomDrawn.GetComponent<RoomObject>().thisRoomType = RoomObject.RoomType.Treasure;
+                roomObjects.Add(treasureRoomDrawn);
+                continue;
+            }
+
+
+            if (roomPos == roomPositions[shopIndex])
+            {
+                var shopRoomDrawn = Instantiate(shop, new Vector2(roomPos.x, roomPos.y), Quaternion.identity, this.transform);
+                shopRoomDrawn.name = $"Shop {roomPos.x}, {roomPos.y}";
+
+                shopRoomDrawn.GetComponent<RoomObject>().roomPosition = roomPos;
+                shopRoomDrawn.GetComponent<RoomObject>().thisRoomType = RoomObject.RoomType.Shop;
+                roomObjects.Add(shopRoomDrawn);
                 continue;
             }
 
@@ -104,7 +131,6 @@ public class RoomManager : MonoBehaviour
             var roomDrawn = Instantiate(normalRoom, new Vector2(roomPos.x, roomPos.y), Quaternion.identity, this.transform);
             roomDrawn.name = $"{roomPos.x}, {roomPos.y}";
 
-            // roomDrawn.GetComponent<RoomObject>().SetUpDoors();
             roomDrawn.GetComponent<RoomObject>().roomPosition = roomPos;
             roomDrawn.GetComponent<RoomObject>().thisRoomType = RoomObject.RoomType.Normal;
             roomObjects.Add(roomDrawn);

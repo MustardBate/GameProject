@@ -5,7 +5,7 @@ using UnityEngine;
 public class EnemyMovement : MonoBehaviour
 {
     public float rangeTilPursuit;
-    public float distance;
+    private float distance;
     private Vector2 direction;
     [SerializeField] private float walkingSpeed;
 
