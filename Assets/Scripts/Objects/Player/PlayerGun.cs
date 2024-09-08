@@ -13,7 +13,14 @@ public class PlayerGun : MonoBehaviour
     [SerializeField] private AnimationClip shoot;
     private float animSpeed;
 
-    public readonly int damage = 5;
+    // Everything related to the damage (Projectile script will use this)
+    private readonly int baseDamage = 5;
+    [HideInInspector] public int currentDamage;
+    [HideInInspector] public int addedDamage = 0;
+    [HideInInspector] public float damageScaler = 1;
+    [Range(3f, 50f)]
+    [HideInInspector] public float bulletSpeed = 20f;
+
     [SerializeField] private int maxAmmo = 6;
     private int currentAmmo;
 
@@ -30,6 +37,7 @@ public class PlayerGun : MonoBehaviour
 
         nextTimeShot = timeBetweenShot;
 
+        currentDamage = (int)((baseDamage + addedDamage) * damageScaler);
         currentAmmo = maxAmmo;
     }
 

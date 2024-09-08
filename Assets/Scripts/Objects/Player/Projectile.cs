@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Drawing;
@@ -6,28 +7,39 @@ using UnityEngine;
 
 public class Projectile : MonoBehaviour
 {
-    [Range(3f, 50f)]
-    [SerializeField] private float bulletSpeed;
+    private float bulletSpeed;
+    [SerializeField] private List<Sprite> bulletSprites;
 
-    [Range(.1f, 3f)]
-    [SerializeField] private float lifeTime;
+    private int bulletDamage;
+    private readonly float lifeTime = 1.2f;
 
     [SerializeField] private Rigidbody2D rb;
+    [SerializeField] private SpriteRenderer sprite;
+    [SerializeField] private CircleCollider2D col;
 
-    [SerializeField] private int damageScale = 1;
-    [SerializeField] private int upgradedDamage = 0;
+    private enum Levels { Base, Lv1, Lv2, Lv3, Max }
+    private Levels level;
 
 
     private void Start()
     {
-        rb = GetComponent<Rigidbody2D>();
+        rb = gameObject.GetComponent<Rigidbody2D>();
+        sprite = gameObject.GetComponent<SpriteRenderer>();
+        col = gameObject.GetComponent<CircleCollider2D>();
+
         Destroy(gameObject, lifeTime);
+
+        bulletDamage = GameObject.FindGameObjectWithTag("PlayerGun").GetComponent<PlayerGun>().currentDamage;
+        bulletSpeed = GameObject.FindGameObjectWithTag("PlayerGun").GetComponent<PlayerGun>().bulletSpeed;
+
+        level = Levels.Base;
     }
 
 
     private void Update()
     {
-        SizeUpdate();
+        LevelUpProjectile();
+        ChangeSprite();
     }
 
 
@@ -37,38 +49,33 @@ public class Projectile : MonoBehaviour
     }
 
 
-    private void SizeUpdate()
+    private void LevelUpProjectile()
     {
-        //The bigger the damage, the bigger the bullet\
-        var initialPlayerDamage = GameObject.FindGameObjectWithTag("PlayerGun").GetComponent<PlayerGun>().damage;
-        var updatedPlayerDamage = (GameObject.FindGameObjectWithTag("PlayerGun").GetComponent<PlayerGun>().damage + upgradedDamage) * damageScale * .5f;
-
-        var scale = updatedPlayerDamage/initialPlayerDamage;
-
-        UnityEngine.Vector2 changeSize = new (scale, scale);
-
-        transform.localScale = changeSize;
+        if (bulletDamage < 15) return;
+        else if (bulletDamage >= 15 && bulletDamage < 20) level = Levels.Lv1;
+        else if (bulletDamage >= 20 && bulletDamage < 30) level = Levels.Lv2;
+        else if (bulletDamage >= 30 && bulletDamage < 40) level = Levels.Lv3;
+        else if (bulletDamage >= 40) level = Levels.Max;
     }
 
-    // private void OnTriggerEnter2D(Collider2D other)
-    // {
-    //     if (other.gameObject.CompareTag("Enemy"))
-    //     {
-    //         other.gameObject.GetComponent<EnemyManager>().takeDamage(damage);
-    //         Destroy(gameObject);
-    //     }
-    // }
+
+    private void ChangeSprite()
+    {
+        if (level == Levels.Base) return;
+        else if (level == Levels.Lv1) {sprite.sprite = bulletSprites[0]; col.radius = .15f;}
+        else if (level == Levels.Lv2) {sprite.sprite = bulletSprites[1]; col.radius = .236f;}
+        else if (level == Levels.Lv3) {sprite.sprite = bulletSprites[2]; col.radius = .314f;}
+        else if (level == Levels.Max) {sprite.sprite = bulletSprites[3]; col.radius = .4f;}
+    }
 
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        var playerDamage = (GameObject.FindGameObjectWithTag("PlayerGun").GetComponent<PlayerGun>().damage + upgradedDamage) * damageScale;
-    
         if (other.gameObject.CompareTag("Enemy"))
         {
             if (other.gameObject.GetComponent<EnemyHealth>().isDead == false)
             {
-                other.gameObject.GetComponent<EnemyHealth>().TakeDamage(playerDamage);
+                other.gameObject.GetComponent<EnemyHealth>().TakeDamage(bulletDamage);
                 Destroy(gameObject);
             }
 

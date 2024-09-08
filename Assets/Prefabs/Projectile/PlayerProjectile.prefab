@@ -11,8 +11,8 @@ GameObject:
   - component: {fileID: 2586690121550693997}
   - component: {fileID: 5255480432742310060}
   - component: {fileID: 6534979251933690043}
-  - component: {fileID: 5823318724896245791}
   - component: {fileID: 2069015474088044490}
+  - component: {fileID: 5823318724896245791}
   m_Layer: 0
   m_Name: PlayerProjectile
   m_TagString: PlayerProjectile
@@ -76,7 +76,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: fcc3f61fbd4d442439effebaaf25e105, type: 3}
+  m_Sprite: {fileID: 1278760794, guid: 9174c7baa527b264495bda15fefa6371, type: 3}
   m_Color: {r: 1, g: 0.98540163, b: 0.042452812, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -114,23 +114,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!114 &5823318724896245791
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3094437461602820929}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c00c6270b0d8fcb4099731f5e39d7405, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  bulletSpeed: 25
-  lifeTime: 0.55
-  rb: {fileID: 6534979251933690043}
-  damageScale: 1
-  upgradedDamage: 0
 --- !u!58 &2069015474088044490
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -165,4 +148,25 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 0.22634426
+  m_Radius: 0.11
+--- !u!114 &5823318724896245791
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3094437461602820929}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c00c6270b0d8fcb4099731f5e39d7405, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bulletSpeed: 25
+  bulletSprites:
+  - {fileID: 1311446541, guid: 9174c7baa527b264495bda15fefa6371, type: 3}
+  - {fileID: -58132913, guid: 9174c7baa527b264495bda15fefa6371, type: 3}
+  - {fileID: -1108052413, guid: 9174c7baa527b264495bda15fefa6371, type: 3}
+  - {fileID: -752026893, guid: 9174c7baa527b264495bda15fefa6371, type: 3}
+  rb: {fileID: 6534979251933690043}
+  sprite: {fileID: 0}
+  col: {fileID: 0}

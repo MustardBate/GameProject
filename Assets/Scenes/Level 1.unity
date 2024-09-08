@@ -227,6 +227,10 @@ PrefabInstance:
       propertyPath: shotPoint
       value: 
       objectReference: {fileID: 1663510872}
+    - target: {fileID: 8877853173237922801, guid: 0c95b0a4e9f73ec41aa33946b46c23ca, type: 3}
+      propertyPath: bulletSpeed
+      value: 20
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 3483943599121672078, guid: 0c95b0a4e9f73ec41aa33946b46c23ca, type: 3}
     m_RemovedGameObjects:
