@@ -24,8 +24,8 @@ public class PlayerHealth : MonoBehaviour
         sprite = gameObject.GetComponent<SpriteRenderer>();
     
 
-        currentHealth = 2;
-        healthBar.SetMaxHealth(maxHealth);
+        currentHealth = maxHealth;
+        healthBar.SetNewMaxHealth(maxHealth, currentHealth);
         healthBar.SetHealthNumber(maxHealth, currentHealth);
     }
 

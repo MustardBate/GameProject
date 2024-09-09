@@ -10,11 +10,7 @@ public class HealthItemTemplate : ScriptableObject
     public void HealthBuff(GameObject target)
     {
         target.GetComponent<PlayerHealth>().maxHealth += HealthUp;
-        target.GetComponent<PlayerHealth>().healthBar.SetNewMaxHealth(target.GetComponent<PlayerHealth>().maxHealth);
-    }
-
-    public void HealthDebuff(GameObject target)
-    {
-        target.GetComponent<PlayerHealth>().maxHealth -= HealthUp;
+        target.GetComponent<PlayerHealth>().healthBar
+        .SetNewMaxHealth(target.GetComponent<PlayerHealth>().maxHealth, target.GetComponent<PlayerHealth>().currentHealth);
     }
 }

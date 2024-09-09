@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    [SerializeField] private float moveSpeed = 4.5f;
+    private readonly float baseSpeed = 4.5f;
+    [HideInInspector] public float currentSpeed;
     private Vector2 movement;
     private Rigidbody2D rb;
-    private bool isDead;
     private Animator animator;
 
 
@@ -17,29 +17,26 @@ public class PlayerMovement : MonoBehaviour
         rb = gameObject.GetComponent<Rigidbody2D>();
         animator = gameObject.GetComponent<Animator>();
 
-        isDead = gameObject.GetComponent<PlayerHealth>().IsDead();
+        currentSpeed = baseSpeed;
     }
 
 
     // Update is called once per frame
     void Update()
     {
-        if (isDead == false)
-        {
-            //Player movement
-            movement.x = Input.GetAxisRaw("Horizontal");
-            movement.y = Input.GetAxisRaw("Vertical");
+        //Player movement
+        movement.x = Input.GetAxisRaw("Horizontal");
+        movement.y = Input.GetAxisRaw("Vertical");
 
-            //Setting animation for movement
-            animator.SetFloat("Horizontal", movement.x);
-            animator.SetFloat("Vertical", movement.y);
-            animator.SetFloat("Speed", movement.sqrMagnitude);
-        }
+        //Setting animation for movement
+        animator.SetFloat("Horizontal", movement.x);
+        animator.SetFloat("Vertical", movement.y);
+        animator.SetFloat("Speed", movement.sqrMagnitude);
     }
 
 
     private void FixedUpdate()
-    {
-        if (isDead == false)  rb.velocity = moveSpeed * movement.normalized;
+    { 
+        rb.velocity = currentSpeed * movement.normalized;
     }
 }

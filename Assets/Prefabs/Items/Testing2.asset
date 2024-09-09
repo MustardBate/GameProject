@@ -9,7 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5f07a9ed5987a204d88a1bf41b572cf5, type: 3}
-  m_Name: Testing
+  m_Script: {fileID: 11500000, guid: 8fcff26a14ed8b743acb0778c5c06407, type: 3}
+  m_Name: Testing2
   m_EditorClassIdentifier: 
-  HealthUp: 2
+  damageUp: 10
+  damageScale: 1

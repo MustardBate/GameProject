@@ -10,7 +10,7 @@ public class Projectile : MonoBehaviour
     private float bulletSpeed;
     [SerializeField] private List<Sprite> bulletSprites;
 
-    private int bulletDamage;
+    [SerializeField] private int bulletDamage;
     private readonly float lifeTime = 1.2f;
 
     [SerializeField] private Rigidbody2D rb;
