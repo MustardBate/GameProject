@@ -10,9 +10,6 @@ public class EnemyWeapon : MonoBehaviour
     [SerializeField] private Transform shotPoint;
     [SerializeField] private float rangeTilShoot;
 
-    [SerializeField] private GameObject sprite;
-    private SpriteRenderer gunSprite;
-
     private GameObject player;
     private float distance;
 
@@ -28,7 +25,6 @@ public class EnemyWeapon : MonoBehaviour
     {
         player = GameObject.FindGameObjectWithTag("Player");
         rangeTilShoot = gameObject.GetComponentInParent<EnemyMovement>().rangeTilPursuit;
-        gunSprite = sprite.GetComponent<SpriteRenderer>();
 
         isPlayerDead = player.GetComponent<Player>().IsDead();
         isThisEnemyDead = GetComponentInParent<EnemyHealth>().isDead;
