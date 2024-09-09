@@ -26,7 +26,7 @@ public class EnemyWeapon : MonoBehaviour
         player = GameObject.FindGameObjectWithTag("Player");
         rangeTilShoot = gameObject.GetComponentInParent<EnemyMovement>().rangeTilPursuit;
 
-        isPlayerDead = player.GetComponent<Player>().IsDead();
+        isPlayerDead = player.GetComponent<PlayerHealth>().IsDead();
         isThisEnemyDead = GetComponentInParent<EnemyHealth>().isDead;
 
         timer = timeBetweenShot;

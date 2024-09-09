@@ -19,7 +19,7 @@ public class PlayerGun : MonoBehaviour
     [HideInInspector] public int addedDamage = 0;
     [HideInInspector] public float damageScaler = 1;
     [Range(3f, 50f)]
-    [HideInInspector] public float bulletSpeed = 20f;
+    [HideInInspector] public float bulletSpeed = 18f;
 
     [SerializeField] private int maxAmmo = 6;
     private int currentAmmo;

@@ -16,6 +16,14 @@ public class PlayerHealthUI : MonoBehaviour
         slider.value = maxHealth; 
     }
 
+    public void SetNewMaxHealth(int newMaxHealth)
+    {
+        slider.maxValue = newMaxHealth;
+        if (slider.value > newMaxHealth) slider.value = newMaxHealth;
+
+        text.text = slider.value + "/" + slider.maxValue;
+    }
+
 
     public void SetHealth(int health)
     {

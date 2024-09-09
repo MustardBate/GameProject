@@ -13,7 +13,8 @@ GameObject:
   - component: {fileID: 3523939727868413067}
   - component: {fileID: 929564032500640441}
   - component: {fileID: -1293340397413854197}
-  - component: {fileID: 197121748875235059}
+  - component: {fileID: 7894084926522593615}
+  - component: {fileID: 6929623958339792677}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -182,7 +183,7 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &197121748875235059
+--- !u!114 &7894084926522593615
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -191,11 +192,24 @@ MonoBehaviour:
   m_GameObject: {fileID: 828157395572391263}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e8e02bc3a7c23743a3ea999d166cb9c, type: 3}
+  m_Script: {fileID: 11500000, guid: 1a1de33efddb61046b47b5b525fc8253, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 4.5
-  maxHealth: 10
+--- !u!114 &6929623958339792677
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 828157395572391263}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ea017e1c5a03cc549acc9a89a152be5d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 5
+  currentHealth: 0
   healthBar: {fileID: 0}
 --- !u!1 &936373460100943936
 GameObject:
@@ -248,6 +262,10 @@ MonoBehaviour:
   animator: {fileID: 885850431039503925}
   reload: {fileID: 7400000, guid: aea31c08e41c6d347be5a6785346d118, type: 2}
   shoot: {fileID: 7400000, guid: dcf5705e9ce3cf14da8c71e1af6d0260, type: 2}
+  currentDamage: 0
+  addedDamage: 0
+  damageScaler: 1
+  bulletSpeed: 18
   maxAmmo: 6
 --- !u!1 &1751335689979363410
 GameObject:

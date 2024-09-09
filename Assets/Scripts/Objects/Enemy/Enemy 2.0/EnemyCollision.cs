@@ -19,7 +19,7 @@ public class EnemyCollision : MonoBehaviour
         col = gameObject.GetComponent<BoxCollider2D>();
         player = GameObject.FindGameObjectWithTag("Player");
 
-        isPlayerDead = player.GetComponent<Player>().IsDead();
+        isPlayerDead = player.GetComponent<PlayerHealth>().IsDead();
         isThisEnemyDead = gameObject.GetComponent<EnemyHealth>().isDead;
     }
 
@@ -28,7 +28,7 @@ public class EnemyCollision : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player"))
         {
-            if (isPlayerDead == false && isThisEnemyDead == false)  other.gameObject.GetComponent<Player>().TakeDamage(contactDamage);
+            if (isPlayerDead == false && isThisEnemyDead == false)  other.gameObject.GetComponent<PlayerHealth>().TakeDamage(contactDamage);
             
             else Physics2D.IgnoreCollision(other.gameObject.GetComponent<Collider2D>(), col, true);
         }
