@@ -9,24 +9,33 @@ public class ItemObjectTemplate : ScriptableObject
 {
     public Sprite sprite;
     public string itemName, itemDescription;
-    public int HealthUp = 0;
+    public ItemTypes itemType;
+    public ItemRarity itemRarity;
 
-    public int DamageUp = 0;
-    public float DamageScale = 1;
-
-    public float WalkingSpeedUp = 0;
-    public float BulletSpeedUp = 0;
-    
     [Range(1, 100)]
     public int dropChance;
 
-    public ItemTypes itemType;
+    public int HealthUp = 0;
+    public int DamageUp = 0;
+    public float DamageScale = 1;
+    public float WalkingSpeedUp = 0;
+    public float BulletSpeedUp = 0;
+    
+
     public enum ItemTypes
     {
         Health,
         Damage,
         Speed,
         BulletSpeed
+    }
+
+    public enum ItemRarity
+    {
+        Common,
+        Uncommon,
+        Rare,
+        Component
     }
 
 

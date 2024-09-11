@@ -6,6 +6,7 @@ public class ItemHolder : MonoBehaviour
 {
     private Collider2D col;
     public ItemObjectTemplate selectedItem;
+    public string itemRarity;
     
     // Start is called before the first frame update
     void Start()

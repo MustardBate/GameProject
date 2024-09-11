@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c561557bc24ab574d8294b3d80894ed9, type: 3}
   m_Name: Common
   m_EditorClassIdentifier: 
-  sprite: {fileID: 21300000, guid: 075ce464a1b689d4cad18710ba6656ff, type: 3}
+  sprite: {fileID: 21300000, guid: 474dfdf1af37fa34282f0a30c1a57f3d, type: 3}
   itemName: Common
   itemDescription: Just your ol' health pack
   HealthUp: 2
@@ -22,3 +22,4 @@ MonoBehaviour:
   BulletSpeedUp: 0
   dropChance: 70
   itemType: 0
+  itemRarity: 0

@@ -10,15 +10,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c561557bc24ab574d8294b3d80894ed9, type: 3}
-  m_Name: Legendary
+  m_Name: Component
   m_EditorClassIdentifier: 
-  sprite: {fileID: -752026893, guid: 9174c7baa527b264495bda15fefa6371, type: 3}
-  itemName: Legendary
-  itemDescription: Just the rarest thing you'll see around here!
+  sprite: {fileID: 21300000, guid: bab2081abf352bd41b43e1e993714edf, type: 3}
+  itemName: Component
+  itemDescription: An upgrade to your gun!
   HealthUp: 0
   DamageUp: 0
-  DamageScale: 0
-  WalkingSpeedUp: 2.5
+  DamageScale: 1
+  WalkingSpeedUp: 0
   BulletSpeedUp: 0
-  dropChance: 15
-  itemType: 2
+  dropChance: 40
+  itemType: 0
+  itemRarity: 3

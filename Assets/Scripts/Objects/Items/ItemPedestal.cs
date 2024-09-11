@@ -8,6 +8,7 @@ public class ItemPedestal : MonoBehaviour
     [SerializeField] private GameObject itemHolder;
     [SerializeField] private List<ItemObjectTemplate> itemsPool;
     private ItemObjectTemplate selectedItem;
+    private string rarity;
 
     
     // Start is called before the first frame update
@@ -15,9 +16,12 @@ public class ItemPedestal : MonoBehaviour
     {
         rb = gameObject.GetComponent<Rigidbody2D>();
         selectedItem = GetItem();
+        rarity = selectedItem.itemRarity.ToString();
 
         itemHolder.GetComponent<ItemHolder>().selectedItem = selectedItem;
         itemHolder.GetComponent<SpriteRenderer>().sprite = selectedItem.sprite;
+        itemHolder.GetComponent<ItemHolder>().itemRarity = rarity;
+        SetRarityOutline();
     }
 
 
@@ -27,9 +31,12 @@ public class ItemPedestal : MonoBehaviour
         {
             Debug.Log("Spawning different item");
             selectedItem = GetItem();
+            rarity = selectedItem.itemRarity.ToString();
 
             itemHolder.GetComponent<ItemHolder>().selectedItem = selectedItem;
             itemHolder.GetComponent<SpriteRenderer>().sprite = selectedItem.sprite;
+            itemHolder.GetComponent<ItemHolder>().itemRarity = rarity;
+            SetRarityOutline();
         }
     }
 
@@ -60,14 +67,16 @@ public class ItemPedestal : MonoBehaviour
 
         return null;
     }
-    // void ScriptableObject GetItem()
-    // {
-    //     int randomNumber = Random.Range(1, 101);
-    //     List<ScriptableObject> possibleItems = new ();
 
-    //     foreach (ScriptableObject item in itemsPool)
-    //     {
-            
-    //     }
-    // }
+
+    private void SetRarityOutline()
+    {
+        Color purple = new (60, 0, 255, 255);
+        Color orange = new (255, 111, 0, 255);
+
+        if (rarity == "Common") itemHolder.GetComponent<SpriteRenderer>().material.SetColor("_Color", Color.white);
+        else if (rarity == "Uncommon") itemHolder.GetComponent<SpriteRenderer>().material.SetColor("_Color", Color.green);
+        else if (rarity == "Rare") itemHolder.GetComponent<SpriteRenderer>().material.SetColor("_Color", purple);
+        else if (rarity == "Component") itemHolder.GetComponent<SpriteRenderer>().material.SetColor("_Color", orange);
+    }
 }
