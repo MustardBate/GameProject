@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Tilemaps;
 
 public class RoomObject : MonoBehaviour
 {
@@ -41,6 +42,14 @@ public class RoomObject : MonoBehaviour
 
     // Set room type for logic
     [HideInInspector] public RoomType thisRoomType;
+    [Space(15)]
+
+    [Header("Sprites and Tilemap")]
+    [SerializeField] private Tilemap tileMap;
+    [SerializeField] private Tile topWallSprite;
+    [SerializeField] private Tile bottomWallSprite;
+    [SerializeField] private Tile lefWallSprite;
+    [SerializeField] private Tile rightWallSprite;
 
 
     public enum RoomType
@@ -55,6 +64,7 @@ public class RoomObject : MonoBehaviour
 
     private void Start()
     {
+        DrawWalls();
         if (thisRoomType == RoomType.SpawnRoom || thisRoomType == RoomType.Treasure || thisRoomType == RoomType.Shop)
         {
             MaxEnemyToSpawnCount = 0;
@@ -137,6 +147,40 @@ public class RoomObject : MonoBehaviour
     //     }
     // }
 
+    private void DrawWalls()
+    {
+        if (isTopRoomExists == false)
+        {
+            for(int i = -3; i <= 3; i++)
+            {
+                tileMap.SetTile(new Vector3Int(i, 4, 0), topWallSprite);
+            }
+        }
+
+        if (isBottomRoomExists == false)
+        {
+            for (int i = -3; i <= 3; i++)
+            {
+                tileMap.SetTile(new Vector3Int(i, -5, 0), bottomWallSprite);
+            }
+        }
+
+        if (isLeftRoomExists == false)
+        {
+            for (int i = -3; i <= 3; i++)
+            {
+                tileMap.SetTile(new Vector3Int(-9, i, 0) , lefWallSprite);
+            }
+        }
+
+        if (isRightRoomExists == false)
+        {
+            for (int i = -3; i <= 3; i++)
+            {
+                tileMap.SetTile(new Vector3Int(8, i, 0), rightWallSprite);
+            }
+        }
+    }
 
     // To connect this room to other valid rooms
     public void SetUpDoors()
