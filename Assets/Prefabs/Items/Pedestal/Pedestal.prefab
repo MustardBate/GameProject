@@ -184,7 +184,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemHolder: {fileID: 7109338725388233565}
   itemsPool: []
-  selectedItem: {fileID: 0}
 --- !u!1 &7109338725388233565
 GameObject:
   m_ObjectHideFlags: 0
@@ -240,7 +239,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: bdc7da7367ca756429b649e04560a993, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -350,6 +349,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f1fa9308b84464e41ae0e049d82bda66, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pedestal: {fileID: 60276301919971689}
   selectedItem: {fileID: 0}
-  sprite: {fileID: 0}
+  itemRarity: 

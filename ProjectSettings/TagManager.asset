@@ -13,19 +13,21 @@ TagManager:
   - Trigger
   - SpawnTrigger
   - NormalRoom
+  - MoneyCount
+  - PlayerHealthBar
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Player
   - Water
   - UI
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
+  - Room Interior
+  - Player Projectile
+  - Enemy
+  - Enemy Projectile
+  - Walls
+  - Trigger
   - 
   - 
   - 

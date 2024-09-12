@@ -22,6 +22,7 @@ public class PlayerHealth : MonoBehaviour
         col = gameObject.GetComponent<Collider2D>();
         animator = gameObject.GetComponent<Animator>();
         sprite = gameObject.GetComponent<SpriteRenderer>();
+        healthBar = GameObject.FindGameObjectWithTag("PlayerHealthBar").GetComponent<PlayerHealthUI>();
     
 
         currentHealth = maxHealth;

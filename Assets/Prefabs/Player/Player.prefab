@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: -1293340397413854197}
   - component: {fileID: 7894084926522593615}
   - component: {fileID: 6929623958339792677}
+  - component: {fileID: 5966868901035726097}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -195,7 +196,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1a1de33efddb61046b47b5b525fc8253, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 4.5
+  currentSpeed: 0
 --- !u!114 &6929623958339792677
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -211,6 +212,18 @@ MonoBehaviour:
   maxHealth: 5
   currentHealth: 0
   healthBar: {fileID: 0}
+--- !u!114 &5966868901035726097
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 828157395572391263}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d642c8ae310459341838f1cad58c37ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &936373460100943936
 GameObject:
   m_ObjectHideFlags: 0
@@ -263,8 +276,6 @@ MonoBehaviour:
   reload: {fileID: 7400000, guid: aea31c08e41c6d347be5a6785346d118, type: 2}
   shoot: {fileID: 7400000, guid: dcf5705e9ce3cf14da8c71e1af6d0260, type: 2}
   currentDamage: 0
-  addedDamage: 0
-  damageScaler: 1
   bulletSpeed: 18
   maxAmmo: 6
 --- !u!1 &1751335689979363410
