@@ -59,16 +59,19 @@ public class ItemObjectTemplate : ScriptableObject
         else if (itemType == ItemTypes.Damage)
         {
             target.GetComponentInChildren<PlayerGun>().SetNewDamage(DamageUp, DamageScale);
+            GameObject.FindGameObjectWithTag("StatsUI").GetComponent<StatsUIContainer>().SetDamageUI(target.GetComponentInChildren<PlayerGun>().currentDamage);
         }
 
         else if (itemType == ItemTypes.Speed)
         {
             target.GetComponent<PlayerMovement>().currentSpeed += WalkingSpeedUp;
+            GameObject.FindGameObjectWithTag("StatsUI").GetComponent<StatsUIContainer>().SetSpeedUI((int)target.GetComponent<PlayerMovement>().currentSpeed);
         }
 
         else if (itemType == ItemTypes.BulletSpeed)
         {
             target.GetComponentInChildren<PlayerGun>().bulletSpeed += BulletSpeedUp;
+            GameObject.FindGameObjectWithTag("StatsUI").GetComponent<StatsUIContainer>().SetBulletSpeedUI((int)target.GetComponentInChildren<PlayerGun>().bulletSpeed);
         }
 
         else Debug.Log("Please select a valid item type");

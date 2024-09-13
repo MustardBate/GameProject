@@ -25,12 +25,16 @@ public class PlayerGun : MonoBehaviour
 
     private float timeBetweenShot;
     private float nextTimeShot;
-    private bool isReloading = false;
+    [HideInInspector] public bool isReloading = false;
+
+    [SerializeField] private BulletCountUI bulletCountUI;
 
 
     // Start is called before the first frame update
     void Start()
     {
+        bulletCountUI = GameObject.FindGameObjectWithTag("BulletCountUI").GetComponent<BulletCountUI>();
+
         timeBetweenShot = shoot.length;
         animSpeed = animator.speed;
 
@@ -38,6 +42,11 @@ public class PlayerGun : MonoBehaviour
 
         currentDamage = baseDamage;
         currentAmmo = maxAmmo;
+
+        GameObject.FindGameObjectWithTag("StatsUI").GetComponent<StatsUIContainer>().SetDamageUI(baseDamage);
+        GameObject.FindGameObjectWithTag("StatsUI").GetComponent<StatsUIContainer>().SetBulletSpeedUI((int)bulletSpeed);
+
+        bulletCountUI.SetBulletCountUI(currentAmmo, maxAmmo, isReloading);
     }
 
 
@@ -89,6 +98,7 @@ public class PlayerGun : MonoBehaviour
 
     IEnumerator Shoot()
     {
+        bulletCountUI.SetBulletCountUI(currentAmmo, maxAmmo, isReloading);
         animator.SetBool("isShooting", true);
 
         Instantiate(projectile, shotPoint.position, shotPoint.rotation);
@@ -102,6 +112,7 @@ public class PlayerGun : MonoBehaviour
     private IEnumerator Reload()
     {
         isReloading = true;
+        bulletCountUI.SetBulletCountUI(currentAmmo, maxAmmo, isReloading);
 
         animator.SetTrigger("Reloading");
 
@@ -113,6 +124,7 @@ public class PlayerGun : MonoBehaviour
 
         currentAmmo = maxAmmo;
         isReloading = false;
+        bulletCountUI.SetBulletCountUI(currentAmmo, maxAmmo, isReloading);
     }
 
 

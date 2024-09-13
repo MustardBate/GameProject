@@ -183,10 +183,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemHolder: {fileID: 7109338725388233565}
-  itemsPool: []
+  itemsPool:
+  - {fileID: 11400000, guid: 713c8bdb38d5ffa40a756e3df631d92d, type: 2}
+  - {fileID: 11400000, guid: 0e6c3f49ad4098b4f959ac2e7c03aea1, type: 2}
+  - {fileID: 11400000, guid: 8dd1fa6cdc375884faee86504747243d, type: 2}
+  - {fileID: 11400000, guid: e2321aeb361915143811d0bafc3da858, type: 2}
   toolTip: {fileID: 0}
-  emptyPedestal: {fileID: -1046569518, guid: 6909bd89453a0cc40ac32fad73359f51, type: 3}
   selectedItem: {fileID: 0}
+  emptyPedestal: {fileID: -1046569518, guid: 6909bd89453a0cc40ac32fad73359f51, type: 3}
 --- !u!1 &7109338725388233565
 GameObject:
   m_ObjectHideFlags: 0
@@ -199,6 +203,7 @@ GameObject:
   - component: {fileID: 2743558528365088196}
   - component: {fileID: 3288795015032335850}
   - component: {fileID: 1358524217440653278}
+  - component: {fileID: 6416396506833690941}
   - component: {fileID: 5833269565465074237}
   - component: {fileID: 3971763393166126435}
   m_Layer: 0
@@ -341,6 +346,33 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.96923935, y: 1.4310269}
   m_EdgeRadius: 0
+--- !u!50 &6416396506833690941
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7109338725388233565}
+  m_BodyType: 1
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 7
 --- !u!114 &5833269565465074237
 MonoBehaviour:
   m_ObjectHideFlags: 0

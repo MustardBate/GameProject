@@ -22,7 +22,7 @@ public class PlayerHealthUI : MonoBehaviour
         slider.value = currentHealth;
         if (slider.value > newMaxHealth) slider.value = newMaxHealth;
 
-        text.text = slider.value + "/" + slider.maxValue;
+        text.text = slider.value.ToString("00") + "/" + slider.maxValue.ToString("00");
     }
 
 
@@ -34,6 +34,6 @@ public class PlayerHealthUI : MonoBehaviour
     
     public void SetHealthNumber(int maxHealth, int health)
     {
-        text.text = health + "/" + maxHealth;
+        text.text = health.ToString("00") + "/" + maxHealth.ToString("00");
     }
 }

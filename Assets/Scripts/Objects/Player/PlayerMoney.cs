@@ -15,13 +15,13 @@ public class PlayerMoney : MonoBehaviour
         text = GameObject.FindGameObjectWithTag("MoneyCount");
         textUI = text.GetComponent<TextMeshProUGUI>();
 
-        textUI.text = money.ToString();
+        textUI.text = money.ToString("000");
     }
 
 
     public void SetMoneyCountUI(int newMoney)
     {
-        textUI.text = newMoney.ToString();
+        textUI.text = newMoney.ToString("000");
     }
 
 

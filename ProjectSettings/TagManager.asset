@@ -16,6 +16,8 @@ TagManager:
   - MoneyCount
   - PlayerHealthBar
   - ToolTip
+  - BulletCountUI
+  - StatsUI
   layers:
   - Default
   - TransparentFX
