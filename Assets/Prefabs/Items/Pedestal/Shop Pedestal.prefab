@@ -184,8 +184,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemHolder: {fileID: 9077181962269837051}
-  itemsPool: []
-  priceTag: {fileID: 3438331553089009624}
+  itemsPool:
+  - {fileID: 11400000, guid: 713c8bdb38d5ffa40a756e3df631d92d, type: 2}
+  - {fileID: 11400000, guid: 0e6c3f49ad4098b4f959ac2e7c03aea1, type: 2}
+  - {fileID: 11400000, guid: 8dd1fa6cdc375884faee86504747243d, type: 2}
+  - {fileID: 11400000, guid: e2321aeb361915143811d0bafc3da858, type: 2}
+  priceTagUI: {fileID: 3438331553089009624}
+  emptyPedestal: {fileID: -1046569518, guid: 6909bd89453a0cc40ac32fad73359f51, type: 3}
+  selectedItem: {fileID: 0}
+  itemPrice: 0
 --- !u!1 &6030972082328763586
 GameObject:
   m_ObjectHideFlags: 0
@@ -435,6 +442,7 @@ GameObject:
   - component: {fileID: 3672110062946418764}
   - component: {fileID: 976053592845460088}
   - component: {fileID: 8236025178877727641}
+  - component: {fileID: 8663940399398200754}
   m_Layer: 0
   m_Name: ItemHolder
   m_TagString: Untagged
@@ -587,6 +595,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f1742be7fe370f44c8b491d583d83c21, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  pedestal: {fileID: 6953874696441775154}
   selectedItem: {fileID: 0}
   itemRarity: 
   isBuyable: 0
+--- !u!114 &8663940399398200754
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9077181962269837051}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e60627fc881a58d4bba5804589ad9843, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  item: {fileID: 0}

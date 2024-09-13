@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: Rare
   m_EditorClassIdentifier: 
   sprite: {fileID: -752026893, guid: 9174c7baa527b264495bda15fefa6371, type: 3}
-  itemName: Rare
+  name: '>:]'
   itemDescription: Just the rarest thing you'll see around here!
+  itemType: 2
+  itemRarity: 2
+  dropChance: 10
   HealthUp: 0
   DamageUp: 0
   DamageScale: 0
   WalkingSpeedUp: 2.5
   BulletSpeedUp: 0
-  dropChance: 20
-  itemType: 2
-  itemRarity: 2

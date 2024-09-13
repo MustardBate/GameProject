@@ -5,8 +5,8 @@ using UnityEngine;
 public class ItemHolder : MonoBehaviour
 {
     private Collider2D col;
-    public ItemObjectTemplate selectedItem;
-    public string itemRarity;
+    [HideInInspector] public ItemObjectTemplate selectedItem;
+    [HideInInspector] public string itemRarity;
     
     // Start is called before the first frame update
     void Start()
@@ -19,6 +19,7 @@ public class ItemHolder : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player"))
         {
+            ToolTipManager.HideToolTip();
             selectedItem.ApplyBuff(other.gameObject);
             Destroy(gameObject);
         }

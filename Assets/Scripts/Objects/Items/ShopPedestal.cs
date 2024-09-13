@@ -8,27 +8,33 @@ public class ShopPedestal : MonoBehaviour
     private Rigidbody2D rb;
     [SerializeField] private GameObject itemHolder;
     [SerializeField] private List<ItemObjectTemplate> itemsPool;
-    [SerializeField] private TextMeshProUGUI priceTag;
-    private ItemObjectTemplate selectedItem;
+    [SerializeField] private TextMeshProUGUI priceTagUI;
+    [SerializeField] private Sprite emptyPedestal;
+    private ShopToolTipTrigger toolTip;
+    [HideInInspector] public ItemObjectTemplate selectedItem;
     private string rarity;
-    public readonly int itemPrice = 15;
-    [SerializeField] private int playerMoneyTracker;
+    [HideInInspector] public int itemPrice;
+    private int playerMoneyTracker;
 
     
     // Start is called before the first frame update
     void Start()
     {
         rb = gameObject.GetComponent<Rigidbody2D>();
+        toolTip = itemHolder.GetComponent<ShopToolTipTrigger>();
         selectedItem = GetItem();
         rarity = selectedItem.itemRarity.ToString();
         
         playerMoneyTracker = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerMoney>().money;
-        priceTag.text = itemPrice.ToString() + "$";
+        priceTagUI.text = itemPrice.ToString() + "$";
 
         itemHolder.GetComponent<ShopItemHolder>().selectedItem = selectedItem;
         itemHolder.GetComponent<SpriteRenderer>().sprite = selectedItem.sprite;
         itemHolder.GetComponent<ShopItemHolder>().itemRarity = rarity;
-        SetRarityOutline();
+
+        toolTip.item = selectedItem;
+
+        SetRarityOutlineAndPrice();
     }
 
 
@@ -36,7 +42,8 @@ public class ShopPedestal : MonoBehaviour
     {
         MoneyCheck();
 
-        if (Input.GetKeyDown(KeyCode.E))
+        //DEBUGGING
+        if (Input.GetKeyDown(KeyCode.E) && itemHolder != null)
         {
             Debug.Log("Spawning different item");
             selectedItem = GetItem();
@@ -45,7 +52,10 @@ public class ShopPedestal : MonoBehaviour
             itemHolder.GetComponent<ShopItemHolder>().selectedItem = selectedItem;
             itemHolder.GetComponent<SpriteRenderer>().sprite = selectedItem.sprite;
             itemHolder.GetComponent<ShopItemHolder>().itemRarity = rarity;
-            SetRarityOutline();
+
+            toolTip.item = selectedItem;
+
+            SetRarityOutlineAndPrice();
         }
     }
 
@@ -78,15 +88,35 @@ public class ShopPedestal : MonoBehaviour
     }
 
 
-    private void SetRarityOutline()
+    private void SetRarityOutlineAndPrice()
     {
         Color purple = new (60, 0, 255, 255);
         Color orange = new (255, 111, 0, 255);
 
-        if (rarity == "Common") itemHolder.GetComponent<SpriteRenderer>().material.SetColor("_Color", Color.white);
-        else if (rarity == "Uncommon") itemHolder.GetComponent<SpriteRenderer>().material.SetColor("_Color", Color.green);
-        else if (rarity == "Rare") itemHolder.GetComponent<SpriteRenderer>().material.SetColor("_Color", purple);
-        else if (rarity == "Component") itemHolder.GetComponent<SpriteRenderer>().material.SetColor("_Color", orange);
+        if (rarity == "Common")
+        {
+            itemHolder.GetComponent<SpriteRenderer>().material.SetColor("_Color", Color.white);
+            itemPrice = 10;
+            priceTagUI.text = itemPrice.ToString() + "$";
+        } 
+        else if (rarity == "Uncommon")
+        {
+            itemHolder.GetComponent<SpriteRenderer>().material.SetColor("_Color", Color.green);
+            itemPrice = 20;
+            priceTagUI.text = itemPrice.ToString() + "$";
+        }
+        else if (rarity == "Rare") 
+        {
+            itemHolder.GetComponent<SpriteRenderer>().material.SetColor("_Color", purple);
+            itemPrice = 30;
+            priceTagUI.text = itemPrice.ToString() + "$";
+        }
+        else if (rarity == "Component") 
+        {
+            itemHolder.GetComponent<SpriteRenderer>().material.SetColor("_Color", orange);
+            itemPrice = 45;
+            priceTagUI.text = itemPrice.ToString() + "$";
+        }
     }
 
     
@@ -99,17 +129,21 @@ public class ShopPedestal : MonoBehaviour
             {
                 itemHolder.GetComponent<ShopItemHolder>().isBuyable = false;
                 itemHolder.GetComponent<Collider2D>().isTrigger = false;
-                priceTag.color = new Color(1, 0, 0, .5f);
+                priceTagUI.color = new Color(1, 0, 0, .5f);
             }
 
             else
             {
                 itemHolder.GetComponent<ShopItemHolder>().isBuyable = true;
                 itemHolder.GetComponent<Collider2D>().isTrigger = true;
-                priceTag.color = new Color(1, 1, 1, 1);
+                priceTagUI.color = new Color(1, 1, 1, 1);
             }
         }
 
-        else priceTag.color = new Color(0, 0, 0, .5f);
+        else 
+        {
+            gameObject.GetComponent<SpriteRenderer>().sprite = emptyPedestal;
+            priceTagUI.color = new Color(0, 0, 0, .5f);
+        }
     }
 }

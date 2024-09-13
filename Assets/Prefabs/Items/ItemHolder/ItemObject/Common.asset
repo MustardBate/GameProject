@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: Common
   m_EditorClassIdentifier: 
   sprite: {fileID: 21300000, guid: 474dfdf1af37fa34282f0a30c1a57f3d, type: 3}
-  itemName: Common
+  name: Health Orb
   itemDescription: Just your ol' health pack
+  itemType: 0
+  itemRarity: 0
+  dropChance: 40
   HealthUp: 2
   DamageUp: 0
   DamageScale: 0
   WalkingSpeedUp: 0
   BulletSpeedUp: 0
-  dropChance: 70
-  itemType: 0
-  itemRarity: 0

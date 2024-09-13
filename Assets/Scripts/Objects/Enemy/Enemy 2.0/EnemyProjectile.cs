@@ -7,7 +7,6 @@ using UnityEngine;
 
 public class EnemyProjectile : MonoBehaviour
 {
-    private GameObject player;
     [SerializeField] private Rigidbody2D rb;
 
     [Range (.1f, 3f)]

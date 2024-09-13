@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: Component
   m_EditorClassIdentifier: 
   sprite: {fileID: 21300000, guid: bab2081abf352bd41b43e1e993714edf, type: 3}
-  itemName: Component
+  name: A gun
   itemDescription: An upgrade to your gun!
+  itemType: 0
+  itemRarity: 3
+  dropChance: 10
   HealthUp: 0
   DamageUp: 0
   DamageScale: 1
   WalkingSpeedUp: 0
   BulletSpeedUp: 0
-  dropChance: 40
-  itemType: 0
-  itemRarity: 3

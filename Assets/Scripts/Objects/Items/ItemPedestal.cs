@@ -7,7 +7,9 @@ public class ItemPedestal : MonoBehaviour
     private Rigidbody2D rb;
     [SerializeField] private GameObject itemHolder;
     [SerializeField] private List<ItemObjectTemplate> itemsPool;
-    private ItemObjectTemplate selectedItem;
+    [SerializeField] private ToolTipTrigger toolTip;
+    [HideInInspector] public ItemObjectTemplate selectedItem;
+    [SerializeField] private Sprite emptyPedestal;
     private string rarity;
 
     
@@ -15,12 +17,16 @@ public class ItemPedestal : MonoBehaviour
     void Start()
     {
         rb = gameObject.GetComponent<Rigidbody2D>();
+        toolTip = itemHolder.GetComponent<ToolTipTrigger>();
         selectedItem = GetItem();
         rarity = selectedItem.itemRarity.ToString();
 
         itemHolder.GetComponent<ItemHolder>().selectedItem = selectedItem;
         itemHolder.GetComponent<SpriteRenderer>().sprite = selectedItem.sprite;
         itemHolder.GetComponent<ItemHolder>().itemRarity = rarity;
+
+        toolTip.item = selectedItem;
+
         SetRarityOutline();
     }
 
@@ -36,8 +42,13 @@ public class ItemPedestal : MonoBehaviour
             itemHolder.GetComponent<ItemHolder>().selectedItem = selectedItem;
             itemHolder.GetComponent<SpriteRenderer>().sprite = selectedItem.sprite;
             itemHolder.GetComponent<ItemHolder>().itemRarity = rarity;
+
+            toolTip.item = selectedItem;
+
             SetRarityOutline();
         }
+
+        if (itemHolder == null) gameObject.GetComponent<SpriteRenderer>().sprite = emptyPedestal;
     }
 
 

@@ -15,6 +15,7 @@ TagManager:
   - NormalRoom
   - MoneyCount
   - PlayerHealthBar
+  - ToolTip
   layers:
   - Default
   - TransparentFX

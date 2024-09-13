@@ -7,11 +7,19 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "ItemObject")]
 public class ItemObjectTemplate : ScriptableObject
 {
+    [Header("Item Graphics")]
     public Sprite sprite;
-    public string itemName, itemDescription;
+    public new string name;
+    public string itemDescription;
+    [Space(10)]
+
+    [Header("Item Properties")]
+    [Header("Types")]
     public ItemTypes itemType;
     public ItemRarity itemRarity;
+    [Space(5)]
 
+    [Header("Stats")]
     [Range(1, 100)]
     public int dropChance;
 
