@@ -19,7 +19,7 @@ MonoBehaviour:
   itemRarity: 1
   dropChance: 40
   HealthUp: 0
-  DamageUp: 10
+  DamageUp: 8.5
   DamageScale: 1
   WalkingSpeedUp: 0
   BulletSpeedUp: 0

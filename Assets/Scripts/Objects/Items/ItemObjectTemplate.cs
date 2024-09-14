@@ -24,7 +24,7 @@ public class ItemObjectTemplate : ScriptableObject
     public int dropChance;
 
     public int HealthUp = 0;
-    public int DamageUp = 0;
+    public float DamageUp = 0;
     public float DamageScale = 1;
     public float WalkingSpeedUp = 0;
     public float BulletSpeedUp = 0;
@@ -65,13 +65,13 @@ public class ItemObjectTemplate : ScriptableObject
         else if (itemType == ItemTypes.Speed)
         {
             target.GetComponent<PlayerMovement>().currentSpeed += WalkingSpeedUp;
-            GameObject.FindGameObjectWithTag("StatsUI").GetComponent<StatsUIContainer>().SetSpeedUI((int)target.GetComponent<PlayerMovement>().currentSpeed);
+            GameObject.FindGameObjectWithTag("StatsUI").GetComponent<StatsUIContainer>().SetSpeedUI(target.GetComponent<PlayerMovement>().currentSpeed);
         }
 
         else if (itemType == ItemTypes.BulletSpeed)
         {
             target.GetComponentInChildren<PlayerGun>().bulletSpeed += BulletSpeedUp;
-            GameObject.FindGameObjectWithTag("StatsUI").GetComponent<StatsUIContainer>().SetBulletSpeedUI((int)target.GetComponentInChildren<PlayerGun>().bulletSpeed);
+            GameObject.FindGameObjectWithTag("StatsUI").GetComponent<StatsUIContainer>().SetBulletSpeedUI(target.GetComponentInChildren<PlayerGun>().bulletSpeed);
         }
 
         else Debug.Log("Please select a valid item type");

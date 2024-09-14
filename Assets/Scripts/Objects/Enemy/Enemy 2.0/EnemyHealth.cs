@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class EnemyHealth : MonoBehaviour
 {
-    private int health;
-    [SerializeField] private int maxHealth;
+    private float health;
+    [SerializeField] private float maxHealth;
 
     private Collider2D col;
     private SpriteRenderer sprite;
@@ -35,9 +35,9 @@ public class EnemyHealth : MonoBehaviour
     public System.Func<int> DecreaseEnemyCount { get; set; }
 
 
-    public void TakeDamage(int damage)
+    public void TakeDamage(float damage)
     {
-        health -= damage;
+        health -= (int)damage;
         StartCoroutine(DamagedFlash());
         healthBar.SetHealth(health);
 
@@ -49,6 +49,7 @@ public class EnemyHealth : MonoBehaviour
             col.enabled = false;
             DecreaseEnemyCount();
             StopCoroutine(DamagedFlash());
+            GameObject.FindGameObjectWithTag("StatsUI").GetComponent<StatsUIContainer>().SetKillsUI(1);
             StartCoroutine(Death());
         }
     }

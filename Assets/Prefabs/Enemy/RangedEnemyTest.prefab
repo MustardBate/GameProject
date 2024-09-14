@@ -236,7 +236,6 @@ MonoBehaviour:
   projectile: {fileID: 2373825140200700257, guid: 97b675f6255bdcc4da18b925701779e3, type: 3}
   shotPoint: {fileID: 4952482925429342506}
   rangeTilShoot: 0
-  sprite: {fileID: 1630188188056176441}
   timeBetweenShot: 2
 --- !u!1 &3858115674096932104
 GameObject:
@@ -676,7 +675,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rangeTilPursuit: 5
-  distance: 0
   walkingSpeed: 2
 --- !u!114 &5906834568247348745
 MonoBehaviour:

@@ -18,7 +18,7 @@ public class PlayerMovement : MonoBehaviour
         animator = gameObject.GetComponent<Animator>();
 
         currentSpeed = baseSpeed;
-        GameObject.FindGameObjectWithTag("StatsUI").GetComponent<StatsUIContainer>().SetSpeedUI((int)currentSpeed);
+        GameObject.FindGameObjectWithTag("StatsUI").GetComponent<StatsUIContainer>().SetSpeedUI(currentSpeed);
     }
 
 

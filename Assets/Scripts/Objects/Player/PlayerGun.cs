@@ -11,11 +11,11 @@ public class PlayerGun : MonoBehaviour
     [SerializeField] private Animator animator;
     [SerializeField] private AnimationClip reload;
     [SerializeField] private AnimationClip shoot;
-    private float animSpeed;
 
     // Everything related to the damage (Projectile script will use this)
-    private readonly int baseDamage = 5;
-    [HideInInspector] public int currentDamage;
+    private readonly float baseDamage = 5;
+    [HideInInspector] public float currentDamage;
+    [HideInInspector] public int killCount;
     
     [Range(3f, 50f)]
     [HideInInspector] public float bulletSpeed = 18f;
@@ -36,7 +36,6 @@ public class PlayerGun : MonoBehaviour
         bulletCountUI = GameObject.FindGameObjectWithTag("BulletCountUI").GetComponent<BulletCountUI>();
 
         timeBetweenShot = shoot.length;
-        animSpeed = animator.speed;
 
         nextTimeShot = timeBetweenShot;
 
@@ -44,7 +43,8 @@ public class PlayerGun : MonoBehaviour
         currentAmmo = maxAmmo;
 
         GameObject.FindGameObjectWithTag("StatsUI").GetComponent<StatsUIContainer>().SetDamageUI(baseDamage);
-        GameObject.FindGameObjectWithTag("StatsUI").GetComponent<StatsUIContainer>().SetBulletSpeedUI((int)bulletSpeed);
+        GameObject.FindGameObjectWithTag("StatsUI").GetComponent<StatsUIContainer>().SetBulletSpeedUI(bulletSpeed);
+        GameObject.FindGameObjectWithTag("StatsUI").GetComponent<StatsUIContainer>().SetKillsUI(killCount);
 
         bulletCountUI.SetBulletCountUI(currentAmmo, maxAmmo, isReloading);
     }
@@ -128,9 +128,9 @@ public class PlayerGun : MonoBehaviour
     }
 
 
-    public int SetNewDamage(int damageUp, float damageScale)
+    public float SetNewDamage(float damageUp, float damageScale)
     {
-        currentDamage = (int)((currentDamage + damageUp) * damageScale);
+        currentDamage = (currentDamage + damageUp) * damageScale;
         return currentDamage;
     }
 }

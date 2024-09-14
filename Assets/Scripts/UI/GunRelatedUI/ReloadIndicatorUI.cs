@@ -7,7 +7,7 @@ public class ReloadIndicatorUI : MonoBehaviour
 {
     private float currentTime = 1f;
     private readonly float reloadTime = 1f;
-    public Image indicator;
+    [SerializeField] private Image indicator;
     private bool isReloading;
     
 
@@ -19,6 +19,7 @@ public class ReloadIndicatorUI : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        gameObject.transform.position = GameObject.FindGameObjectWithTag("Player").transform.position;
         isReloading = GameObject.FindGameObjectWithTag("PlayerGun").GetComponent<PlayerGun>().isReloading;
 
         if (isReloading == true)
@@ -27,7 +28,7 @@ public class ReloadIndicatorUI : MonoBehaviour
             currentTime -= Time.deltaTime;
             indicator.fillAmount = currentTime;
 
-            if (currentTime <= 0)
+            if (currentTime <= .1f)
             {
                 currentTime = reloadTime;
                 indicator.fillAmount = currentTime;
