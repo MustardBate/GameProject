@@ -20,7 +20,8 @@ public class ReloadIndicatorUI : MonoBehaviour
     void Update()
     {
         gameObject.transform.position = GameObject.FindGameObjectWithTag("Player").transform.position;
-        isReloading = GameObject.FindGameObjectWithTag("PlayerGun").GetComponent<PlayerGun>().isReloading;
+        if (GameObject.FindGameObjectWithTag("PlayerGun") != null)
+            isReloading = GameObject.FindGameObjectWithTag("PlayerGun").GetComponent<PlayerGun>().isReloading;
 
         if (isReloading == true)
         {

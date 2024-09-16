@@ -59,7 +59,7 @@ public class SpawnTrigger : MonoBehaviour
 
     private IEnumerator StartFight()
     {
-        CheckValidDoors();
+        CloseValidDoors();
         Debug.Log("Spawning...");
 
         Debug.Log("Freeze!");
@@ -76,11 +76,16 @@ public class SpawnTrigger : MonoBehaviour
     }
 
 
-    private void CheckValidDoors()
+    private void CloseValidDoors()
     {
-        if (GetComponentInParent<RoomObject>().isTopRoomExists == true) topDoor.SetActive(true);
-        if (GetComponentInParent<RoomObject>().isBottomRoomExists == true) bottomDoor.SetActive(true);
-        if (GetComponentInParent<RoomObject>().isLeftRoomExists == true) leftDoor.SetActive(true);
-        if (GetComponentInParent<RoomObject>().isRightRoomExists == true) rightDoor.SetActive(true);
+        bool isTop = GetComponentInParent<RoomObject>().isTopRoomExists;
+        bool isBottom = GetComponentInParent<RoomObject>().isBottomRoomExists;
+        bool isLeft = GetComponentInParent<RoomObject>().isLeftRoomExists;
+        bool isRight = GetComponentInParent<RoomObject>().isRightRoomExists;
+
+        if (isTop) topDoor.SetActive(true);
+        if (isBottom) bottomDoor.SetActive(true);
+        if (isLeft) leftDoor.SetActive(true);
+        if (isRight) rightDoor.SetActive(true);
     }
 }

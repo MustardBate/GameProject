@@ -55,7 +55,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: bdc7da7367ca756429b649e04560a993, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -161,12 +161,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c00c6270b0d8fcb4099731f5e39d7405, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bulletSpeed: 25
   bulletSprites:
   - {fileID: 1311446541, guid: 9174c7baa527b264495bda15fefa6371, type: 3}
   - {fileID: -58132913, guid: 9174c7baa527b264495bda15fefa6371, type: 3}
   - {fileID: -1108052413, guid: 9174c7baa527b264495bda15fefa6371, type: 3}
   - {fileID: -752026893, guid: 9174c7baa527b264495bda15fefa6371, type: 3}
+  bulletDamage: 0
   rb: {fileID: 6534979251933690043}
   sprite: {fileID: 0}
   col: {fileID: 0}

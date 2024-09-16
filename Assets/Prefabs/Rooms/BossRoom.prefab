@@ -3365,10 +3365,10 @@ MonoBehaviour:
   bottomWall: {fileID: 8096760506604175868}
   leftWall: {fileID: 609964388120503075}
   rightWall: {fileID: 6374419127839560120}
-  topDoor: {fileID: 0}
-  bottomDoor: {fileID: 0}
-  leftDoor: {fileID: 0}
-  rightDoor: {fileID: 0}
+  topDoor: {fileID: 315299014589885796}
+  bottomDoor: {fileID: 5451954312928582260}
+  leftDoor: {fileID: 2120339489925746151}
+  rightDoor: {fileID: 6908956917434509314}
   isTopRoomExists: 0
   isBottomRoomExists: 0
   isLeftRoomExists: 0

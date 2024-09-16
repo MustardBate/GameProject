@@ -23,10 +23,10 @@ public class RoomObject : MonoBehaviour
     [Space(15)]
 
     // Variables for detecting neighbouring rooms
-    [HideInInspector] public bool isTopRoomExists = false;
-    [HideInInspector] public bool isBottomRoomExists = false;
-    [HideInInspector] public bool isLeftRoomExists = false;
-    [HideInInspector] public bool isRightRoomExists = false;
+    public bool isTopRoomExists = false;
+    public bool isBottomRoomExists = false;
+    public bool isLeftRoomExists = false;
+    public bool isRightRoomExists = false;
     private int adjacentRoomsCount = 0;
 
     // Variables for enemy spawning
@@ -42,14 +42,6 @@ public class RoomObject : MonoBehaviour
 
     // Set room type for logic
     [HideInInspector] public RoomType thisRoomType;
-    [Space(15)]
-
-    [Header("Sprites and Tilemap")]
-    [SerializeField] private Tilemap tileMap;
-    [SerializeField] private Tile topWallSprite;
-    [SerializeField] private Tile bottomWallSprite;
-    [SerializeField] private Tile lefWallSprite;
-    [SerializeField] private Tile rightWallSprite;
 
 
     public enum RoomType
@@ -64,7 +56,6 @@ public class RoomObject : MonoBehaviour
 
     private void Start()
     {
-        DrawWalls();
         if (thisRoomType == RoomType.SpawnRoom || thisRoomType == RoomType.Treasure || thisRoomType == RoomType.Shop)
         {
             MaxEnemyToSpawnCount = 0;
@@ -102,12 +93,14 @@ public class RoomObject : MonoBehaviour
             if (nextSpawnerIndex == spawnerIndex) spawnerIndex = UnityEngine.Random.Range(0, spawners.Count);
 
             var enemy = Instantiate(enemyTypes[enemyIndex], spawners[spawnerIndex].transform.position, Quaternion.identity, enemyHolder.transform);
+
             enemy.GetComponent<EnemyHealth>().DecreaseEnemyCount = () =>
             {
                 currentEnemyAliveCount--;
                 if (currentEnemyAliveCount == 0) RoomCleared();
                 return 0;
             };
+            
             enemiesSpawned.Add(enemy);
         }
 
@@ -138,50 +131,7 @@ public class RoomObject : MonoBehaviour
         return;
     }
 
-
-    // public void DecreaseEnemyAliveCount(int enemyAssignedRoomId)
-    // {
-    //     if (enemyAssignedRoomId == roomId)
-    //     {
-    //         currentEnemyAliveCount--;
-    //     }
-    // }
-
-    private void DrawWalls()
-    {
-        if (isTopRoomExists == false)
-        {
-            for(int i = -3; i <= 3; i++)
-            {
-                tileMap.SetTile(new Vector3Int(i, 4, 0), topWallSprite);
-            }
-        }
-
-        if (isBottomRoomExists == false)
-        {
-            for (int i = -3; i <= 3; i++)
-            {
-                tileMap.SetTile(new Vector3Int(i, -5, 0), bottomWallSprite);
-            }
-        }
-
-        if (isLeftRoomExists == false)
-        {
-            for (int i = -3; i <= 3; i++)
-            {
-                tileMap.SetTile(new Vector3Int(-9, i, 0) , lefWallSprite);
-            }
-        }
-
-        if (isRightRoomExists == false)
-        {
-            for (int i = -3; i <= 3; i++)
-            {
-                tileMap.SetTile(new Vector3Int(8, i, 0), rightWallSprite);
-            }
-        }
-    }
-
+    
     // To connect this room to other valid rooms
     public void SetUpDoors()
     {
