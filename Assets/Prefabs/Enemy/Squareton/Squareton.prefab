@@ -116,8 +116,9 @@ GameObject:
   - component: {fileID: 2272006699967961410}
   - component: {fileID: 64024101020627537}
   - component: {fileID: 2910576773389477344}
+  - component: {fileID: 1045038751254068230}
   m_Layer: 0
-  m_Name: BetterSquareton
+  m_Name: Squareton
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -255,6 +256,31 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   contactDamage: 2
+--- !u!114 &1045038751254068230
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3639517029256760176}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 09677cce96d921b49acfdcf0ec77cb3b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  healthLootPool:
+  - {fileID: 2926058415706846135, guid: e6eda456fd97ee848a7b4c7e51d0de00, type: 3}
+  - {fileID: 4797745746955271839, guid: fba92a2440b025b4094e0218f7a19cf9, type: 3}
+  - {fileID: 5149535477215492682, guid: 40ae165b295837444a558b1618825674, type: 3}
+  moneyLootPool:
+  - {fileID: 3864788594661568279, guid: 50b2b565c83f8e7499a9a24724271558, type: 3}
+  - {fileID: 3210201244820996572, guid: 095dbde8a17f77a49a14b0b68450fd5b, type: 3}
+  - {fileID: 4706367932934220340, guid: c01f78d1781f09d458bb8f77d367c577, type: 3}
+  - {fileID: 6174367650419927866, guid: b7f7d0a63f06668408f770f371aec32d, type: 3}
+  - {fileID: 3864788594661568279, guid: 50b2b565c83f8e7499a9a24724271558, type: 3}
+  - {fileID: 3864788594661568279, guid: 50b2b565c83f8e7499a9a24724271558, type: 3}
+  - {fileID: 3864788594661568279, guid: 50b2b565c83f8e7499a9a24724271558, type: 3}
+  - {fileID: 3210201244820996572, guid: 095dbde8a17f77a49a14b0b68450fd5b, type: 3}
 --- !u!1 &3720491445992885977
 GameObject:
   m_ObjectHideFlags: 0

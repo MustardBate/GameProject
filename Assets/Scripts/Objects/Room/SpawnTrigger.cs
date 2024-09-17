@@ -59,7 +59,7 @@ public class SpawnTrigger : MonoBehaviour
 
     private IEnumerator StartFight()
     {
-        CloseValidDoors();
+        // CloseValidDoors();
         Debug.Log("Spawning...");
 
         Debug.Log("Freeze!");

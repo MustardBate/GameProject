@@ -46,6 +46,10 @@ public class ItemObjectTemplate : ScriptableObject
         Component
     }
 
+    public ItemObjectTemplate(string name)
+    {
+        this.name = name;
+    }
 
     public void ApplyBuff(GameObject target)
     {

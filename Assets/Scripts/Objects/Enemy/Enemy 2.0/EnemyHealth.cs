@@ -47,9 +47,11 @@ public class EnemyHealth : MonoBehaviour
             healthBar.enabled = false;
             rb.isKinematic = true;
             col.enabled = false;
-            DecreaseEnemyCount();
-            StopCoroutine(DamagedFlash());
+
+            // DecreaseEnemyCount();
             GameObject.FindGameObjectWithTag("StatsUI").GetComponent<StatsUIContainer>().SetKillsUI(1);
+
+            StopCoroutine(DamagedFlash());
             StartCoroutine(Death());
         }
     }
@@ -60,11 +62,13 @@ public class EnemyHealth : MonoBehaviour
         var weapon = GetComponentInChildren<EnemyWeapon>();
         gameObject.GetComponent<EnemyMovement>().enabled = false;
         gameObject.GetComponent<EnemyCollision>().enabled = false;
+
         if (weapon != null) weapon.enabled = false;
 
         animator.SetTrigger("isDead");
         yield return new WaitForSeconds(deathAnimation.length);
         Destroy(gameObject);
+        gameObject.GetComponent<LootBag>().InstantiateLoot(transform.position);
     }
 
 

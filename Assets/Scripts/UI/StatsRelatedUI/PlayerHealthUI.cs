@@ -16,6 +16,8 @@ public class PlayerHealthUI : MonoBehaviour
         slider.value = maxHealth; 
     }
 
+
+    //Upgrade max health (NOT HEAL)
     public void SetNewMaxHealth(int newMaxHealth, int currentHealth)
     {
         slider.maxValue = newMaxHealth;
@@ -26,14 +28,18 @@ public class PlayerHealthUI : MonoBehaviour
     }
 
 
+    //Heal 
     public void SetHealth(int health)
     {
         slider.value = health;
+        if (slider.value > slider.maxValue) slider.value = slider.maxValue;
     }
 
     
+    //Text UI
     public void SetHealthNumber(int maxHealth, int health)
     {
+        if (health > maxHealth) health = maxHealth;
         text.text = health.ToString("00") + "/" + maxHealth.ToString("00");
     }
 }

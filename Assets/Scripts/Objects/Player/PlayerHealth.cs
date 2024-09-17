@@ -6,7 +6,7 @@ using UnityEngine;
 public class PlayerHealth : MonoBehaviour
 {
     [HideInInspector] public int maxHealth = 5;
-    [HideInInspector] public int currentHealth;
+    public int currentHealth;
     public PlayerHealthUI healthBar;
 
     private Rigidbody2D rb;
@@ -28,6 +28,12 @@ public class PlayerHealth : MonoBehaviour
         currentHealth = maxHealth;
         healthBar.SetNewMaxHealth(maxHealth, currentHealth);
         healthBar.SetHealthNumber(maxHealth, currentHealth);
+    }
+
+
+    private void Update()
+    {
+        if (currentHealth > maxHealth) currentHealth = maxHealth;
     }
 
 
