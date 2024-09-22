@@ -719,7 +719,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   healthLootPool:
-  - {fileID: 2926058415706846135, guid: e6eda456fd97ee848a7b4c7e51d0de00, type: 3}
+  - {fileID: 8769129982433273235, guid: 86f776d30baecd548a75a42cacc98492, type: 3}
   - {fileID: 4797745746955271839, guid: fba92a2440b025b4094e0218f7a19cf9, type: 3}
   - {fileID: 5149535477215492682, guid: 40ae165b295837444a558b1618825674, type: 3}
   moneyLootPool:
