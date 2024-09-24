@@ -7,6 +7,7 @@ public class PlayerMovement : MonoBehaviour
     private readonly float baseSpeed = 4.5f;
     [HideInInspector] public float currentSpeed;
     [SerializeField] private bool isInHud;
+    private PlayerMovement freeze;
     private Vector2 movement;
     private Rigidbody2D rb;
     private Animator animator;
@@ -17,9 +18,11 @@ public class PlayerMovement : MonoBehaviour
     {
         rb = gameObject.GetComponent<Rigidbody2D>();
         animator = gameObject.GetComponent<Animator>();
+        freeze = gameObject.GetComponent<PlayerMovement>();
 
         currentSpeed = baseSpeed;
         if (!isInHud) GameObject.FindGameObjectWithTag("StatsUI").GetComponent<StatsUIContainer>().SetSpeedUI(currentSpeed);
+        StartCoroutine(LockMovement());
     }
 
 
@@ -40,5 +43,14 @@ public class PlayerMovement : MonoBehaviour
     private void FixedUpdate()
     { 
         rb.velocity = currentSpeed * movement.normalized;
+    }
+
+
+    // Ignore player's inputs during scene transition
+    private IEnumerator LockMovement()
+    {
+        freeze.enabled = false;
+        yield return new WaitForSeconds(1f);
+        freeze.enabled = true;
     }
 }

@@ -206,8 +206,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 448020159}
-        m_TargetAssemblyTypeName: TitleScreenMenu, Assembly-CSharp
+      - m_Target: {fileID: 6421071081130250627}
+        m_TargetAssemblyTypeName: ScreenManager, Assembly-CSharp
         m_MethodName: QuitGame
         m_Mode: 1
         m_Arguments:
@@ -369,7 +369,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 448020158}
-  - component: {fileID: 448020159}
   m_Layer: 5
   m_Name: Menu
   m_TagString: Untagged
@@ -399,19 +398,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &448020159
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 448020157}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6ade42f9568e8934a85f171e854302d3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  sceneTransition: {fileID: 772487941}
 --- !u!1 &552764545
 GameObject:
   m_ObjectHideFlags: 0
@@ -632,9 +618,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 448020159}
-        m_TargetAssemblyTypeName: TitleScreenMenu, Assembly-CSharp
-        m_MethodName: PlayGame
+      - m_Target: {fileID: 6421071081130250627}
+        m_TargetAssemblyTypeName: ScreenManager, Assembly-CSharp
+        m_MethodName: MoveToNextScene
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -929,11 +915,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 763682927}
   m_CullTransparentMesh: 1
---- !u!95 &772487941 stripped
-Animator:
-  m_CorrespondingSourceObject: {fileID: 5934029589757846519, guid: f7a6983632f4b9c478b900a80a17433b, type: 3}
-  m_PrefabInstance: {fileID: 6421071081130250626}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &947680200
 GameObject:
   m_ObjectHideFlags: 0
@@ -1755,6 +1736,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f7a6983632f4b9c478b900a80a17433b, type: 3}
+--- !u!114 &6421071081130250627 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7567834450119914107, guid: f7a6983632f4b9c478b900a80a17433b, type: 3}
+  m_PrefabInstance: {fileID: 6421071081130250626}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6ade42f9568e8934a85f171e854302d3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
