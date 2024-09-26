@@ -48,7 +48,7 @@ public class EnemyHealth : MonoBehaviour
             rb.isKinematic = true;
             col.enabled = false;
 
-            // DecreaseEnemyCount();
+            DecreaseEnemyCount();
             GameObject.FindGameObjectWithTag("StatsUI").GetComponent<StatsUIContainer>().SetKillsUI(1);
 
             StopCoroutine(DamagedFlash());

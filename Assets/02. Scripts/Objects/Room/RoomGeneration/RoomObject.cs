@@ -74,7 +74,6 @@ public class RoomObject : MonoBehaviour
         }
     }
 
-
     // To open the door for the player when all enemies are dead (Closing the door is handled by the SpawnTrigger script)
 
 
@@ -82,6 +81,7 @@ public class RoomObject : MonoBehaviour
     {
         var randomNumberOfEnemies = UnityEngine.Random.Range(2, MaxEnemyToSpawnCount + 1);
         currentEnemyAliveCount = randomNumberOfEnemies;
+        Debug.Log("Room at " + roomPosition + " has " + randomNumberOfEnemies + " enemies to spawn");
 
         for (int i = 0; i < randomNumberOfEnemies; i++)
         {
@@ -97,6 +97,7 @@ public class RoomObject : MonoBehaviour
             enemy.GetComponent<EnemyHealth>().DecreaseEnemyCount = () =>
             {
                 currentEnemyAliveCount--;
+                Debug.Log("Enemy count is " + currentEnemyAliveCount);
                 if (currentEnemyAliveCount == 0) RoomCleared();
                 return 0;
             };
@@ -123,6 +124,15 @@ public class RoomObject : MonoBehaviour
         bottomDoor.SetActive(false);
         leftDoor.SetActive(false);
         rightDoor.SetActive(false);
+    }
+
+
+    public void CloseValidDoors()
+    {
+        if (isTopRoomExists == true) topDoor.SetActive(true);
+        if (isBottomRoomExists == true) bottomDoor.SetActive(true);
+        if (isLeftRoomExists == true) leftDoor.SetActive(true);
+        if (isRightRoomExists == true) rightDoor.SetActive(true);
     }
 
 

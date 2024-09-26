@@ -18,12 +18,12 @@ public class LootBag : MonoBehaviour
         possibleHealthLoot = GetDroppedHealthLoot();
         possibleMoneyLoot = GetDroppedMoneyLoots();
 
-        Debug.Log("Health: " + possibleHealthLoot);
-        Debug.Log("Money: ");
-        foreach (GameObject loot in possibleMoneyLoot)
-        {
-            Debug.Log(loot);
-        }
+        // Debug.Log("Health: " + possibleHealthLoot);
+        // Debug.Log("Money: ");
+        // foreach (GameObject loot in possibleMoneyLoot)
+        // {
+        //     Debug.Log(loot);
+        // }
     }
 
 
@@ -81,7 +81,7 @@ public class LootBag : MonoBehaviour
 
         if (possibleHealthLoot == null || possibleMoneyLoot.Count > 0)
         {
-            Debug.Log("Loot bag only has money");
+            // Debug.Log("Loot bag only has money");
             foreach (GameObject loot in possibleMoneyLoot)
             {
                 var droppedMoneyLoot = Instantiate(loot, spawnPos, UnityEngine.Quaternion.identity);
@@ -95,13 +95,13 @@ public class LootBag : MonoBehaviour
 
         else if (possibleMoneyLoot.Count == 0 && possibleHealthLoot == null)
         {
-            Debug.Log("Loot bag has nothing lol");
+            // Debug.Log("Loot bag has nothing lol");
         }
 
 
         else if (possibleHealthLoot != null && (possibleMoneyLoot.Count == 0 || possibleMoneyLoot.Count > 0))
         {
-            Debug.Log("Loot bag has health");   
+            // Debug.Log("Loot bag has health");   
             Instantiate(possibleHealthLoot, spawnPos, UnityEngine.Quaternion.identity);
         }
     }
