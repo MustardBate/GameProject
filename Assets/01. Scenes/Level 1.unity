@@ -4981,7 +4981,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &386473899
 Transform:
   m_ObjectHideFlags: 0
@@ -5503,6 +5503,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1075606449928033600, guid: 898559e7c76ffa94290b0efaf816af96, type: 3}
+      propertyPath: m_ColliderPaths.Array.size
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1192066342825813625, guid: 898559e7c76ffa94290b0efaf816af96, type: 3}
       propertyPath: id
       value: 2
@@ -5537,6 +5541,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4134838139962848125, guid: 898559e7c76ffa94290b0efaf816af96, type: 3}
       propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4702257916975232075, guid: 898559e7c76ffa94290b0efaf816af96, type: 3}
+      propertyPath: m_ColliderPaths.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5356818737147835025, guid: 898559e7c76ffa94290b0efaf816af96, type: 3}
+      propertyPath: m_ColliderPaths.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6030769944874142797, guid: 898559e7c76ffa94290b0efaf816af96, type: 3}
+      propertyPath: m_ColliderPaths.Array.size
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6954794977922653819, guid: 898559e7c76ffa94290b0efaf816af96, type: 3}
@@ -10094,6 +10110,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Room (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 1075606449928033600, guid: 898559e7c76ffa94290b0efaf816af96, type: 3}
+      propertyPath: m_ColliderPaths.Array.size
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1192066342825813625, guid: 898559e7c76ffa94290b0efaf816af96, type: 3}
       propertyPath: id
       value: 2
@@ -10105,6 +10125,18 @@ PrefabInstance:
     - target: {fileID: 2811825041323021488, guid: 898559e7c76ffa94290b0efaf816af96, type: 3}
       propertyPath: isLeftRoomExists
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4702257916975232075, guid: 898559e7c76ffa94290b0efaf816af96, type: 3}
+      propertyPath: m_ColliderPaths.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5356818737147835025, guid: 898559e7c76ffa94290b0efaf816af96, type: 3}
+      propertyPath: m_ColliderPaths.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6030769944874142797, guid: 898559e7c76ffa94290b0efaf816af96, type: 3}
+      propertyPath: m_ColliderPaths.Array.size
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7062362484379590159, guid: 898559e7c76ffa94290b0efaf816af96, type: 3}
       propertyPath: m_LocalPosition.x
@@ -14117,9 +14149,25 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1075606449928033600, guid: 898559e7c76ffa94290b0efaf816af96, type: 3}
+      propertyPath: m_ColliderPaths.Array.size
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2811825041323021488, guid: 898559e7c76ffa94290b0efaf816af96, type: 3}
       propertyPath: isBottomRoomExists
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4702257916975232075, guid: 898559e7c76ffa94290b0efaf816af96, type: 3}
+      propertyPath: m_ColliderPaths.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5356818737147835025, guid: 898559e7c76ffa94290b0efaf816af96, type: 3}
+      propertyPath: m_ColliderPaths.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6030769944874142797, guid: 898559e7c76ffa94290b0efaf816af96, type: 3}
+      propertyPath: m_ColliderPaths.Array.size
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7062362484379590159, guid: 898559e7c76ffa94290b0efaf816af96, type: 3}
       propertyPath: m_LocalPosition.x
@@ -18525,7 +18573,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1894499295
 MonoBehaviour:
   m_ObjectHideFlags: 0
