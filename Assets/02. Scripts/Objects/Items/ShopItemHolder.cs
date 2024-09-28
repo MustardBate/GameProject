@@ -4,19 +4,15 @@ using UnityEngine;
 
 public class ShopItemHolder : MonoBehaviour
 {
-    private Collider2D col;
     [SerializeField] private ShopPedestal pedestal;
     [HideInInspector] public ItemObjectTemplate selectedItem;
-    [HideInInspector] public string itemRarity;
     [HideInInspector] public bool isBuyable;
     private PlayerMoney playerMoney;
-    private int itemPrice;
 
     
     // Start is called before the first frame update
     void Start()
     {
-        col = gameObject.GetComponent<Collider2D>();
         playerMoney = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerMoney>();
     }
 
@@ -26,8 +22,7 @@ public class ShopItemHolder : MonoBehaviour
         if (other.gameObject.CompareTag("Player") && isBuyable == true)
         {
             //Decrease player's money count
-            itemPrice = pedestal.itemPrice;
-            playerMoney.money -= itemPrice;
+            playerMoney.money -= pedestal.itemPrice;
             playerMoney.SetMoneyCountUI(playerMoney.money);
 
             //Apply buff to player

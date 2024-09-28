@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class ItemPedestal : MonoBehaviour
 {
-    private Rigidbody2D rb;
     [SerializeField] private GameObject itemHolder;
     [SerializeField] private List<ItemObjectTemplate> itemsPool;
     [SerializeField] private ToolTipTrigger toolTip;
@@ -16,14 +15,11 @@ public class ItemPedestal : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        rb = gameObject.GetComponent<Rigidbody2D>();
-        toolTip = itemHolder.GetComponent<ToolTipTrigger>();
         selectedItem = GetItem();
         rarity = selectedItem.itemRarity.ToString();
 
         itemHolder.GetComponent<ItemHolder>().selectedItem = selectedItem;
         itemHolder.GetComponent<SpriteRenderer>().sprite = selectedItem.sprite;
-        itemHolder.GetComponent<ItemHolder>().itemRarity = rarity;
 
         toolTip.item = selectedItem;
 
@@ -41,7 +37,6 @@ public class ItemPedestal : MonoBehaviour
 
             itemHolder.GetComponent<ItemHolder>().selectedItem = selectedItem;
             itemHolder.GetComponent<SpriteRenderer>().sprite = selectedItem.sprite;
-            itemHolder.GetComponent<ItemHolder>().itemRarity = rarity;
 
             toolTip.item = selectedItem;
 

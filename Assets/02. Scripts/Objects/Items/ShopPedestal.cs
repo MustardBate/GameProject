@@ -5,12 +5,11 @@ using UnityEngine;
 
 public class ShopPedestal : MonoBehaviour
 {
-    private Rigidbody2D rb;
     [SerializeField] private GameObject itemHolder;
     [SerializeField] private List<ItemObjectTemplate> itemsPool;
     [SerializeField] private TextMeshProUGUI priceTagUI;
     [SerializeField] private Sprite emptyPedestal;
-    private ShopToolTipTrigger toolTip;
+    [SerializeField] private ToolTipTrigger toolTip;
     [HideInInspector] public ItemObjectTemplate selectedItem;
     private string rarity;
     [HideInInspector] public int itemPrice;
@@ -20,8 +19,6 @@ public class ShopPedestal : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        rb = gameObject.GetComponent<Rigidbody2D>();
-        toolTip = itemHolder.GetComponent<ShopToolTipTrigger>();
         selectedItem = GetItem();
         rarity = selectedItem.itemRarity.ToString();
         
@@ -30,7 +27,6 @@ public class ShopPedestal : MonoBehaviour
 
         itemHolder.GetComponent<ShopItemHolder>().selectedItem = selectedItem;
         itemHolder.GetComponent<SpriteRenderer>().sprite = selectedItem.sprite;
-        itemHolder.GetComponent<ShopItemHolder>().itemRarity = rarity;
 
         toolTip.item = selectedItem;
 
@@ -51,7 +47,6 @@ public class ShopPedestal : MonoBehaviour
 
             itemHolder.GetComponent<ShopItemHolder>().selectedItem = selectedItem;
             itemHolder.GetComponent<SpriteRenderer>().sprite = selectedItem.sprite;
-            itemHolder.GetComponent<ShopItemHolder>().itemRarity = rarity;
 
             toolTip.item = selectedItem;
 
@@ -129,21 +124,21 @@ public class ShopPedestal : MonoBehaviour
             {
                 itemHolder.GetComponent<ShopItemHolder>().isBuyable = false;
                 itemHolder.GetComponent<Collider2D>().isTrigger = false;
-                priceTagUI.color = new Color(1, 0, 0, .5f);
+                priceTagUI.color = new Color(1f, 1f, 1f, .5f);
             }
 
             else
             {
                 itemHolder.GetComponent<ShopItemHolder>().isBuyable = true;
                 itemHolder.GetComponent<Collider2D>().isTrigger = true;
-                priceTagUI.color = new Color(1, 1, 1, 1);
+                priceTagUI.color = new Color(1f, 1f, 1f, 1f);
             }
         }
 
         else 
         {
             gameObject.GetComponent<SpriteRenderer>().sprite = emptyPedestal;
-            priceTagUI.color = new Color(0, 0, 0, .5f);
+            priceTagUI.text = "";
         }
     }
 }

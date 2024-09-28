@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class ScreenManager : MonoBehaviour
+public class ScenesManager : MonoBehaviour
 {
     [SerializeField] private Animator sceneTransition;
 
@@ -12,14 +12,19 @@ public class ScreenManager : MonoBehaviour
         StartCoroutine(NextScene());
     }
 
+    public void ReturnToHub()
+    {
+        StartCoroutine(ReturnMainHub());
+    }
+
     public void ReturnToTitleScreen()
     {
         StartCoroutine(ReturnTitle());
     }
 
-    public void ReturnToGame()
+    public void GameOver()
     {
-        GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerMovement>().enabled = true;
+        StartCoroutine(DeathScene());
     }
 
     public void QuitGame()
@@ -44,5 +49,23 @@ public class ScreenManager : MonoBehaviour
         yield return new WaitForSeconds(1f);
 
         SceneManager.LoadScene("Title Screen");
+    }
+
+    private IEnumerator ReturnMainHub()
+    {
+        sceneTransition.SetTrigger("Start");
+
+        yield return new WaitForSeconds(1f);
+
+        SceneManager.LoadScene("Main Hub");
+    }
+
+    private IEnumerator DeathScene()
+    {
+        sceneTransition.SetTrigger("Start");
+
+        yield return new WaitForSeconds(1f);
+
+        SceneManager.LoadScene("Game Over");
     }
 }

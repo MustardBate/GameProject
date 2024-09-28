@@ -43,7 +43,7 @@ public class ItemObjectTemplate : ScriptableObject
         Common,
         Uncommon,
         Rare,
-        Component
+        Legendary
     }
 
     public ItemObjectTemplate(string name)

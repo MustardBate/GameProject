@@ -6,6 +6,7 @@ using UnityEngine;
 public class PlayerHealth : MonoBehaviour
 {
     [HideInInspector] public int maxHealth = 5;
+    [SerializeField] private ScenesManager changeSceneTo;
     public int currentHealth;
     public PlayerHealthUI healthBar;
 
@@ -24,9 +25,8 @@ public class PlayerHealth : MonoBehaviour
         sprite = gameObject.GetComponent<SpriteRenderer>();
         healthBar = GameObject.FindGameObjectWithTag("PlayerHealthBar").GetComponent<PlayerHealthUI>();
     
-
         currentHealth = maxHealth;
-        healthBar.SetNewMaxHealth(maxHealth, currentHealth);
+        healthBar.SetMaxHealth(maxHealth);
         healthBar.SetHealthNumber(maxHealth, currentHealth);
     }
 
@@ -91,9 +91,15 @@ public class PlayerHealth : MonoBehaviour
         gameObject.GetComponent<PlayerMovement>().enabled = false;
         rb.velocity = UnityEngine.Vector2.zero;
 
-        animator.SetTrigger("isDead");
+        StartCoroutine(Death());
     }
 
+    private IEnumerator Death()
+    {
+        animator.SetTrigger("isDead");
+        yield return new WaitForSeconds(.55f);
+        changeSceneTo.GameOver();
+    }
 
     //Boolean to check if player is dead
     public bool IsDead()
