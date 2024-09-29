@@ -474,8 +474,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1105632647}
-        m_TargetAssemblyTypeName: ScreenManager, Assembly-CSharp
+      - m_Target: {fileID: 1049344074}
+        m_TargetAssemblyTypeName: ScenesManager, Assembly-CSharp
         m_MethodName: ReturnToTitleScreen
         m_Mode: 1
         m_Arguments:
@@ -831,8 +831,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1105632647}
-        m_TargetAssemblyTypeName: ScreenManager, Assembly-CSharp
+      - m_Target: {fileID: 1049344074}
+        m_TargetAssemblyTypeName: ScenesManager, Assembly-CSharp
         m_MethodName: MoveToNextScene
         m_Mode: 1
         m_Arguments:
@@ -2230,18 +2230,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 1105632647}
-        m_TargetAssemblyTypeName: ScreenManager, Assembly-CSharp
-        m_MethodName: ReturnToGame
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
       - m_Target: {fileID: 1352002489}
         m_TargetAssemblyTypeName: UnityEngine.Behaviour, UnityEngine
         m_MethodName: set_enabled
@@ -3603,29 +3591,25 @@ TilemapCollider2D:
   m_MaximumTileChangeCount: 1000
   m_ExtrusionFactor: 0
   m_UseDelaunayMesh: 0
---- !u!1001 &1105632645
+--- !u!1001 &1049344072
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 1905330721}
+    m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 2521686560905704532, guid: f7a6983632f4b9c478b900a80a17433b, type: 3}
-      propertyPath: m_Alpha
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 7352390282505534814, guid: f7a6983632f4b9c478b900a80a17433b, type: 3}
       propertyPath: m_Name
-      value: SceneTransition
+      value: ScenesManager
       objectReference: {fileID: 0}
     - target: {fileID: 7364319547351682457, guid: f7a6983632f4b9c478b900a80a17433b, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -1173.2334
+      value: 746.7666
       objectReference: {fileID: 0}
     - target: {fileID: 7364319547351682457, guid: f7a6983632f4b9c478b900a80a17433b, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -614.22797
+      value: 465.77203
       objectReference: {fileID: 0}
     - target: {fileID: 7364319547351682457, guid: f7a6983632f4b9c478b900a80a17433b, type: 3}
       propertyPath: m_LocalPosition.z
@@ -3659,72 +3643,15 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 9147310216091528303, guid: f7a6983632f4b9c478b900a80a17433b, type: 3}
-      propertyPath: m_Pivot.x
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 9147310216091528303, guid: f7a6983632f4b9c478b900a80a17433b, type: 3}
-      propertyPath: m_Pivot.y
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 9147310216091528303, guid: f7a6983632f4b9c478b900a80a17433b, type: 3}
-      propertyPath: m_SizeDelta.x
-      value: 1920
-      objectReference: {fileID: 0}
-    - target: {fileID: 9147310216091528303, guid: f7a6983632f4b9c478b900a80a17433b, type: 3}
-      propertyPath: m_SizeDelta.y
-      value: 1080
-      objectReference: {fileID: 0}
-    - target: {fileID: 9147310216091528303, guid: f7a6983632f4b9c478b900a80a17433b, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 9147310216091528303, guid: f7a6983632f4b9c478b900a80a17433b, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 9147310216091528303, guid: f7a6983632f4b9c478b900a80a17433b, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 9147310216091528303, guid: f7a6983632f4b9c478b900a80a17433b, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 5.9185343
-      objectReference: {fileID: 0}
-    - target: {fileID: 9147310216091528303, guid: f7a6983632f4b9c478b900a80a17433b, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 9147310216091528303, guid: f7a6983632f4b9c478b900a80a17433b, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 9147310216091528303, guid: f7a6983632f4b9c478b900a80a17433b, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 9147310216091528303, guid: f7a6983632f4b9c478b900a80a17433b, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 1173.2334
-      objectReference: {fileID: 0}
-    - target: {fileID: 9147310216091528303, guid: f7a6983632f4b9c478b900a80a17433b, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 614.22797
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f7a6983632f4b9c478b900a80a17433b, type: 3}
---- !u!4 &1105632646 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 7364319547351682457, guid: f7a6983632f4b9c478b900a80a17433b, type: 3}
-  m_PrefabInstance: {fileID: 1105632645}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1105632647 stripped
+--- !u!114 &1049344074 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 7567834450119914107, guid: f7a6983632f4b9c478b900a80a17433b, type: 3}
-  m_PrefabInstance: {fileID: 1105632645}
+  m_PrefabInstance: {fileID: 1049344072}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
   m_Enabled: 1
@@ -5294,7 +5221,6 @@ RectTransform:
   m_Children:
   - {fileID: 283341054}
   - {fileID: 918482911}
-  - {fileID: 1105632646}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -5436,18 +5362,6 @@ MonoBehaviour:
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
         m_MethodName: SetActive
         m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 1105632647}
-        m_TargetAssemblyTypeName: ScreenManager, Assembly-CSharp
-        m_MethodName: ReturnToGame
-        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -5640,6 +5554,7 @@ SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
   - {fileID: 595351773}
+  - {fileID: 1049344072}
   - {fileID: 1905330721}
   - {fileID: 937199707}
   - {fileID: 817050937}

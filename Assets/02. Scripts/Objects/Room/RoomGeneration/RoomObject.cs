@@ -81,7 +81,7 @@ public class RoomObject : MonoBehaviour
     {
         var randomNumberOfEnemies = UnityEngine.Random.Range(2, MaxEnemyToSpawnCount + 1);
         currentEnemyAliveCount = randomNumberOfEnemies;
-        Debug.Log("Room at " + roomPosition + " has " + randomNumberOfEnemies + " enemies to spawn");
+        // Debug.Log("Room at " + roomPosition + " has " + randomNumberOfEnemies + " enemies to spawn");
 
         for (int i = 0; i < randomNumberOfEnemies; i++)
         {
@@ -97,7 +97,7 @@ public class RoomObject : MonoBehaviour
             enemy.GetComponent<EnemyHealth>().DecreaseEnemyCount = () =>
             {
                 currentEnemyAliveCount--;
-                Debug.Log("Enemy count is " + currentEnemyAliveCount);
+                // Debug.Log("Enemy count is " + currentEnemyAliveCount);
                 if (currentEnemyAliveCount == 0) RoomCleared();
                 return 0;
             };

@@ -211,8 +211,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 5
+  changeSceneTo: {fileID: 0}
   currentHealth: 0
   healthBar: {fileID: 0}
+  playerData: {fileID: 11400000, guid: c320f97f834b844439c1bdddedb8b67f, type: 2}
 --- !u!114 &5966868901035726097
 MonoBehaviour:
   m_ObjectHideFlags: 0
