@@ -3318,7 +3318,7 @@ GameObject:
   - component: {fileID: 1472340665444282996}
   - component: {fileID: 5866458240368113867}
   m_Layer: 0
-  m_Name: BossRoom
+  m_Name: PortalRoom
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

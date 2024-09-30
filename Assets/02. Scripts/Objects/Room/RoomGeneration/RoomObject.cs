@@ -50,21 +50,15 @@ public class RoomObject : MonoBehaviour
         Treasure,
         Shop,
         Normal,
-        Boss
+        Portal
     };
 
 
     private void Start()
     {
-        if (thisRoomType == RoomType.SpawnRoom || thisRoomType == RoomType.Treasure || thisRoomType == RoomType.Shop)
+        if (thisRoomType == RoomType.SpawnRoom || thisRoomType == RoomType.Treasure || thisRoomType == RoomType.Shop || thisRoomType == RoomType.Portal)
         {
             MaxEnemyToSpawnCount = 0;
-        }
-
-        else if (thisRoomType == RoomType.Boss)
-        {
-            MaxEnemyToSpawnCount = 1;
-            // SpawnBoss();
         }
 
         else

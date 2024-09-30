@@ -14,7 +14,7 @@ public class RoomManager : MonoBehaviour
 
     [SerializeField] private GameObject normalRoom;
     [SerializeField] private GameObject spawnRoom;
-    [SerializeField] private GameObject bossRoom;   
+    [SerializeField] private GameObject portalRoom;   
     [SerializeField] private GameObject shop;
     [SerializeField] private GameObject treasureRoom;
 
@@ -93,11 +93,11 @@ public class RoomManager : MonoBehaviour
             // Generate boss room as the last room of the list 
             if (roomPos == roomPositions[roomPositions.Count - 1])
             {
-                var bossRoomDrawn = Instantiate(bossRoom, new Vector2(roomPos.x, roomPos.y), Quaternion.identity, this.transform);
+                var bossRoomDrawn = Instantiate(portalRoom, new Vector2(roomPos.x, roomPos.y), Quaternion.identity, this.transform);
                 bossRoomDrawn.name = $"Boss {roomPos.x}, {roomPos.y}";
 
                 bossRoomDrawn.GetComponent<RoomObject>().roomPosition = roomPos;
-                bossRoomDrawn.GetComponent<RoomObject>().thisRoomType = RoomObject.RoomType.Boss;
+                bossRoomDrawn.GetComponent<RoomObject>().thisRoomType = RoomObject.RoomType.Portal;
                 roomObjects.Add(bossRoomDrawn);
                 continue;
             }
