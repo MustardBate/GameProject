@@ -130,12 +130,6 @@ public class RoomObject : MonoBehaviour
     }
 
 
-    private void SpawnBoss()
-    {
-        return;
-    }
-
-    
     // To connect this room to other valid rooms
     public void SetUpDoors()
     {
