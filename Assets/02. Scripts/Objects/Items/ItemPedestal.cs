@@ -83,6 +83,6 @@ public class ItemPedestal : MonoBehaviour
         if (rarity == "Common") itemHolder.GetComponent<SpriteRenderer>().material.SetColor("_Color", Color.white);
         else if (rarity == "Uncommon") itemHolder.GetComponent<SpriteRenderer>().material.SetColor("_Color", Color.green);
         else if (rarity == "Rare") itemHolder.GetComponent<SpriteRenderer>().material.SetColor("_Color", purple);
-        else if (rarity == "Component") itemHolder.GetComponent<SpriteRenderer>().material.SetColor("_Color", orange);
+        else if (rarity == "Legendary") itemHolder.GetComponent<SpriteRenderer>().material.SetColor("_Color", orange);
     }
 }

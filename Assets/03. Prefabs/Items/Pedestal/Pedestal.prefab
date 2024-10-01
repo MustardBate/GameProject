@@ -184,10 +184,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemHolder: {fileID: 7109338725388233565}
   itemsPool:
-  - {fileID: 11400000, guid: 713c8bdb38d5ffa40a756e3df631d92d, type: 2}
-  - {fileID: 11400000, guid: 0e6c3f49ad4098b4f959ac2e7c03aea1, type: 2}
-  - {fileID: 11400000, guid: 8dd1fa6cdc375884faee86504747243d, type: 2}
-  - {fileID: 11400000, guid: e2321aeb361915143811d0bafc3da858, type: 2}
+  - {fileID: 11400000, guid: abef435835e27f947bb34bb333017118, type: 2}
+  - {fileID: 11400000, guid: 358648c707f444e44bb5a9be44b63a1a, type: 2}
+  - {fileID: 11400000, guid: 9ad772270fee19e40b3b1f4d70f6fda6, type: 2}
+  - {fileID: 11400000, guid: 1ac522dd6189c624b85524b538f77c0c, type: 2}
+  - {fileID: 11400000, guid: 38527475bf7b3d14f86ea0337be28e9d, type: 2}
+  - {fileID: 11400000, guid: ce4faa072baa24348943965a0a65684a, type: 2}
+  - {fileID: 11400000, guid: 062a3f0fae0e06540b4a1e95767bdcfa, type: 2}
+  - {fileID: 11400000, guid: ea29bbacfd846d747ab4f10fe5c7e2db, type: 2}
+  - {fileID: 11400000, guid: 309c769879bc31e40932eff8401ff86a, type: 2}
+  - {fileID: 11400000, guid: b3f9e3f205a79bd4589daaf520086fdf, type: 2}
+  - {fileID: 11400000, guid: 83c30c799994bc7439583d82acd4f7f6, type: 2}
+  - {fileID: 11400000, guid: 311e694e56fdc7440b97475afe0ee774, type: 2}
+  - {fileID: 11400000, guid: 71a9ccb99e837984e8decbd962f9e404, type: 2}
+  - {fileID: 11400000, guid: a9caa0ba785af3e4b9065a72df70a0fa, type: 2}
   toolTip: {fileID: 8876126187486773575}
   selectedItem: {fileID: 0}
   emptyPedestal: {fileID: -1046569518, guid: 6909bd89453a0cc40ac32fad73359f51, type: 3}
@@ -496,7 +506,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   selectedItem: {fileID: 0}
-  itemRarity: 
 --- !u!114 &3971763393166126435
 MonoBehaviour:
   m_ObjectHideFlags: 0

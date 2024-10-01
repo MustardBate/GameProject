@@ -15,7 +15,13 @@ public class ItemObjectTemplate : ScriptableObject
 
     [Header("Item Properties")]
     [Header("Types")]
-    public ItemTypes itemType;
+    public bool isHealthUp;
+    public bool isDamageUp;
+    public bool isSpeedUp;
+    public bool isBulletSpeedUp;
+    [Space(5)]
+
+    // public ItemTypes itemType;
     public ItemRarity itemRarity;
     [Space(5)]
 
@@ -30,13 +36,13 @@ public class ItemObjectTemplate : ScriptableObject
     public float BulletSpeedUp = 0;
     
 
-    public enum ItemTypes
-    {
-        Health,
-        Damage,
-        Speed,
-        BulletSpeed
-    }
+    // public enum ItemTypes
+    // {
+    //     Health,
+    //     Damage,
+    //     Speed,
+    //     BulletSpeed
+    // }
 
     public enum ItemRarity
     {
@@ -53,26 +59,26 @@ public class ItemObjectTemplate : ScriptableObject
 
     public void ApplyBuff(GameObject target)
     {
-        if (itemType == ItemTypes.Health)
+        if (isHealthUp)
         {
             target.GetComponent<PlayerHealth>().maxHealth += HealthUp;
             target.GetComponent<PlayerHealth>().healthBar
             .SetNewMaxHealth(target.GetComponent<PlayerHealth>().maxHealth, target.GetComponent<PlayerHealth>().currentHealth);
         }
 
-        else if (itemType == ItemTypes.Damage)
+        if (isDamageUp)
         {
             target.GetComponentInChildren<PlayerGun>().SetNewDamage(DamageUp, DamageScale);
             GameObject.FindGameObjectWithTag("StatsUI").GetComponent<StatsUIContainer>().SetDamageUI(target.GetComponentInChildren<PlayerGun>().currentDamage);
         }
 
-        else if (itemType == ItemTypes.Speed)
+        if (isSpeedUp)
         {
             target.GetComponent<PlayerMovement>().currentSpeed += WalkingSpeedUp;
             GameObject.FindGameObjectWithTag("StatsUI").GetComponent<StatsUIContainer>().SetSpeedUI(target.GetComponent<PlayerMovement>().currentSpeed);
         }
 
-        else if (itemType == ItemTypes.BulletSpeed)
+        if (isBulletSpeedUp)
         {
             target.GetComponentInChildren<PlayerGun>().bulletSpeed += BulletSpeedUp;
             GameObject.FindGameObjectWithTag("StatsUI").GetComponent<StatsUIContainer>().SetBulletSpeedUI(target.GetComponentInChildren<PlayerGun>().bulletSpeed);

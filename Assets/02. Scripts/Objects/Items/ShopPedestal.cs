@@ -106,7 +106,7 @@ public class ShopPedestal : MonoBehaviour
             itemPrice = 30;
             priceTagUI.text = itemPrice.ToString() + "$";
         }
-        else if (rarity == "Component") 
+        else if (rarity == "Legendary") 
         {
             itemHolder.GetComponent<SpriteRenderer>().material.SetColor("_Color", orange);
             itemPrice = 45;

@@ -10,16 +10,19 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c561557bc24ab574d8294b3d80894ed9, type: 3}
-  m_Name: Rare
+  m_Name: Soapy
   m_EditorClassIdentifier: 
-  sprite: {fileID: -752026893, guid: 9174c7baa527b264495bda15fefa6371, type: 3}
-  name: '>:]'
-  itemDescription: Just the rarest thing you'll see around here!
-  itemType: 2
+  sprite: {fileID: 18082072, guid: 6406fbcdbb3c61248bac0252fcc7fcea, type: 3}
+  name: Soapy
+  itemDescription: Slipperly Sloppe!
+  isHealthUp: 0
+  isDamageUp: 0
+  isSpeedUp: 1
+  isBulletSpeedUp: 1
   itemRarity: 2
-  dropChance: 10
+  dropChance: 25
   HealthUp: 0
   DamageUp: 0
   DamageScale: 0
-  WalkingSpeedUp: 2.5
-  BulletSpeedUp: 0
+  WalkingSpeedUp: 1.75
+  BulletSpeedUp: 1.65
