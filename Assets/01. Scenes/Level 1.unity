@@ -16793,6 +16793,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Pedestal
       objectReference: {fileID: 0}
+    - target: {fileID: 60276301919971689, guid: e9fb98e76c0876d4f967a8804ab2de14, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6989695461333264447, guid: e9fb98e76c0876d4f967a8804ab2de14, type: 3}
       propertyPath: m_LocalPosition.x
       value: -2
@@ -17200,123 +17204,6 @@ MonoBehaviour:
   m_InstancedGameObject: {fileID: 0}
   m_Flags: 3
   m_ColliderType: 1
---- !u!1001 &1608563609
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 1057707023941490509, guid: f0811b7b2730e764384292b3bafd5e4e, type: 3}
-      propertyPath: m_SpriteTilingProperty.pivot.x
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 1057707023941490509, guid: f0811b7b2730e764384292b3bafd5e4e, type: 3}
-      propertyPath: m_SpriteTilingProperty.pivot.y
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 1057707023941490509, guid: f0811b7b2730e764384292b3bafd5e4e, type: 3}
-      propertyPath: m_SpriteTilingProperty.newSize.x
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1057707023941490509, guid: f0811b7b2730e764384292b3bafd5e4e, type: 3}
-      propertyPath: m_SpriteTilingProperty.newSize.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1057707023941490509, guid: f0811b7b2730e764384292b3bafd5e4e, type: 3}
-      propertyPath: m_SpriteTilingProperty.oldSize.x
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1057707023941490509, guid: f0811b7b2730e764384292b3bafd5e4e, type: 3}
-      propertyPath: m_SpriteTilingProperty.oldSize.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1057707023941490509, guid: f0811b7b2730e764384292b3bafd5e4e, type: 3}
-      propertyPath: m_SpriteTilingProperty.adaptiveTilingThreshold
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 1412101177818629102, guid: f0811b7b2730e764384292b3bafd5e4e, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1412101177818629102, guid: f0811b7b2730e764384292b3bafd5e4e, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1412101177818629102, guid: f0811b7b2730e764384292b3bafd5e4e, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1412101177818629102, guid: f0811b7b2730e764384292b3bafd5e4e, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1412101177818629102, guid: f0811b7b2730e764384292b3bafd5e4e, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1412101177818629102, guid: f0811b7b2730e764384292b3bafd5e4e, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1412101177818629102, guid: f0811b7b2730e764384292b3bafd5e4e, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1412101177818629102, guid: f0811b7b2730e764384292b3bafd5e4e, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1412101177818629102, guid: f0811b7b2730e764384292b3bafd5e4e, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1412101177818629102, guid: f0811b7b2730e764384292b3bafd5e4e, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2926459723224933988, guid: f0811b7b2730e764384292b3bafd5e4e, type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 2926459723224933988, guid: f0811b7b2730e764384292b3bafd5e4e, type: 3}
-      propertyPath: m_WasSpriteAssigned
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3260235815102072887, guid: f0811b7b2730e764384292b3bafd5e4e, type: 3}
-      propertyPath: itemsPool.Array.size
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 3260235815102072887, guid: f0811b7b2730e764384292b3bafd5e4e, type: 3}
-      propertyPath: itemsPool.Array.data[0]
-      value: 
-      objectReference: {fileID: 11400000, guid: 713c8bdb38d5ffa40a756e3df631d92d, type: 2}
-    - target: {fileID: 3260235815102072887, guid: f0811b7b2730e764384292b3bafd5e4e, type: 3}
-      propertyPath: itemsPool.Array.data[1]
-      value: 
-      objectReference: {fileID: 11400000, guid: e2321aeb361915143811d0bafc3da858, type: 2}
-    - target: {fileID: 3260235815102072887, guid: f0811b7b2730e764384292b3bafd5e4e, type: 3}
-      propertyPath: itemsPool.Array.data[2]
-      value: 
-      objectReference: {fileID: 11400000, guid: 8dd1fa6cdc375884faee86504747243d, type: 2}
-    - target: {fileID: 3260235815102072887, guid: f0811b7b2730e764384292b3bafd5e4e, type: 3}
-      propertyPath: itemsPool.Array.data[3]
-      value: 
-      objectReference: {fileID: 11400000, guid: 0e6c3f49ad4098b4f959ac2e7c03aea1, type: 2}
-    - target: {fileID: 8454379013082838951, guid: f0811b7b2730e764384292b3bafd5e4e, type: 3}
-      propertyPath: m_Name
-      value: TreasureRoom
-      objectReference: {fileID: 0}
-    - target: {fileID: 8454379013082838951, guid: f0811b7b2730e764384292b3bafd5e4e, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: f0811b7b2730e764384292b3bafd5e4e, type: 3}
 --- !u!213 &1667204331
 Sprite:
   m_ObjectHideFlags: 0
@@ -18793,7 +18680,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ccdc0bf83e41c9648b5b7167bec7ec30, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxRoomsCount: 10
+  maxRoomsCount: 15
   normalRoom: {fileID: 345012608050801222, guid: 898559e7c76ffa94290b0efaf816af96, type: 3}
   spawnRoom: {fileID: 8835488307559061808, guid: 3228a1df3aa7ff648883c05a93479353, type: 3}
   portalRoom: {fileID: 8261282224518759997, guid: 132be0ec25b5d3d4e97a92316e4f60ea, type: 3}
@@ -19886,7 +19773,6 @@ SceneRoots:
   - {fileID: 876356224}
   - {fileID: 386473899}
   - {fileID: 1888725650}
-  - {fileID: 1608563609}
   - {fileID: 1385598024}
   - {fileID: 104074454}
   - {fileID: 1383920992}

@@ -18,7 +18,6 @@ public class LevelPortal : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            sprite.material.color = Color.white;
             popUp.SetActive(true);
             GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerMovement>().enabled = false;
             GameObject.FindGameObjectWithTag("Player").GetComponent<Rigidbody2D>().velocity = Vector2.zero;

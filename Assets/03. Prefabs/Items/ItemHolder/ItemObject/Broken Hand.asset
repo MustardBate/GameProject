@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c561557bc24ab574d8294b3d80894ed9, type: 3}
   m_Name: Broken Hand
   m_EditorClassIdentifier: 
-  sprite: {fileID: 0}
+  sprite: {fileID: -1416008304, guid: 6406fbcdbb3c61248bac0252fcc7fcea, type: 3}
   name: Broken Hand
   itemDescription: Ouch! Need a hand?
   isHealthUp: 1
