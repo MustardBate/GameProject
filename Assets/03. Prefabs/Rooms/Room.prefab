@@ -444,7 +444,10 @@ MonoBehaviour:
   - {fileID: 9222849056297025774}
   enemyTypes:
   - {fileID: 3639517029256760176, guid: 4e66edb4b8a73b44f9d66a12dd5c0ac6, type: 3}
-  - {fileID: 7176510600805218088, guid: 6ad053b79306b6b43ad9d9dfbe14c033, type: 3}
+  - {fileID: 6363019838558662096, guid: 6ad053b79306b6b43ad9d9dfbe14c033, type: 3}
+  - {fileID: 5555767700533889094, guid: c319d8d6c11c54f47ba3df9080a1935f, type: 3}
+  - {fileID: 8024978844677188806, guid: edabf3f4decceff4ebe25fd5806ea0a5, type: 3}
+  - {fileID: 8178911247876424592, guid: 1744077d5b6d43f45bf46000737d2657, type: 3}
   enemyHolder: {fileID: 7616710555394878846}
   enemiesSpawned: []
   thisRoomType: 0

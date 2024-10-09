@@ -9,7 +9,7 @@ public class RoomManager : MonoBehaviour
 {
     private int roomWidth = 20;
     private int roomHeight = 12;
-    [SerializeField] private int maxRoomsCount = 10;
+    [SerializeField] private int maxRoomsCount = 15;
     private int roomCount;
 
     [SerializeField] private GameObject normalRoom;
@@ -30,6 +30,12 @@ public class RoomManager : MonoBehaviour
         
         roomCount = 0;
 
+        CreateMap();
+    }
+
+
+    public void CreateMap()
+    {
         GenerateRoomsPositions();
         DrawRooms();
         ConnectRooms();
@@ -61,9 +67,9 @@ public class RoomManager : MonoBehaviour
         }
 
         // DEBUGGING
-        // foreach (KeyValuePair<int, Vector2Int> room in roomPositions)
+        // foreach (Vector2Int room in roomPositions)
         // {
-        //     Debug.Log(room.Key + ": " + room.Value);
+        //     Debug.Log(room);
         // }
     }
 

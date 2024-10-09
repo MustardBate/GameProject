@@ -7,7 +7,7 @@ public class EnemyWeapon : MonoBehaviour
 {
     [SerializeField] private GameObject projectile;
     [SerializeField] private Transform shotPoint;
-    [SerializeField] private float rangeTilShoot;
+    private float rangeTilShoot;
 
     private GameObject player;
     private float distance;

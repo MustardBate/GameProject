@@ -74,12 +74,13 @@ public class ShopPedestal : MonoBehaviour
             return choosenItem;
         }
 
-        else if (possibleItems.Count == 0)
-        {
-            return itemsPool[0];
-        }
+        else return itemsPool[0];
+        // else if (possibleItems.Count == 0)
+        // {
+        //     return itemsPool[0];
+        // }
 
-        return null;
+        // else return null;
     }
 
 

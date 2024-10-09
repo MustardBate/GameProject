@@ -15,6 +15,8 @@ public class EnemyHealth : MonoBehaviour
     [SerializeField] private GameObject spriteRenderer;
     private EnemyHealthUI healthBar;
 
+    private EnemyWeapon[] weapons;
+
     [HideInInspector] public bool isDead;
 
     // Start is called before the first frame update
@@ -29,6 +31,8 @@ public class EnemyHealth : MonoBehaviour
         health = maxHealth;
         healthBar.SetMaxHealth(maxHealth);
         isDead = false;
+
+        weapons = GetComponentsInChildren<EnemyWeapon>();
     }
 
     
@@ -59,11 +63,16 @@ public class EnemyHealth : MonoBehaviour
 
     IEnumerator Death()
     {
-        var weapon = GetComponentInChildren<EnemyWeapon>();
         gameObject.GetComponent<EnemyMovement>().enabled = false;
         gameObject.GetComponent<EnemyCollision>().enabled = false;
 
-        if (weapon != null) weapon.enabled = false;
+        if (weapons != null)
+        {
+            foreach (EnemyWeapon weapon in weapons)
+            {
+                weapon.enabled = false;
+            }
+        }
 
         animator.SetTrigger("isDead");
         yield return new WaitForSeconds(deathAnimation.length);

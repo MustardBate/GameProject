@@ -255,7 +255,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8582ec049651af4468f4eeb398bd1f80, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  contactDamage: 2
+  contactDamage: 1
 --- !u!114 &1045038751254068230
 MonoBehaviour:
   m_ObjectHideFlags: 0
