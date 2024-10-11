@@ -9,21 +9,25 @@ public class ScenesManager : MonoBehaviour
 
     public void MoveToNextScene()
     {
+        Time.timeScale = 1;
         StartCoroutine(NextScene());
     }
 
     public void ReturnToHub()
     {
+        Time.timeScale = 1;
         StartCoroutine(ReturnMainHub());
     }
 
     public void ReturnToTitleScreen()
     {
+        Time.timeScale = 1;
         StartCoroutine(ReturnTitle());
     }
 
     public void GameOver()
     {
+        Time.timeScale = 1;
         StartCoroutine(DeathScene());
     }
 

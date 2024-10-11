@@ -10,6 +10,11 @@ public class PlayerHealthUI : MonoBehaviour
     [SerializeField] private TextMeshProUGUI text;
     
 
+    private void Awake()
+    {
+        text.color = Color.black;
+    }
+
     public void SetMaxHealth(int maxHealth)
     {
         slider.maxValue = maxHealth;
